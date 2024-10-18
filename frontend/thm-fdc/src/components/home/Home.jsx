@@ -5,7 +5,7 @@ import ProductHero from './views/ProductHero';
 import ProductValues from './views/ProductValues';
 import ProductCategories from './views/ProductCategories';
 import ProductSmokingHero from './views/ProductSmokingHero';
-
+import AppFooter from './views/AppFooter';
 
 function Home(props) {
 
@@ -17,6 +17,7 @@ function Home(props) {
       <ProductValues />
       <ProductCategories />
       <ProductSmokingHero />
+      <AppFooter />
 
     </div>
   );

@@ -3,6 +3,7 @@ import Header from "../header/Header";
 import { Link } from "@mui/material";
 import ProductHero from './views/ProductHero';
 import ProductValues from './views/ProductValues';
+import ProductCategories from './views/ProductCategories';
 
 function Home(props) {
 
@@ -12,6 +13,7 @@ function Home(props) {
       <Header />
       <ProductHero />
       <ProductValues />
+      <ProductCategories />
 
     </div>
   );

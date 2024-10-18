@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Typography from './components/Typography';
-import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
 
 function ProductSmokingHero() {
   return (
@@ -28,7 +28,7 @@ function ProductSmokingHero() {
       <Typography variant="subtitle1" sx={{ my: 3 }}>
         Estamos aqui para ajudar, entre em contato!
       </Typography>
-      <SportsSoccerIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, fontSize: "5em" }} />
+      <MailOutlineIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, fontSize: "5em" }} />
     </Container>
   );
 }

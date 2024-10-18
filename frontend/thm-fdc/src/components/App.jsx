@@ -4,7 +4,8 @@ import {
     Routes,
     Route,
   } from "react-router-dom";
-  
+
+import 'typeface-poppins';
 import Home from "./home/Home";
 
 function App() {

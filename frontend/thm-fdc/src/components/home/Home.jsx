@@ -1,16 +1,15 @@
 import { React } from "react";
 import Header from "../header/Header";
 import { Link } from "@mui/material";
+import ProductHero from './views/ProductHero';
 
 function Home(props) {
 
   return (
-    <div className="home-div" style={{backgroundColor: '#ccc'}}>
-      <Header className="header" style={{ backgroundColor: 'red'}}> </Header>
+    <div className="home-div">
 
-      <h1>
-        Hello, world
-      </h1>
+      <Header/>
+      <ProductHero/>
 
     </div>
   );

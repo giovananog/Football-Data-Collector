@@ -5,8 +5,8 @@ import { Link } from "@mui/material";
 function Home(props) {
 
   return (
-    <div className="home-div" style={{backgroundColor: '#eee8e8'}}>
-      <Header sx={{ color: '#ccc'}}> </Header>
+    <div className="home-div" style={{backgroundColor: '#ccc'}}>
+      <Header className="header" style={{ backgroundColor: 'red'}}> </Header>
 
       <h1>
         Hello, world

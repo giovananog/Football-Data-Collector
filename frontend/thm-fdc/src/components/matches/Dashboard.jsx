@@ -12,6 +12,7 @@ import MainCard from '../general/components/MainCard';
 import AnalyticEcommerce from '../general/components/AnalyticEcommerce';
 import ReportAreaChart from '../general/components/ReportAreaChart';
 import OrdersTable from '../general/components/OrdersTable';
+import PaginationLink from './Pagination';
 
 
 // ==============================|| DASHBOARD - DEFAULT ||============================== //
@@ -19,7 +20,7 @@ import OrdersTable from '../general/components/OrdersTable';
 export default function Dashboard() {
   return (
     <Grid container rowSpacing={4.5} columnSpacing={2.75} sx={{ marginTop: 4, bgcolor: "#fafafa", justifyContent: "center" }}>
-      <Grid container spacing={2} sx={{ marginBottom: 10, marginTop: 10, justifyContent: "center" }}>
+      <Grid container spacing={2} sx={{ marginBottom: 10, marginTop: 2, justifyContent: "center" }}>
 
       <Grid container justifyContent="center" alignItems="center" spacing={2} sx={{ marginTop: 1, marginBottom: 1 }}>
         <Grid container item xs={12} md={7} lg={8}>
@@ -38,8 +39,7 @@ export default function Dashboard() {
             <OrdersTable />
           </MainCard>
           <Grid item sx={{ justifyContent:"flex-end", alignItems:"center", width: "100%", display: "flex" }}>
-            <Typography variant="p">Mais sobre o campeonato</Typography>
-            <ForwardOutlinedIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, fontSize: 50 }} />
+            <PaginationLink />
         </Grid>
         </Grid>
       </Grid>

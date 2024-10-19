@@ -44,7 +44,7 @@ function ProductCTA() {
                 type="submit"
                 color="primary"
                 variant="contained"
-                sx={{ width: '45%', backgroundColor: 'black', marginRight: "5px" }}
+                sx={{ width: '32%', backgroundColor: 'black', marginRight: "5px" }}
               >
                 Times
               </Button>
@@ -52,7 +52,15 @@ function ProductCTA() {
                 type="submit"
                 color="primary"
                 variant="contained"
-                sx={{ width: '45%', backgroundColor: 'black' }}
+                sx={{ width: '32%', backgroundColor: 'black', marginRight: "5px" }}
+              >
+                Partidas
+              </Button>
+              <Button
+                type="submit"
+                color="primary"
+                variant="contained"
+                sx={{ width: '32%', backgroundColor: 'black' }}
               >
                 Estatísticas
               </Button>

@@ -8,6 +8,8 @@ import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
 import ListItemText from '@mui/material/ListItemText';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import ForwardOutlinedIcon from '@mui/icons-material/ForwardOutlined';
+import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 
 // project import
 import MainCard from './MainCard';
@@ -41,49 +43,57 @@ const actionSX = {
 
 export default function Dashboard() {
   return (
-    <Grid container rowSpacing={4.5} columnSpacing={2.75} sx={{ marginTop: 4, bgcolor: "#f7f7f7", justifyContent: "center" }}>
+    <Grid container rowSpacing={4.5} columnSpacing={2.75} sx={{ marginTop: 4, bgcolor: "#fafafa", justifyContent: "center" }}>
       {/* row 1 */}
       <Grid item xs={12} lg={12} sx={{ mb: -2.25 }} alignItems="center" justifyContent='space-between' direction="column">
         <Typography variant="h5" sx={{ marginLeft: 10 }}>Dashboard</Typography>
       </Grid>
       <Grid container justifyContent="center" alignItems="center" spacing={2} sx={{ marginTop: 4 }}>
         <Grid item xs={12} sm={6} md={4} lg={2}>
-            <AnalyticEcommerce title="Total Page Views" count="4,42,236" percentage={59.3} extra="35,000" />
+            <AnalyticEcommerce title="Temporadas" count="4,42,236" percentage={59.3} extra="35,000" />
         </Grid>
         <Grid item xs={12} sm={6} md={4} lg={2}>
-            <AnalyticEcommerce title="Total Users" count="78,250" percentage={70.5} extra="8,900" />
+            <AnalyticEcommerce title="Partidas Regitradas" count="78,250" percentage={70.5} extra="8,900" />
         </Grid>
         <Grid item xs={12} sm={6} md={4} lg={2}>
-            <AnalyticEcommerce title="Total Order" count="18,800" percentage={27.4} isLoss color="warning" extra="1,943" />
+            <AnalyticEcommerce title="Jogadores" count="18,800" percentage={27.4} isLoss color="warning" extra="1,943" />
         </Grid>
         <Grid item xs={12} sm={6} md={4} lg={2}>
-            <AnalyticEcommerce title="Total Sales" count="$35,078" percentage={27.4} isLoss color="warning" extra="$20,395" />
+            <AnalyticEcommerce title="Estádios" count="$35,078" percentage={27.4} isLoss color="warning" extra="$20,395" />
         </Grid>
     </Grid>
 
       <Grid item md={8} sx={{ display: { sm: 'none', md: 'block', lg: 'none' } }} />
 
       {/* row 3 */}
-      <Grid container justifyContent="center" alignItems="center" spacing={2} sx={{ marginTop: 4 }}>
-      <Grid container item xs={12} md={7} lg={6} >
+      <Grid container justifyContent="center" alignItems="center" spacing={2} sx={{ marginTop: 8 }}>
+      <Grid container item xs={12} md={7} lg={8}>
         <Grid container>
           <Grid item >
-            <Typography variant="h5">Recent Orders</Typography>
+            <Typography variant="h5">Tabela</Typography>
           </Grid>
           <Grid item />
+        </Grid>
+        <Grid item sx={{ justifyContent:"flex-end", alignItems:"center", width: "100%", display: "flex" }}>
+            <Typography variant="p">2024</Typography>
+            <CalendarMonthOutlinedIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, fontSize: 35 }} />
         </Grid>
         <MainCard sx={{ mt: 2 }} content={false}>
           <OrdersTable />
         </MainCard>
+        <Grid item sx={{ justifyContent:"flex-end", alignItems:"center", width: "100%", display: "flex" }}>
+            <Typography variant="p">Mais sobre o campeonato</Typography>
+            <ForwardOutlinedIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, fontSize: 50 }} />
+        </Grid>
       </Grid>
-      <Grid item xs={12} md={5} lg={4}>
+      {/* <Grid item xs={12} md={5} lg={4}>
         <Grid container>
           <Grid item>
             <Typography variant="h5">Analytics Report</Typography>
           </Grid>
           <Grid item />
-        </Grid>
-        <MainCard sx={{ mt: 2 }} content={false}>
+        </Grid> */}
+        {/* <MainCard sx={{ mt: 2 }} content={false}>
           <List sx={{ p: 0, '& .MuiListItemButton-root': { py: 2 } }}>
             <ListItemButton divider>
               <ListItemText primary="Company Finance Growth" />
@@ -100,87 +110,8 @@ export default function Dashboard() {
           </List>
           <ReportAreaChart />
         </MainCard>
+      </Grid> */}
       </Grid>
-      </Grid>
-
-      {/* row 4 */}
-      <Grid item xs={12} md={5} lg={10} sx={{ marginTop: 4, marginBottom: 6 }}>
-        <Grid container alignItems="center" justifyContent="center">
-          <Grid item z>
-            <Typography variant="h5">Transaction History</Typography>
-          </Grid>
-          <Grid item />
-        </Grid>
-        <MainCard sx={{ mt: 2 }} content={false}>
-          <List
-            component="nav"
-            sx={{
-              px: 0,
-              py: 0,
-              '& .MuiListItemButton-root': {
-                py: 1.5,
-                '& .MuiAvatar-root': avatarSX,
-                '& .MuiListItemSecondaryAction-root': { ...actionSX, position: 'relative' }
-              }
-            }}
-          >
-            <ListItemButton divider>
-              <ListItemAvatar>
-                <Avatar sx={{ color: 'success.main', bgcolor: 'success.lighter' }}>
-                  <GiftOutlined />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary={<Typography variant="subtitle1">Order #002434</Typography>} secondary="Today, 2:00 AM" />
-              <ListItemSecondaryAction>
-                <Stack alignItems="flex-end">
-                  <Typography variant="subtitle1" noWrap>
-                    + $1,430
-                  </Typography>
-                  <Typography variant="h6" color="secondary" noWrap>
-                    78%
-                  </Typography>
-                </Stack>
-              </ListItemSecondaryAction>
-            </ListItemButton>
-            <ListItemButton divider>
-              <ListItemAvatar>
-                <Avatar sx={{ color: 'primary.main', bgcolor: 'primary.lighter' }}>
-                  <MessageOutlined />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary={<Typography variant="subtitle1">Order #984947</Typography>} secondary="5 August, 1:45 PM" />
-              <ListItemSecondaryAction>
-                <Stack alignItems="flex-end">
-                  <Typography variant="subtitle1" noWrap>
-                    + $302
-                  </Typography>
-                  <Typography variant="h6" color="secondary" noWrap>
-                    8%
-                  </Typography>
-                </Stack>
-              </ListItemSecondaryAction>
-            </ListItemButton>
-            <ListItemButton>
-              <ListItemAvatar>
-                <Avatar sx={{ color: 'error.main', bgcolor: 'error.lighter' }}>
-                  <SettingOutlined />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary={<Typography variant="subtitle1">Order #988784</Typography>} secondary="7 hours ago" />
-              <ListItemSecondaryAction>
-                <Stack alignItems="flex-end">
-                  <Typography variant="subtitle1" noWrap>
-                    + $682
-                  </Typography>
-                  <Typography variant="h6" color="secondary" noWrap>
-                    16%
-                  </Typography>
-                </Stack>
-              </ListItemSecondaryAction>
-            </ListItemButton>
-          </List>
-        </MainCard>
-      </Grid>
-    </Grid>
+    </Grid>      
   );
 }

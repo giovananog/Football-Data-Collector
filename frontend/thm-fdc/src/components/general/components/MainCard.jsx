@@ -36,12 +36,13 @@ function MainCard(
   boxShadow = theme.palette.mode === 'dark' ? boxShadow || true : boxShadow;
 
   return (
-    <Card
+    <Card 
       elevation={elevation || 0}
       ref={ref}
       {...others}
       sx={{
         border: border ? '1px solid' : 'none',
+        width: "100%",
         borderRadius: 2,
         borderColor: theme.palette.mode === 'dark' ? theme.palette.divider : theme.palette.grey.A800,
         boxShadow: boxShadow && (!border || theme.palette.mode === 'dark') ? shadow || theme.customShadows.z1 : 'inherit',

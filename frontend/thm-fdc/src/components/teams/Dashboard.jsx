@@ -24,6 +24,7 @@ export default function Dashboard() {
         <Typography variant="h5">Estatísticas Gerais</Typography>
         <Typography variant="p">Campeonato de 2024</Typography>
       </Grid>
+      
   {/* Primeiro Gráfico */}
   <Grid item xs={12} md={4} lg={3}>
     <MainCard sx={{ mt: 2 }} content={false}>

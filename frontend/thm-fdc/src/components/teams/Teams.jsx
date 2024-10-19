@@ -4,6 +4,7 @@ import { Link } from "@mui/material";
 import AppFooter from '../footer/AppFooter';
 import Dashboard from './Dashboard'
 import ProductCTA from './ProductCTA';
+import Cards from './Cards';
 
 function Teams() {
 
@@ -12,6 +13,7 @@ function Teams() {
 
       <Header />
       <ProductCTA />
+      <Cards />
       <Dashboard />
       <AppFooter />
       

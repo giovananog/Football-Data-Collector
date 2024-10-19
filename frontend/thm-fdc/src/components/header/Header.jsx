@@ -32,7 +32,7 @@ function AppAppBar() {
               color="inherit"
               variant="h6"
               underline="none"
-              href="/premium-themes/onepirate/sign-in/"
+              href="/"
               sx={rightLink}
             >
               {'Home'}
@@ -40,7 +40,7 @@ function AppAppBar() {
             <Link
               variant="h6"
               underline="none"
-              href="/premium-themes/onepirate/sign-up/"
+              href="/geral"
               sx={{ ...rightLink }}
             >
               {'Geral'}
@@ -48,7 +48,7 @@ function AppAppBar() {
             <Link
               variant="h6"
               underline="none"
-              href="/premium-themes/onepirate/sign-up/"
+              href="/campeonatos"
               sx={{ ...rightLink }}
             >
               {'Partidas'}
@@ -56,7 +56,7 @@ function AppAppBar() {
             <Link
               variant="h6"
               underline="none"
-              href="/premium-themes/onepirate/sign-up/"
+              href="/campeonatos"
               sx={{ ...rightLink }}
             >
               {'Times'}
@@ -64,10 +64,18 @@ function AppAppBar() {
             <Link
               variant="h6"
               underline="none"
-              href="/premium-themes/onepirate/sign-up/"
+              href="/campeonatos"
               sx={{ ...rightLink }}
             >
               {'Jogadores'}
+            </Link>
+            <Link
+              variant="h6"
+              underline="none"
+              href="/campeonatos"
+              sx={{ ...rightLink }}
+            >
+              {'Notícias'}
             </Link>
           </Box>
         </Toolbar>

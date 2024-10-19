@@ -5,7 +5,7 @@ import ProductHero from './views/ProductHero';
 import ProductValues from './views/ProductValues';
 import ProductCategories from './views/ProductCategories';
 import ProductSmokingHero from './views/ProductSmokingHero';
-import AppFooter from './views/AppFooter';
+import AppFooter from '../footer/AppFooter';
 
 function Home(props) {
 

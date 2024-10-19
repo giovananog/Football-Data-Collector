@@ -7,6 +7,7 @@ import {
 
 import 'typeface-poppins';
 import Home from "./home/Home";
+import General from "./general/General";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Routes>
 
           <Route path="/" element={<Home/>}></Route>
+          <Route path="/geral" element={<General/>}></Route>
           
         </Routes>
 

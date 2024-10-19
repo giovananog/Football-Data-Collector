@@ -12,6 +12,7 @@ function Teams() {
 
       <Header />
       <ProductCTA />
+      <Dashboard />
       <AppFooter />
       
     </div>

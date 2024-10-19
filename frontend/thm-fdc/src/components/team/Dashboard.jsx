@@ -21,7 +21,7 @@ export default function Dashboard() {
     <Grid container rowSpacing={4.5} columnSpacing={2.75} sx={{ marginTop: 4, bgcolor: "#fafafa", justifyContent: "center" }}>
       <Grid container spacing={2} sx={{ marginBottom: 10, marginTop: 10, justifyContent: "center" }}>
       <Grid item xs={12} lg={12} sx={{ mb: -2.25 }} textAlign={"center"}>
-        <Typography variant="h5">Estatísticas Gerais</Typography>
+        <Typography variant="h5">Estatísticas </Typography>
         <Typography variant="p">Campeonato de 2024</Typography>
       </Grid>
       
@@ -88,6 +88,22 @@ export default function Dashboard() {
     </MainCard>
   </Grid>
 </Grid>
+
+{/* row 3 */}
+<Grid container justifyContent="center" alignItems="center" spacing={2} sx={{ marginTop: 1, marginBottom: 6 }}>
+      <Grid container item xs={12} md={7} lg={8}>
+        <Grid container>
+          <Grid item xs={12} lg={12} sx={{ mb: -2.25 }} textAlign={"center"}>
+            <Typography variant="h5">Performance</Typography>
+          </Grid>
+          <Grid item />
+        </Grid>
+        <MainCard sx={{ mt: 2 }} content={false}>
+          <OrdersTable />
+        </MainCard>
+      </Grid>
+      </Grid> 
+
 </Grid>
 
 

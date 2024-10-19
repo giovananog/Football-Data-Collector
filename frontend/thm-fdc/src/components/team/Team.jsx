@@ -13,8 +13,8 @@ function Team() {
 
       <Header />
       <ProductCTA />
-      {/* <Cards />
-      <Dashboard /> */}
+      <Dashboard />
+      {/* <Cards /> */}
       <AppFooter />
       
     </div>

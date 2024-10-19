@@ -14,7 +14,7 @@ function Team() {
       <Header />
       <ProductCTA />
       <Dashboard />
-      {/* <Cards /> */}
+      <Cards />
       <AppFooter />
       
     </div>

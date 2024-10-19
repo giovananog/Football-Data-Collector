@@ -11,8 +11,8 @@ export default function MultiActionAreaCard() {
       <CardActionArea>
         <CardMedia
           component="img"
-          height="240"
-          image="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Palmeiras_logo.svg/800px-Palmeiras_logo.svg.png"
+          height="500"
+          image="https://www.verdazzo.com.br/wp-content/uploads/2022/10/oficial_2022_endrick.jpg"
           alt="green iguana"
         />
         <CardContent>

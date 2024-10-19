@@ -2,15 +2,17 @@ import { React } from "react";
 import Header from "../header/Header";
 import { Link } from "@mui/material";
 import AppFooter from '../footer/AppFooter';
+import Dashboard from './components/Dashboard'
 
-function General(props) {
+function General() {
 
   return (
-    <div className="home-div">
+    <div>
 
       <Header />
+      <Dashboard />
       <AppFooter />
-
+      
     </div>
   );
 }

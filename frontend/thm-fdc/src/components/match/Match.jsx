@@ -18,7 +18,7 @@ function Teams() {
       <Matches />
       <Cards />
       
-      {/* <Dashboard /> */}
+      <Dashboard />
       <AppFooter />
       
     </div>

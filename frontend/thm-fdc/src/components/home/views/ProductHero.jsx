@@ -38,9 +38,19 @@ export default function ProductHero() {
         size="large"
         component="a"
         href="/geral"
-        sx={{ minWidth: 200, backgroundColor: "#20195f" }}
+        sx={{ minWidth: 200, backgroundColor: "#20195f", marginBottom: 1 }}
       >
         Explore Agora
+      </Button>
+      <Button
+        color="secondary"
+        variant="contained"
+        size="large"
+        component="a"
+        href="/campeonatos/a/partidas"
+        sx={{ minWidth: 200, backgroundColor: "#20195f" }}
+      >
+        Brasileirão 2024
       </Button>
       {/* <Typography variant="body2" color="inherit" sx={{ mt: 2 }}>
         Discover the experience

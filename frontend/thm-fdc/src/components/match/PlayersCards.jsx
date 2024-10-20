@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 // project import
 import MainCard from '../general/components/MainCard';
 import MultiActionAreaCard from './components/Card'
+import DialogCard from "./DialogCard"
 
 
 // ==============================|| DASHBOARD - DEFAULT ||============================== //
@@ -23,7 +24,7 @@ export default function Dashboard() {
       {items.map((_, index) => (
         <Grid item xs={12} md={4} lg={1} key={index}>
           <MainCard sx={{ mt: 2 }} content={false}>
-            <MultiActionAreaCard width={200} height={200}/>
+            <DialogCard width={200} height={200}/>
           </MainCard>
         </Grid>
       ))}

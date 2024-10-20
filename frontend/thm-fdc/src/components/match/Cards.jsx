@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import MainCard from '../general/components/MainCard';
 import ReportAreaChart from '../general/components/ReportAreaChart';
 import MultiActionAreaCard from './components/Card'
+import DialogCard from './DialogCard'
 
 
 // ==============================|| DASHBOARD - DEFAULT ||============================== //
@@ -23,12 +24,12 @@ export default function Dashboard() {
       
         <Grid item xs={12} md={4} lg={4}>
           <MainCard sx={{ mt: 2 }} content={false}>
-            <MultiActionAreaCard width={630} height={300}/>
+            <DialogCard width={630} height={300} />
           </MainCard>
         </Grid>
         <Grid item xs={12} md={4} lg={2}>
           <MainCard sx={{ mt: 2 }} content={false}>
-            <MultiActionAreaCard width={300} height={300}/>
+            <DialogCard width={630} height={300}  />
           </MainCard>
         </Grid>
 

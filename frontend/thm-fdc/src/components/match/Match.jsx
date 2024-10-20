@@ -13,8 +13,8 @@ function Teams() {
     <div>
 
       <Header />
-      {/* <ProductCTA />
-      <Cards />
+      <ProductCTA />
+      {/* <Cards />
       <Matches />
       <Dashboard /> */}
       <AppFooter />

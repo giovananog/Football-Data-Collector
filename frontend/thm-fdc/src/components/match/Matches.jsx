@@ -22,25 +22,28 @@ export default function Dashboard() {
       <Grid container spacing={2} sx={{ marginBottom: 10, marginTop: 10, justifyContent: "center" }}>
 
       <Grid container justifyContent="center" alignItems="center" spacing={2} sx={{ marginTop: 1, marginBottom: 1 }}>
-        <Grid container item xs={12} md={7} lg={8}>
+        <Grid container item xs={12} md={7} lg={5}>
           <Grid container>
             <Grid item xs={12} lg={12} sx={{ mb: -2.25 }} textAlign={"center"}>
-              <Typography variant="h5">Partidas</Typography>
-              <Typography variant="p">Principais Partidas</Typography>
+              <Typography variant="h5">Gols</Typography>
             </Grid>
             <Grid item />
           </Grid>
-          <Grid item sx={{ justifyContent:"flex-end", alignItems:"center", width: "100%", display: "flex" }}>
-            <Typography variant="p">2024</Typography>
-            <CalendarMonthOutlinedIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, fontSize: 35 }} />
-        </Grid>
           <MainCard sx={{ mt: 2 }} content={false}>
             <OrdersTable />
           </MainCard>
-          <Grid item sx={{ justifyContent:"flex-end", alignItems:"center", width: "100%", display: "flex" }}>
-            <Typography variant="p">Mais sobre o campeonato</Typography>
-            <ForwardOutlinedIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, fontSize: 50 }} />
         </Grid>
+        <Grid container item xs={12} md={7} lg={5}>
+          <Grid container>
+            <Grid item xs={12} lg={12} sx={{ mb: -2.25 }} textAlign={"center"}>
+              <Typography variant="h5">Substituições</Typography>
+            </Grid>
+            <Grid item />
+          </Grid>
+          <MainCard sx={{ mt: 2 }} content={false}>
+            <OrdersTable />
+          </MainCard>
+        
         </Grid>
       </Grid>
 

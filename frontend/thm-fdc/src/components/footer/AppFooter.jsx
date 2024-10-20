@@ -46,7 +46,7 @@ export default function AppFooter() {
   return (
     <Typography
       component="footer"
-      sx={{ display: 'flex', bgcolor: '#fff5f8' }}
+      sx={{ display: 'flex', bgcolor: '#20195f', color: "white"}}
     >
       <Container sx={{ my: 8, display: 'flex' }}>
         <Grid container spacing={5}>

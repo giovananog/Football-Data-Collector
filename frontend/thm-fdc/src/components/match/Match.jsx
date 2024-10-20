@@ -5,6 +5,7 @@ import AppFooter from '../footer/AppFooter';
 import Dashboard from './Dashboard'
 import ProductCTA from './ProductCTA';
 import Cards from './Cards';
+import PlayersCards from './PlayersCards';
 import Matches from './Matches';
 
 function Teams() {
@@ -17,7 +18,8 @@ function Teams() {
       <Matches />
       <Matches />
       <Cards />
-      
+      <PlayersCards />
+      <PlayersCards />
       <Dashboard />
       <AppFooter />
       

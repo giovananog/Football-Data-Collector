@@ -11,7 +11,7 @@ export default function MultiActionAreaCard(props) {
       <CardActionArea>
         <CardMedia
           component="img"
-          height="300"
+          height={props.height}
           image="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Palmeiras_logo.svg/800px-Palmeiras_logo.svg.png"
           alt="green iguana"
         />

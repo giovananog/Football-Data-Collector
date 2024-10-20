@@ -14,8 +14,8 @@ function Teams() {
 
       <Header />
       <ProductCTA />
-      {/* <Cards />
-      <Matches />
+      <Cards />
+      {/* <Matches />
       <Dashboard /> */}
       <AppFooter />
       

@@ -11,23 +11,27 @@ import MultiActionAreaCard from './components/Card'
 // ==============================|| DASHBOARD - DEFAULT ||============================== //
 
 export default function Dashboard() {
-  const items = Array.from({ length: 20 });
 
   return (
     <Grid container rowSpacing={4.5} columnSpacing={2.75} sx={{ marginTop: 4, bgcolor: "#fafafa", justifyContent: "center" }}>
       <Grid container spacing={2} sx={{ marginBottom: 10, marginTop: 10, justifyContent: "center" }}>
       <Grid item xs={12} lg={12} sx={{ mb: -2.25 }} textAlign={"center"}>
-        <Typography variant="h5">Times</Typography>
-        <Typography variant="p">Campeonato de 2024</Typography>
+        <Typography variant="h5">Estádio e Árbitro</Typography>
+        <Typography variant="p"></Typography>
       </Grid>
 
-      {items.map((_, index) => (
-        <Grid item xs={12} md={4} lg={2.5} key={index}>
+      
+        <Grid item xs={12} md={4} lg={4}>
           <MainCard sx={{ mt: 2 }} content={false}>
-            <MultiActionAreaCard />
+            <MultiActionAreaCard width={630}/>
           </MainCard>
         </Grid>
-      ))}
+        <Grid item xs={12} md={4} lg={2}>
+          <MainCard sx={{ mt: 2 }} content={false}>
+            <MultiActionAreaCard width={300}/>
+          </MainCard>
+        </Grid>
+
   
 </Grid>
 </Grid>

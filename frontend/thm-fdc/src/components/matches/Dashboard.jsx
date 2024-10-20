@@ -1,17 +1,11 @@
 // material-ui
 import Grid from '@mui/material/Grid';
-import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
-import ForwardOutlinedIcon from '@mui/icons-material/ForwardOutlined';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 
 // project import
 import MainCard from '../general/components/MainCard';
-import AnalyticEcommerce from '../general/components/AnalyticEcommerce';
-import ReportAreaChart from '../general/components/ReportAreaChart';
-import OrdersTable from '../general/components/OrdersTable';
+import OrdersTable from './components/OrdersTable';
 import PaginationLink from './Pagination';
 
 

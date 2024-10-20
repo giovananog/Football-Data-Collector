@@ -5,6 +5,8 @@ import AppFooter from '../footer/AppFooter';
 import Dashboard from './Dashboard'
 import ProductCTA from './ProductCTA';
 import Cards from './Cards';
+import MaxWidthDialog from "./components/Dialog"
+import DialogCard from "./components/DialogCard"
 
 function Team() {
 
@@ -16,7 +18,6 @@ function Team() {
       <Dashboard />
       <Cards />
       <AppFooter />
-      
     </div>
   );
 }

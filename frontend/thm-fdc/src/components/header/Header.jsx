@@ -13,8 +13,8 @@ const rightLink = {
 
 function AppAppBar() {
   return (
-    <div sx={{ color: '#ccc'}}>
-      <AppBar position="fixed" sx={{ color: '#ccc'}}>
+    <div>
+      <AppBar position="fixed" sx={{ backgroundColor: '#20195f' }}>
         <Toolbar sx={{ justifyContent: 'space-between'}}>
           <Box sx={{ flex: 1 }} />
           <SportsSoccerIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -40,15 +40,7 @@ function AppAppBar() {
             <Link
               variant="h6"
               underline="none"
-              href="/geral"
-              sx={{ ...rightLink }}
-            >
-              {'Geral'}
-            </Link>
-            <Link
-              variant="h6"
-              underline="none"
-              href="/campeonatos"
+              href="/campeonatos/a/partidas"
               sx={{ ...rightLink }}
             >
               {'Partidas'}

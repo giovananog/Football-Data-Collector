@@ -9,7 +9,7 @@ function ProductSmokingHero() {
   return (
     <Container
       component="section"
-      sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', my: 19 }}
+      sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 10, bgcolor: '#fff', minWidth: '100%' }}
     >
       <Button
         sx={{
@@ -18,7 +18,6 @@ function ProductSmokingHero() {
           height: 'auto',
           py: 2,
           px: 5,
-          color: "black"
         }}
       >
         <Typography variant="h4" component="span">

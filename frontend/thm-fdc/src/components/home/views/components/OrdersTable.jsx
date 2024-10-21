@@ -15,13 +15,17 @@ import Box from '@mui/material/Box';
 import { NumericFormat } from 'react-number-format';
 
 // project import
-import Dot from './Dot';
+import Dot from '../../../general/components/Dot';
 
 function createData(position, team, status) {
   return { position, team, status};
 }
 
 const rows = [
+  createData('1°', "Flamengo", 2),
+  createData('1°', "Flamengo", 2),
+  createData('1°', "Flamengo", 2),
+  createData('1°', "Flamengo", 2),
   createData('1°', "Flamengo", 2),
 ];
 

@@ -16,8 +16,8 @@ function Home(props) {
       <Header />
       <ProductHero />
       <Dashboard />
-      <ProductValues />
-      {/* <ProductCategories /> */}
+      {/* <ProductValues /> */}
+      <ProductCategories />
       <ProductSmokingHero />
       <AppFooter />
 

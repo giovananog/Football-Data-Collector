@@ -43,7 +43,7 @@ export default function Dashboard() {
 
       {/* row 3 */}
       <Grid container justifyContent="center" alignItems="center" spacing={2} sx={{ marginTop: 8 }}>
-      <Grid container item xs={12} md={7} lg={8}>
+      <Grid container item xs={12} md={7} lg={4}>
         <Grid container>
           <Grid item xs={12} lg={12} sx={{ mb: -2.25 }} textAlign={"center"}>
             <Typography variant="h5">Tabela</Typography>
@@ -51,17 +51,9 @@ export default function Dashboard() {
           </Grid>
           <Grid item />
         </Grid>
-        <Grid item sx={{ justifyContent:"flex-end", alignItems:"center", width: "100%", display: "flex" }}>
-            <Typography variant="p">2024</Typography>
-            <CalendarMonthOutlinedIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, fontSize: 35 }} />
-        </Grid>
         <MainCard sx={{ mt: 2 }} content={false}>
           <OrdersTable />
         </MainCard>
-        <Grid item sx={{ justifyContent:"flex-end", alignItems:"center", width: "100%", display: "flex" }}>
-            <Typography variant="p">Mais sobre o campeonato</Typography>
-            <ForwardOutlinedIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, fontSize: 50 }} />
-        </Grid>
       </Grid>
       </Grid> 
 

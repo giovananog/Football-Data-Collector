@@ -4,10 +4,3 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif !important;
 }
-
-@media (min-width: 600px) {
-    .css-m43fui-MuiToolbar-root {
-        height: 70px;
-        background-color: #20195f;
-    }
-}

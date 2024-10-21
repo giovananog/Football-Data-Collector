@@ -6,6 +6,7 @@ import ProductValues from './views/ProductValues';
 import ProductCategories from './views/ProductCategories';
 import ProductSmokingHero from './views/ProductSmokingHero';
 import AppFooter from '../footer/AppFooter';
+import Dashboard from "./views/components/Dashboard";
 
 function Home(props) {
 
@@ -14,8 +15,9 @@ function Home(props) {
 
       <Header />
       <ProductHero />
-      <ProductValues />
-      <ProductCategories />
+      <Dashboard />
+      {/* <ProductValues /> */}
+      {/* <ProductCategories /> */}
       <ProductSmokingHero />
       <AppFooter />
 

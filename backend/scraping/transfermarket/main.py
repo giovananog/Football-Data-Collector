@@ -1,4 +1,4 @@
 import transfermarketScraping
 
 # transfermarketScraping.start()
-transfermarketScraping.tables_data()
+transfermarketScraping.matches_data()

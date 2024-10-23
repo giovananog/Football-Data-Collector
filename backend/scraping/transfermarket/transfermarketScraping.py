@@ -70,19 +70,12 @@ def matches_data():
             scnd_team = soup.select(f'#tm-main > div > div.row > div > div > div > table > tbody > tr > td.no-border-links.hauptlink > a')            
             day = soup.select(f'#tm-main > div > div.row > div > div > div > table > tbody > tr > td:nth-child(1) > a')            
             
-            print(first_team[-1].get_text())
-            print(score[-1].get_text())
-            print(scnd_team[-1].get_text())
-            
-            print(len(first_team))
-            print(len(score))
-            print(len(scnd_team))
-            
             for i in range(len(first_team) - 1):
                 dict = {
                 'first_team': first_team[i].get_text(),
                 'score': score[i].get_text(),
                 'scnd_team': scnd_team[i].get_text(),
+                'url': f'https://www.transfermarkt.com{(score[i].get_attribute_list("href"))[0]}',
                 'id': i
                 }
                 info_list.append(dict)

@@ -61,6 +61,7 @@ def matches_data():
         for _ in range(10):
             ano = ano + 1
             print(ano)
+            year_list = []
             html = f"{matches_page}{ano}"
             driver.get(html)
             soup = BeautifulSoup(driver.page_source, 'html.parser')
@@ -76,14 +77,18 @@ def matches_data():
                 'score': score[i].get_text(),
                 'scnd_team': scnd_team[i].get_text(),
                 'url': f'https://www.transfermarkt.com{(score[i].get_attribute_list("href"))[0]}',
-                'id': i
+                'ano': ano,
+                'id': i,
                 }
-                info_list.append(dict)
-
-            print(info_list)
+                year_list.append(dict)
+                # break
+            
+            info_list.append(year_list)
+        
+        print(info_list)
     except Exception as e:
         print(f"Ocorreu um erro: {e}")
     finally:
         time.sleep(5)
         driver.quit()
-
+        return info_list

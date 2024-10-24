@@ -5,12 +5,17 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 from urls import matches_page, tables_page
+import requests
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_experimental_option("detach", True)
 chrome_options.add_argument("--ignore-certificate-errors")
 chrome_options.add_argument("--allow-insecure-localhost")
-driver = webdriver.Chrome(options=chrome_options)
+# driver = webdriver.Chrome(options=chrome_options)
+
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
+}
 
 
 def start(url):
@@ -54,17 +59,17 @@ def tables_data():
 
 def matches_data():
     try:
-        ano = 1995
-        start(f"{matches_page}{ano}")
-        info_list = [];
+        ano = 2010
+        # start(f"{matches_page}{ano}")
+        info_list = []
         
-        for _ in range(10):
+        for _ in range(4):
             ano = ano + 1
             print(ano)
             year_list = []
-            html = f"{matches_page}{ano}"
-            driver.get(html)
-            soup = BeautifulSoup(driver.page_source, 'html.parser')
+            response = requests.get(f"{matches_page}{ano}", headers=headers)
+            data = response.text
+            soup = BeautifulSoup(data, 'html.parser')
         
             first_team = soup.select(f'#tm-main > div > div.row > div > div > div > table > tbody > tr > td.text-right.no-border-rechts.hauptlink > a')            
             score = soup.select(f'#tm-main > div > div.row > div > div > div > table > tbody > tr > td.zentriert.hauptlink > a')            
@@ -85,10 +90,135 @@ def matches_data():
             
             info_list.append(year_list)
         
-        print(info_list)
+        # print(info_list)
     except Exception as e:
         print(f"Ocorreu um erro: {e}")
     finally:
         time.sleep(5)
-        driver.quit()
         return info_list
+
+def match_data(matches_list):
+    try:
+        
+        for list in matches_list:
+            for dict in list:
+                page = dict['url']
+                print(page)
+                response = requests.get(page, headers=headers)
+                data = response.text
+                soup = BeautifulSoup(data, 'html.parser')
+        
+                stadium = soup.select(f'#tm-main > div > div > div > div.box-content > div.sb-spieldaten > p.sb-zusatzinfos > span > a')
+                
+                stadium_name = stadium[0].get_text()
+                stadium_url = stadium[0].get_attribute_list("href")[0]
+                
+                try:
+                    stadium_attendence = soup.select('#tm-main > div:nth-child(1) > div > div > div.box-content > div.sb-spieldaten > p.sb-zusatzinfos > span > strong')
+                    # print(stadium_attendence[0].get_text())
+                except Exception as e:
+                    print(f"Ocorreu um erro (stadium attendence): {e}")
+                    
+                    
+                try:
+                    referees = soup.select(f'#tm-main > div:nth-child(1) > div > div > div.box-content > div.sb-spieldaten > p.sb-zusatzinfos > a')
+                    referee_name = referees[0].get_text()
+                    referee_url = referees[0].get_attribute_list("href")[0]
+                except Exception as e:
+                    print(f"Ocorreu um erro (referees): {e}")
+                    
+
+                try:
+                    goalscorer = soup.select('#sb-tore > ul > li > div > div.sb-aktion-aktion > a:nth-child(1)')
+                    goal_name = goalscorer[0].get_text()
+                    goal_url = goalscorer[0].get_attribute_list("href")[0]
+                    
+                    goal_team = soup.select('#sb-tore > ul > li > div > div.sb-aktion-wappen > a')
+                    goal_team_name = goal_team[0].get_text()
+                    
+                    aa = soup.select('#sb-tore ul li:nth-of-type(1) div div:nth-of-type(4)')
+                    aa_name = aa[0].get_text()
+                    
+                    
+                    
+                    print(goal_name)
+                    print(goal_team_name)
+                    print(aa_name.split(','))
+                    break
+                except Exception as e:
+                    print(f"Ocorreu um erro (goals): {e}")
+                
+                
+                try:
+                    substitution = soup.select('#sb-wechsel > ul > li > div > div.sb-aktion-aktion > span.sb-aktion-wechsel-ein > a')
+                    substitution_name = substitution[0].get_text()
+                    substitution_url = substitution[0].get_attribute_list("href")[0]
+                    
+                    substituted = soup.select('#sb-wechsel > ul > li > div > div.sb-aktion-aktion > span.sb-aktion-wechsel-aus > a')
+                    substituted_name = substituted[0].get_text()
+                    substituted_url = substituted[0].get_attribute_list("href")[0]
+                    
+                    substitution_team = soup.select('#sb-wechsel > ul > li > div > div.sb-aktion-wappen > a > img')
+                    substitution_team_name = substitution_team[0].get_attribute_list("title")
+                    goal_team = soup.select('#sb-tore > ul > li > div > div.sb-aktion-wappen > a')
+                    goal_team_name = goal_team[0].get_text()
+                    
+                    aa = soup.select('#sb-tore ul li:nth-of-type(1) div div:nth-of-type(4)')
+                    aa_name = aa[0].get_text()
+                    
+                    
+                    
+                    print(substitution_name)
+                    print(substituted_name)
+                    print(substitution_team_name)
+                    print(goal_team_name)
+                    break
+                except Exception as e:
+                    print(f"Ocorreu um erro (substitutions): {e}")
+                
+                
+                try:
+                    
+                    cards = soup.select('#sb-karten > ul > li:nth-child(1) > div > div.sb-aktion-aktion')
+                    cards = cards[0].get_text().split(',')
+                    print(cards)
+                    break
+                
+                except Exception as e:
+                    print(f"Ocorreu um erro (cards): {e}")
+                
+                
+                
+                page = (dict['url']).split('/')[-1]
+                print(page)
+                response = requests.get('https://www.transfermarkt.com/sociedade-esportiva-palmeiras_portuguesa/aufstellung/spielbericht/2210936', headers=headers)
+                data = response.text
+                soup = BeautifulSoup(data, 'html.parser')
+                
+                player = soup.select('.wichtig')
+                
+                player_name = player[-1].get_text()
+                print(player_name)
+                
+                player_url = player[-1].get_attribute_list('href')[0]
+                print(player_url)
+                break
+            
+                # for i in range(len(first_team) - 1):
+                #     dict = {
+                #     'first_team': first_team[i].get_text(),
+                #     'score': score[i].get_text(),
+                #     'scnd_team': scnd_team[i].get_text(),
+                #     'url': f'https://www.transfermarkt.com{(score[i].get_attribute_list("href"))[0]}',
+                #     'ano': ano,
+                #     'id': i,
+                #     }
+                #     year_list.append(dict)
+                #     # break
+                
+                # info_list.append(year_list)
+                
+        
+        # print(info_list)
+    except Exception as e:
+        print(f"Ocorreu um erro: {e}")

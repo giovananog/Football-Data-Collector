@@ -222,3 +222,9 @@ def match_data(matches_list):
         # print(info_list)
     except Exception as e:
         print(f"Ocorreu um erro: {e}")
+        
+
+# start()
+# matches_list = matches_data()
+# match_data(matches_list)
+

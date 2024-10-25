@@ -119,28 +119,28 @@ def match_data(matches_list):
                 data = response.text
                 soup = BeautifulSoup(data, 'html.parser')
         
-                try:
-                    manager = soup.select('#\\30')
-                    
-                    manager_name = manager[0].get_text()
-                    manager_url = manager[0].get_attribute_list("href")[0]
-                    
-                    manager_data(manager_url)
-                    
-                    break
-                except Exception as e:
-                    print(f"Ocorreu um erro (manager): {e}")   
-
                 # try:
-                #     stadium = soup.select(f'#tm-main > div > div > div > div.box-content > div.sb-spieldaten > p.sb-zusatzinfos > span > a')
+                #     manager = soup.select('#\\30')
                     
-                #     stadium_name = stadium[0].get_text()
-                #     stadium_url = stadium[0].get_attribute_list("href")[0]
+                #     manager_name = manager[0].get_text()
+                #     manager_url = manager[0].get_attribute_list("href")[0]
                     
-                #     stadium_data(stadium_url)
+                #     manager_data(manager_url)
+                    
                 #     break
                 # except Exception as e:
-                #     print(f"Ocorreu um erro (stadium): {e}")   
+                #     print(f"Ocorreu um erro (manager): {e}")   
+
+                try:
+                    stadium = soup.select(f'#tm-main > div > div > div > div.box-content > div.sb-spieldaten > p.sb-zusatzinfos > span > a')
+                    
+                    stadium_name = stadium[0].get_text()
+                    stadium_url = stadium[0].get_attribute_list("href")[0]
+                    
+                    stadium_data(stadium_url)
+                    break
+                except Exception as e:
+                    print(f"Ocorreu um erro (stadium): {e}")   
                 
                 
                 # try:
@@ -244,6 +244,27 @@ def match_data(matches_list):
     except Exception as e:
         print(f"Ocorreu um erro: {e}")
 
+
+def stadium_data(url):
+    base_url = 'https://www.transfermarkt.com'
+    response = requests.get(base_url + url, headers=headers)
+    data = response.text
+    soup = BeautifulSoup(data, 'html.parser')
+    
+    print(base_url + url)
+    
+    try:
+        title = soup.select(f'.profilheader th')
+        content = soup.select(f'.profilheader td')
+                    
+        title1 = title[0].get_text()
+        content1 = content[0].get_text()
+        print(title1)
+        print(content1)
+        
+        
+    except Exception as e:
+        print(f"Ocorreu um erro (stadium): {e}")
 
 def manager_data(url):
     base_url = 'https://www.transfermarkt.com'

@@ -131,16 +131,16 @@ def match_data(matches_list):
                 # except Exception as e:
                 #     print(f"Ocorreu um erro (manager): {e}")   
 
-                try:
-                    stadium = soup.select(f'#tm-main > div > div > div > div.box-content > div.sb-spieldaten > p.sb-zusatzinfos > span > a')
+                # try:
+                #     stadium = soup.select(f'#tm-main > div > div > div > div.box-content > div.sb-spieldaten > p.sb-zusatzinfos > span > a')
                     
-                    stadium_name = stadium[0].get_text()
-                    stadium_url = stadium[0].get_attribute_list("href")[0]
+                #     stadium_name = stadium[0].get_text()
+                #     stadium_url = stadium[0].get_attribute_list("href")[0]
                     
-                    stadium_data(stadium_url)
-                    break
-                except Exception as e:
-                    print(f"Ocorreu um erro (stadium): {e}")   
+                #     stadium_data(stadium_url)
+                #     break
+                # except Exception as e:
+                #     print(f"Ocorreu um erro (stadium): {e}")   
                 
                 
                 # try:
@@ -150,15 +150,15 @@ def match_data(matches_list):
                 #     print(f"Ocorreu um erro (stadium attendence): {e}")
                     
                     
-                # try:
-                #     referees = soup.select(f'#tm-main > div:nth-child(1) > div > div > div.box-content > div.sb-spieldaten > p.sb-zusatzinfos > a')
-                #     referee_name = referees[0].get_text()
-                #     referee_url = referees[0].get_attribute_list("href")[0]
+                try:
+                    referees = soup.select(f'#tm-main > div:nth-child(1) > div > div > div.box-content > div.sb-spieldaten > p.sb-zusatzinfos > a')
+                    referee_name = referees[0].get_text()
+                    referee_url = referees[0].get_attribute_list("href")[0]
                     
-                #     refeere_data(referee_url)
-                #     break
-                # except Exception as e:
-                #     print(f"Ocorreu um erro (referees): {e}")
+                    referee_data(referee_url)
+                    break
+                except Exception as e:
+                    print(f"Ocorreu um erro (referees): {e}")
                     
 
                 # try:
@@ -244,6 +244,47 @@ def match_data(matches_list):
     except Exception as e:
         print(f"Ocorreu um erro: {e}")
 
+  
+def referee_data(url):
+    base_url = 'https://www.transfermarkt.com'
+    action_url = '/plus/0?funktion=1&saison_id=&wettbewerb_id=BRA1'
+    
+    response = requests.get(base_url + url, headers=headers)
+    data = response.text
+    soup = BeautifulSoup(data, 'html.parser')
+    
+    try:
+        
+        data = soup.select('.data-header__label span')
+        
+        date = data[0].get_text().strip()
+        citizenship = data[1].get_text().strip()
+        debut = data[2].get_text().strip()
+        
+        response = requests.get(base_url + url + action_url, headers=headers)
+        data = response.text
+        soup = BeautifulSoup(data, 'html.parser')
+        
+        stats = soup.select('#tm-main > div.row > div.large-8.columns > div > div.responsive-table > table > tbody > tr > td')
+        stats_urls = soup.select('#tm-main > div.row > div.large-8.columns > div > div.responsive-table > table > tbody > tr > td > a')
+        
+        # if(int(stats[0].get_attribute_list('colspan')[0]) > 1):
+        #     print(stats[0].get_text())
+            
+        # print(stats[1].get_text().strip())
+        # print(stats[2].get_text().strip())
+        # print(stats[3].get_text().strip())
+        # print(stats[4].get_text().strip().split('(')[0])
+        # print(stats[5].get_text().strip().split('(')[0])
+        # print(stats[6].get_text().strip().split('(')[0])
+        # print(stats[7].get_text().strip().split('(')[0])
+        # print(stats[8].get_text().strip())
+        # print(stats[9].get_text().strip())
+        # print(stats[10].get_text().strip())
+        # print(stats[11].get_text().strip())
+             
+    except Exception as e:
+        print(f"Ocorreu um erro (referee): {e}")
 
 def stadium_data(url):
     base_url = 'https://www.transfermarkt.com'

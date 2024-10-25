@@ -111,13 +111,13 @@ def match_data(matches_list):
             for dict in list:
                 
                 fst_page = dict['url']
-                # scd_page = fst_page.replace("/index", scd_page_url)
+                scd_page = fst_page.replace("/index", scd_page_url)
                 # trd_page = fst_page.replace("/index", trd_page_url)
                 
-                response = requests.get(fst_page, headers=headers)
-                print(fst_page)
-                data = response.text
-                soup = BeautifulSoup(data, 'html.parser')
+                # response = requests.get(fst_page, headers=headers)
+                # print(fst_page)
+                # data = response.text
+                # soup = BeautifulSoup(data, 'html.parser')
         
                 # try:
                 #     manager = soup.select('#\\30')
@@ -150,15 +150,15 @@ def match_data(matches_list):
                 #     print(f"Ocorreu um erro (stadium attendence): {e}")
                     
                     
-                try:
-                    referees = soup.select(f'#tm-main > div:nth-child(1) > div > div > div.box-content > div.sb-spieldaten > p.sb-zusatzinfos > a')
-                    referee_name = referees[0].get_text()
-                    referee_url = referees[0].get_attribute_list("href")[0]
+                # try:
+                #     referees = soup.select(f'#tm-main > div:nth-child(1) > div > div > div.box-content > div.sb-spieldaten > p.sb-zusatzinfos > a')
+                #     referee_name = referees[0].get_text()
+                #     referee_url = referees[0].get_attribute_list("href")[0]
                     
-                    referee_data(referee_url)
-                    break
-                except Exception as e:
-                    print(f"Ocorreu um erro (referees): {e}")
+                #     referee_data(referee_url)
+                #     break
+                # except Exception as e:
+                #     print(f"Ocorreu um erro (referees): {e}")
                     
 
                 # try:
@@ -218,33 +218,71 @@ def match_data(matches_list):
                 #     print(f"Ocorreu um erro (cards): {e}")
                     
               
-                # response = requests.get(scd_page, headers=headers)
-                # print(scd_page)
-                # data = response.text
-                # soup = BeautifulSoup(data, 'html.parser')
+                response = requests.get(scd_page, headers=headers)
+                print(scd_page)
+                data = response.text
+                soup = BeautifulSoup(data, 'html.parser')
                     
    
-                # try:
-                #     player = soup.select('.wichtig')
+                try:
+                    player = soup.select('.wichtig')
                                     
-                #     player_name = player[23].get_text()
-                #     # print(player_name)
+                    player_name = player[23].get_text()
+                    # print(player_name)
                                     
-                #     player_url = player[23].get_attribute_list('href')[0]
-                #     # print(player_url)
+                    player_url = player[23].get_attribute_list('href')[0]
+                    # print(player_url)
                     
-                #     player_page = (base_url + player_url).replace('m//', '/')
-                #     player_data(player_page)
+                    player_page = (base_url + player_url).replace('m//', '/')
+                    player_data(player_page)
                     
-                #     break
+                    break
                 
-                # except Exception as e:
-                #     print(f"Ocorreu um erro (players): {e}")
+                except Exception as e:
+                    print(f"Ocorreu um erro (players): {e}")
             
     except Exception as e:
         print(f"Ocorreu um erro: {e}")
 
-  
+
+def player_data(url):
+    base_url = 'https://www.transfermarkt.com'
+    response = requests.get(url, headers=headers)
+    print(url)
+    data = response.text
+    soup = BeautifulSoup(data, 'html.parser')
+    
+    try:
+        
+        data = soup.select('.data-header__details .data-header__content')
+        
+        age = data[0].get_text().strip()
+        city = data[1].get_text().strip()
+        country = data[2].get_text().strip()
+        height = data[3].get_text().strip()
+        position = data[4].get_text().strip()
+                
+        scnd_page = soup.select('#tm-main > div.row > div.large-8.columns > div:nth-child(2) > div.tm-tabs > a:nth-child(2)')
+        scnd_page = scnd_page[0].get_attribute_list('href')[0]
+        
+        response = requests.get(base_url + scnd_page, headers=headers)
+        data = response.text
+        soup = BeautifulSoup(data, 'html.parser')
+        
+        stats = soup.select('.bg_gelb_20')
+        
+        all_stats = stats[-1].get_text().strip().split('\n')
+        
+        matchday = all_stats[0]
+        day = all_stats[2]
+        first_team = all_stats[4].split('(')[0]
+        scnd_team = all_stats[6].split('(')[0]
+        result = all_stats[7]
+        
+    except Exception as e:
+        print(f"Ocorreu um erro (player): {e}")
+     
+     
 def referee_data(url):
     base_url = 'https://www.transfermarkt.com'
     action_url = '/plus/0?funktion=1&saison_id=&wettbewerb_id=BRA1'

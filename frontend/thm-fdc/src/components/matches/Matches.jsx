@@ -12,6 +12,9 @@ function Matches() {
 
       <Header />
       <Dashboard />
+      <Dashboard />
+      <Dashboard />
+      <Dashboard />
       <Statistic />
       <AppFooter />
       

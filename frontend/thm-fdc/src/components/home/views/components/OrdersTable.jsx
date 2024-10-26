@@ -4,6 +4,7 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
+import Avatar from '@mui/material/Avatar';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
@@ -16,6 +17,8 @@ import { NumericFormat } from 'react-number-format';
 
 // project import
 import Dot from '../../../general/components/Dot';
+import GiftOutlined from '@ant-design/icons/GiftOutlined';
+
 
 function createData(position, team, status) {
   return { position, team, status};
@@ -166,7 +169,10 @@ export default function OrderTable() {
                      {row.position}
                   </TableCell>
                   <TableCell align='center' component="th" id={labelId} scope="row">
+                  <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                    <Avatar sx={{ color: 'success.main', bgcolor: '#fff', fontSize: '1em' }}></Avatar>
                     <Link color="secondary"> {row.team}</Link>
+                  </div>
                   </TableCell>
                   <TableCell>
                     <OrderStatus status={row.status} />

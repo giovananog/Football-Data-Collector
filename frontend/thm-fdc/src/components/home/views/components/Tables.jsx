@@ -21,7 +21,7 @@ export default function Dashboard() {
             </Grid>
             <Grid item />
           </Grid>
-          <MainCard sx={{ mt: 2 }} content={false}>
+          <MainCard sx={{ mt: 2, border:'none' }} content={false}>
             <OrdersTable />
           </MainCard>
         </Grid>
@@ -32,7 +32,7 @@ export default function Dashboard() {
             </Grid>
             <Grid item />
           </Grid>
-          <MainCard sx={{ mt: 2 }} content={false}>
+          <MainCard sx={{ mt: 2, border:'none' }} content={false}>
             <OrdersTable />
           </MainCard>
         </Grid>
@@ -43,7 +43,7 @@ export default function Dashboard() {
             </Grid>
             <Grid item />
           </Grid>
-          <MainCard sx={{ mt: 2 }} content={false}>
+          <MainCard sx={{ mt: 2, border:'none' }} content={false}>
             <OrdersTable />
           </MainCard>
         </Grid>

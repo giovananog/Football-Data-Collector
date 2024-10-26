@@ -13,7 +13,7 @@ import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 
 // project import
-import Dot from '../../general/components/Dot';
+import Dot from '../../home/views/components/Dot';
 
 function createData(time1, score, team2) {
   return { time1, score, team2 };

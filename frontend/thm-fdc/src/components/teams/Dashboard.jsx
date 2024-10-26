@@ -8,10 +8,8 @@ import ForwardOutlinedIcon from '@mui/icons-material/ForwardOutlined';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 
 // project import
-import MainCard from '../general/components/MainCard';
-import AnalyticEcommerce from '../general/components/AnalyticEcommerce';
-import ReportAreaChart from '../general/components/ReportAreaChart';
-import OrdersTable from '../general/components/OrdersTable';
+import MainCard from '../match/components/MainCard';
+import ReportAreaChart from '../match/components/ReportAreaChart';
 
 
 // ==============================|| DASHBOARD - DEFAULT ||============================== //

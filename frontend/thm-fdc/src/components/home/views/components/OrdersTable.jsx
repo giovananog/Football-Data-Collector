@@ -16,7 +16,7 @@ import Box from '@mui/material/Box';
 import { NumericFormat } from 'react-number-format';
 
 // project import
-import Dot from '../../../general/components/Dot';
+import Dot from './Dot';
 import GiftOutlined from '@ant-design/icons/GiftOutlined';
 
 

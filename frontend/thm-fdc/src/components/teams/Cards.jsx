@@ -3,8 +3,8 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
 // project import
-import MainCard from '../general/components/MainCard';
-import ReportAreaChart from '../general/components/ReportAreaChart';
+import MainCard from '../match/components/MainCard';
+import ReportAreaChart from '../match/components/ReportAreaChart';
 import MultiActionAreaCard from './components/Card'
 
 

@@ -2,7 +2,7 @@
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import OrdersTable from './OrdersTable';
-import MainCard from '../../../general/components/MainCard';
+import MainCard from '../../../match/components/MainCard';
 
 
 // ==============================|| DASHBOARD - DEFAULT ||============================== //

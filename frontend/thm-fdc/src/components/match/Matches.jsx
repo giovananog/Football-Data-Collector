@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
 // project import
-import MainCard from '../general/components/MainCard';
+import MainCard from './components/MainCard';
 import SubstitutionsTable from './components/SubstitutionsTable';
 import GoalsTable from './components/GoalsTable';
 import CardsTable from './components/CardsTable';
@@ -18,7 +18,7 @@ export default function Dashboard() {
     <Grid container rowSpacing={4.5} columnSpacing={2.75} sx={{ marginTop: 4, bgcolor: "#fafafa", justifyContent: "center" }}>
       <Grid container spacing={2} sx={{ marginBottom: 10, marginTop: 10, justifyContent: "center" }}>
         {/* Grid para a tabela de Gols */}
-        <Grid item xs={12} md={6} lg={8}>
+        <Grid item xs={12} md={6} lg={4}>
           <Grid container>
             <Grid item xs={12} sx={{ mb: -2.25 }} textAlign={"center"}>
               <Typography variant="h5">Gols</Typography>

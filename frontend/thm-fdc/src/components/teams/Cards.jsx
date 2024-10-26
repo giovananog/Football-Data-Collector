@@ -22,7 +22,7 @@ export default function Dashboard() {
       </Grid>
 
       {items.map((_, index) => (
-        <Grid item xs={12} md={4} lg={2.5} key={index}>
+        <Grid item xs={12} md={4} lg={1.5} key={index}>
           <MainCard sx={{ mt: 2 }} content={false}>
             <MultiActionAreaCard />
           </MainCard>

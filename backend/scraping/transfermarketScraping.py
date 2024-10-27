@@ -127,7 +127,12 @@ def match_data(matches_list):
     except FileNotFoundError:
         stadiums_dict = {}
         
-    players_list = []
+    try:
+        with open("players_dict.json", "r") as file:
+                players_dict = json.load(file)
+    except FileNotFoundError:
+        players_dict = {}
+        
     referees_list = []
     match_dict = {}
     
@@ -179,21 +184,21 @@ def match_data(matches_list):
                 # except Exception as e:
                 #     print(f"Ocorreu um erro (manager): {e}")   
 
-                try:
-                    stadium = soup.select(f'#tm-main > div > div > div > div.box-content > div.sb-spieldaten > p.sb-zusatzinfos > span > a')
+                # try:
+                #     stadium = soup.select(f'#tm-main > div > div > div > div.box-content > div.sb-spieldaten > p.sb-zusatzinfos > span > a')
                     
-                    stadium_name = stadium[0].get_text()
-                    stadium_url = stadium[0].get_attribute_list("href")[0]
+                #     stadium_name = stadium[0].get_text()
+                #     stadium_url = stadium[0].get_attribute_list("href")[0]
                     
-                    stadium_id = stadium_data(stadium_url, stadiums_dict)
-                    if str(stadium_id) in stadiums_dict:
-                        continue
+                #     stadium_id = stadium_data(stadium_url, stadiums_dict)
+                #     if str(stadium_id) in stadiums_dict:
+                #         continue
                     
-                    match_dict[ano][match_id]["stadium_id"] = stadium_id
-                    match_dict[ano][match_id]["stadium_name"] = stadium_name
+                #     match_dict[ano][match_id]["stadium_id"] = stadium_id
+                #     match_dict[ano][match_id]["stadium_name"] = stadium_name
                     
-                except Exception as e:
-                    print(f"Ocorreu um erro (stadium): {e}")   
+                # except Exception as e:
+                #     print(f"Ocorreu um erro (stadium): {e}")   
                 
                 
                 # try:
@@ -336,26 +341,28 @@ def match_data(matches_list):
                 # data = response.text
                 # soup = BeautifulSoup(data, 'html.parser')
                 
-                # try:
-                #     players_list_ids = []
-                #     players = soup.select('.box .wichtig')
-                #     for player in players:
-                #         player_name = player.get_text()
-                #         player_url = player.get_attribute_list('href')[0]
+                try:
+                    players_dict_ids = []
+                    players = soup.select('.box .wichtig')
+                    for player in players:
+                        player_name = player.get_text()
+                        player_url = player.get_attribute_list('href')[0]
                         
-                #         player_page = base_url + player_url
+                        player_page = base_url + player_url
                         
-                #         if "trainer" not in player_page:
-                #             player_id = player_data(player_page, players_list)
-                #             players_list[-1]["Name"] = player_name
-                #             players_list[-1]["Profile URL"] = player_page
-                #             players_list[-1]["player_id"] = player_id
-                #             players_list_ids.append(player_id)   
+                        if "trainer" not in player_page:
+                            player_id = player_data(player_page, players_dict)
+                            if str(player_id) in players_dict:
+                                continue
+                            players_dict[-1]["Name"] = player_name
+                            players_dict[-1]["Profile URL"] = player_page
+                            players_dict[-1]["player_id"] = player_id
+                            players_dict_ids.append(player_id)   
                             
-                #     match_dict[ano][match_id]["players_id_list"] = players_list_ids
+                    match_dict[ano][match_id]["players_id_list"] = players_dict_ids
 
-                # except Exception as e:
-                #     print(f"Ocorreu um erro (players): {e}")
+                except Exception as e:
+                    print(f"Ocorreu um erro (players): {e}")
             
                 # response = requests.get(trd_page, headers=headers)
                 # print(trd_page)
@@ -406,6 +413,8 @@ def match_data(matches_list):
                     json.dump(managers_dict, file, indent=4)
                 with open("stadiums_dict.json", "w") as file:
                     json.dump(stadiums_dict, file, indent=4)
+                with open("players_dict.json", "w") as file:
+                    json.dump(players_dict, file, indent=4)
                 
     
     except Exception as e:
@@ -420,7 +429,6 @@ def player_data(url, list):
     player_id = url.split('/')[-5]
     
     player_details = {}
-    dict = {}
 
     try:
         data = soup.select('.data-header__details .data-header__content')
@@ -490,9 +498,8 @@ def player_data(url, list):
                 player_stats.append(stat_record)
         
         player_details["Match Statistics"] = player_stats
-        dict[player_id] = player_details
         
-        list.append(dict)
+        list[player_id] = player_details
 
     except Exception as e:
         print(f"Ocorreu um erro (player): {e}")

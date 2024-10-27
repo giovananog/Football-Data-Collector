@@ -25,7 +25,7 @@ def tables_data():
         for _ in range(28):
             ano += 1
             
-            if str(ano) in data_dict:
+            if ano in data_dict:
                 continue
             
             html = f"{tables_page}{ano}"
@@ -77,7 +77,7 @@ def tables_data():
 
 def matches_data():
     try:
-        ano = 2020
+        ano = 1995
         info_list = []
         
         for _ in range(2):
@@ -91,7 +91,7 @@ def matches_data():
             first_team = soup.select(f'#tm-main > div > div.row > div > div > div > table > tbody > tr > td.text-right.no-border-rechts.hauptlink > a')            
             score = soup.select(f'#tm-main > div > div.row > div > div > div > table > tbody > tr > td.zentriert.hauptlink > a')            
             scnd_team = soup.select(f'#tm-main > div > div.row > div > div > div > table > tbody > tr > td.no-border-links.hauptlink > a')            
-            day = soup.select(f'#tm-main > div > div.row > div > div > div > table > tbody > tr > td:nth-child(1) > a')            
+            
             
             for i in range(len(first_team) - 1):
                 dict = {
@@ -132,214 +132,240 @@ def match_data(matches_list):
                 players_dict = json.load(file)
     except FileNotFoundError:
         players_dict = {}
+    
+    try:
+        with open("referees_dict.json", "r") as file:
+                referees_dict = json.load(file)
+    except FileNotFoundError:
+        referees_dict = {}
         
-    referees_list = []
-    match_dict = {}
+    try:
+        with open("match_dict.json", "r") as file:
+                match_dict = json.load(file)
+    except FileNotFoundError:
+        match_dict = {}
+        
     
     scd_page_url = "/aufstellung"
     trd_page_url = "/statistik"
     
     try:
-        i = 0
         
         for list in matches_list:
             for dict in list:
                 
                 fst_page = dict['url']
                 match_id = fst_page.split("/")[-1]
-                ano = dict['ano']
-                if(i == 0):
-                    match_dict[ano] = {} 
-                    i = i + 1
-                match_dict[ano][match_id] = {}
+                ano = str(dict['ano'])
                 scd_page = fst_page.replace("/index", scd_page_url)
                 trd_page = fst_page.replace("/index", trd_page_url)
+                
+                
+                if(ano in match_dict):
+                    if(match_id in match_dict[ano]):
+                        continue
+                    else:
+                        match_dict[ano][match_id] = {}  
+                else:
+                    match_dict[ano] = {}
+                    match_dict[ano][match_id] = {}  
+                    
+                
+                match_dict[ano][match_id]["score"] = dict['score']
+                match_dict[ano][match_id]["url"] = dict['url']  
                 
                 response = requests.get(fst_page, headers=headers)
                 print(fst_page)
                 data = response.text
                 soup = BeautifulSoup(data, 'html.parser')
         
-                # try:
-                #     manager = soup.select('#\\30')
-                #     fst_manager_url = manager[0].get_attribute_list("href")[0]
-                #     scnd_manager_url = manager[1].get_attribute_list("href")[0]
+                try:
+                    manager = soup.select('#\\30')
+                    fst_manager_url = manager[0].get_attribute_list("href")[0]
+                    scnd_manager_url = manager[1].get_attribute_list("href")[0]
                     
-                #     fst_manager_id = manager_data(fst_manager_url, managers_dict)
-                #     if str(fst_manager_id) in managers_dict:
-                #         continue
+                    fst_manager_id = manager_data(fst_manager_url, managers_dict)
+                    if str(fst_manager_id) in managers_dict:
+                        pass
+                    else:
+                        match_dict[ano][match_id]["fst_manager_url"] = fst_manager_url
+                        match_dict[ano][match_id]["fst_manager_id"] = fst_manager_id
+                        managers_dict[-1][fst_manager_id]["manager_url"] = base_url + fst_manager_url
+                        
+                    scnd_manager_id = manager_data(scnd_manager_url, managers_dict)
+                    if str(scnd_manager_id) in managers_dict:
+                        pass
+                    else:
+                        match_dict[ano][match_id]["scnd_manager_url"] = scnd_manager_url
+                        match_dict[ano][match_id]["scnd_manager_id"] = scnd_manager_id
+                        managers_dict[-1][scnd_manager_id]["manager_url"] = base_url + scnd_manager_url
                     
-                #     match_dict[ano][match_id]["fst_manager_url"] = fst_manager_url
-                #     match_dict[ano][match_id]["fst_manager_id"] = fst_manager_id
-                #     managers_dict[-1][fst_manager_id]["manager_url"] = base_url + fst_manager_url
-                    
-                #     scnd_manager_id = manager_data(scnd_manager_url, managers_dict)
-                #     if str(scnd_manager_id) in managers_dict:
-                #         continue
-                    
-                #     match_dict[ano][match_id]["scnd_manager_url"] = scnd_manager_url
-                #     match_dict[ano][match_id]["scnd_manager_id"] = scnd_manager_id
-                #     managers_dict[-1][scnd_manager_id]["manager_url"] = base_url + scnd_manager_url
-                    
-                # except Exception as e:
-                #     print(f"Ocorreu um erro (manager): {e}")   
+                except Exception as e:
+                    print(f"Ocorreu um erro (manager): {e}")   
 
-                # try:
-                #     stadium = soup.select(f'#tm-main > div > div > div > div.box-content > div.sb-spieldaten > p.sb-zusatzinfos > span > a')
+                try:
+                    stadium = soup.select(f'#tm-main > div > div > div > div.box-content > div.sb-spieldaten > p.sb-zusatzinfos > span > a')
                     
-                #     stadium_name = stadium[0].get_text()
-                #     stadium_url = stadium[0].get_attribute_list("href")[0]
+                    stadium_name = stadium[0].get_text()
+                    stadium_url = stadium[0].get_attribute_list("href")[0]
                     
-                #     stadium_id = stadium_data(stadium_url, stadiums_dict)
-                #     if str(stadium_id) in stadiums_dict:
-                #         continue
+                    stadium_id = stadium_data(stadium_url, stadiums_dict)
+                    if str(stadium_id) in stadiums_dict:
+                        pass
                     
-                #     match_dict[ano][match_id]["stadium_id"] = stadium_id
-                #     match_dict[ano][match_id]["stadium_name"] = stadium_name
+                    match_dict[ano][match_id]["stadium_id"] = stadium_id
+                    match_dict[ano][match_id]["stadium_name"] = stadium_name
                     
-                # except Exception as e:
-                #     print(f"Ocorreu um erro (stadium): {e}")   
+                except Exception as e:
+                    print(f"Ocorreu um erro (stadium): {e}")   
                 
                 
-                # try:
-                #     stadium_attendence = soup.select('#tm-main > div:nth-child(1) > div > div > div.box-content > div.sb-spieldaten > p.sb-zusatzinfos > span > strong')
-                #     match_dict[ano][match_id]["stadium_attendence"] = stadium_attendence[0].get_text().split(':')[-1].strip()
+                try:
+                    stadium_attendence = soup.select('#tm-main > div:nth-child(1) > div > div > div.box-content > div.sb-spieldaten > p.sb-zusatzinfos > span > strong')
+                    match_dict[ano][match_id]["stadium_attendence"] = stadium_attendence[0].get_text().split(':')[-1].strip()
                     
-                # except Exception as e:
-                #     print(f"Ocorreu um erro (stadium attendence): {e}")
+                except Exception as e:
+                    print(f"Ocorreu um erro (stadium attendence): {e}")
                     
                     
-                # try:
-                #     referees = soup.select(f'#tm-main > div:nth-child(1) > div > div > div.box-content > div.sb-spieldaten > p.sb-zusatzinfos > a')
-                #     referee_name = referees[0].get_text()
-                #     referee_url = referees[0].get_attribute_list("href")[0]
+                try:
+                    referees = soup.select(f'#tm-main > div:nth-child(1) > div > div > div.box-content > div.sb-spieldaten > p.sb-zusatzinfos > a')
+                    referee_name = referees[0].get_text()
+                    referee_url = referees[0].get_attribute_list("href")[0]
+                    # print(referees)
                     
-                #     referee_id = referee_data(referee_url, referees_list)
-                #     match_dict[ano][match_id]["referee_id"] = referee_id
-                #     match_dict[ano][match_id]["referee_name"] = referee_name
+                    referee_id = referee_data(referee_url, referees_dict)
+                    print(referee_id)
                     
-                # except Exception as e:
-                #     print(f"Ocorreu um erro (referees): {e}")
+                    if str(referee_id) in referees_dict:
+                        pass
+                    else:
+                        match_dict[ano][match_id]["referee_id"] = referee_id
+                        match_dict[ano][match_id]["referee_name"] = referee_name
                     
+                    
+                except Exception as e:
+                    print(f"Ocorreu um erro (referees): {e}")
                 
-                # try:
-                #     goals_list = []
+                
+                try:
+                    goals_list = []
 
-                #     goalscorer = soup.select('#sb-tore > ul > li > div > div.sb-aktion-aktion > a:nth-child(1)')
-                #     goal_team = soup.select('#sb-tore > ul > li > div > div.sb-aktion-wappen > a > img')
-                #     goal_info = soup.select('.sb-aktion-aktion')
+                    goalscorer = soup.select('#sb-tore > ul > li > div > div.sb-aktion-aktion > a:nth-child(1)')
+                    goal_team = soup.select('#sb-tore > ul > li > div > div.sb-aktion-wappen > a > img')
+                    goal_info = soup.select('.sb-aktion-aktion')
 
-                #     for i in range(len(goalscorer)):
-                #         goal_scorer_url = goalscorer[i].get_attribute_list("href")[0]
-                #         goal_team_name = goal_team[i].get_attribute_list('title')[0]
-                #         goal_info_name = goal_info[i].get_text().split(',')
+                    for i in range(len(goalscorer)):
+                        goal_scorer_url = goalscorer[i].get_attribute_list("href")[0]
+                        goal_team_name = goal_team[i].get_attribute_list('title')[0]
+                        goal_info_name = goal_info[i].get_text().split(',')
 
-                #         goal_scorer = goal_info_name[0].strip()
-                #         shot_type = goal_info_name[1].strip()
+                        goal_scorer = goal_info_name[0].strip()
+                        shot_type = goal_info_name[1].strip()
 
-                #         goal_info_dict = {
-                #             "Team": goal_team_name,
-                #             "Scorer": goal_scorer,
-                #             "Scorer URL": base_url + goal_scorer_url,
-                #             "Shot Type": shot_type
-                #         }
+                        goal_info_dict = {
+                            "Team": goal_team_name,
+                            "Scorer": goal_scorer,
+                            "Scorer URL": base_url + goal_scorer_url,
+                            "Shot Type": shot_type
+                        }
 
-                #         try:
-                #             assist_player = goal_info_name[2].split("Assist: ")[1].strip()
-                #             goal_info_dict["Assist Player"] = assist_player
-                #         except IndexError:
-                #             goal_info_dict["Assist Player"] = None
+                        try:
+                            assist_player = goal_info_name[2].split("Assist: ")[1].strip()
+                            goal_info_dict["Assist Player"] = assist_player
+                        except IndexError:
+                            goal_info_dict["Assist Player"] = None
 
-                #         try:
-                #             assist_type = goal_info_name[3].strip()
-                #             goal_info_dict["Assist Type"] = assist_type
-                #         except IndexError:
-                #             goal_info_dict["Assist Type"] = None
+                        try:
+                            assist_type = goal_info_name[3].strip()
+                            goal_info_dict["Assist Type"] = assist_type
+                        except IndexError:
+                            goal_info_dict["Assist Type"] = None
 
-                #         goals_list.append(goal_info_dict)
+                        goals_list.append(goal_info_dict)
 
-                #     match_dict[ano][match_id]["goals_list"] = goals_list
+                    match_dict[ano][match_id]["goals_list"] = goals_list
 
-                # except Exception as e:
-                #     print(f"Ocorreu um erro (goals): {e}")
+                except Exception as e:
+                    print(f"Ocorreu um erro (goals): {e}")
 
                 
-                # try:
-                #     substitutions = soup.select('#sb-wechsel > ul > li')
+                try:
+                    substitutions = soup.select('#sb-wechsel > ul > li')
                     
-                #     substitution_list = []
+                    substitution_list = []
 
-                #     for substitution in substitutions:
-                #         substitution_name = substitution.select_one('div > div.sb-aktion-aktion > span.sb-aktion-wechsel-ein > a').get_text()
-                #         substitution_url = substitution.select_one('div > div.sb-aktion-aktion > span.sb-aktion-wechsel-ein > a').get_attribute_list("href")[0]
+                    for substitution in substitutions:
+                        substitution_name = substitution.select_one('div > div.sb-aktion-aktion > span.sb-aktion-wechsel-ein > a').get_text()
+                        substitution_url = substitution.select_one('div > div.sb-aktion-aktion > span.sb-aktion-wechsel-ein > a').get_attribute_list("href")[0]
                         
-                #         substituted_name = substitution.select_one('div > div.sb-aktion-aktion > span.sb-aktion-wechsel-aus > a').get_text()
-                #         substituted_url = substitution.select_one('div > div.sb-aktion-aktion > span.sb-aktion-wechsel-aus > a').get_attribute_list("href")[0]
+                        substituted_name = substitution.select_one('div > div.sb-aktion-aktion > span.sb-aktion-wechsel-aus > a').get_text()
+                        substituted_url = substitution.select_one('div > div.sb-aktion-aktion > span.sb-aktion-wechsel-aus > a').get_attribute_list("href")[0]
                         
-                #         substitution_team_name = substitution.select_one('div > div.sb-aktion-wappen > a > img').get_attribute_list("title")[0]
+                        substitution_team_name = substitution.select_one('div > div.sb-aktion-wappen > a > img').get_attribute_list("title")[0]
 
-                #         substitution_list.append({
-                #             "Team": substitution_team_name,
-                #             "Substitution": {
-                #                 "Name": substitution_name,
-                #                 "URL": substitution_url
-                #             },
-                #             "Substituted": {
-                #                 "Name": substituted_name,
-                #                 "URL": substituted_url
-                #             }
-                #         })
+                        substitution_list.append({
+                            "Team": substitution_team_name,
+                            "Substitution": {
+                                "Name": substitution_name,
+                                "URL": substitution_url
+                            },
+                            "Substituted": {
+                                "Name": substituted_name,
+                                "URL": substituted_url
+                            }
+                        })
                         
-                #     match_dict[ano][match_id]["substitutions_list"] = substitution_list
+                    match_dict[ano][match_id]["substitutions_list"] = substitution_list
                     
-                # except Exception as e:
-                #     print(f"Ocorreu um erro (substitutions): {e}")
+                except Exception as e:
+                    print(f"Ocorreu um erro (substitutions): {e}")
 
-                # try:
-                #     card_elements = soup.select('#sb-karten > ul > li')
-                #     cards_list = []
+                try:
+                    card_elements = soup.select('#sb-karten > ul > li')
+                    cards_list = []
 
-                #     for card in card_elements:
-                #         card_info = card.select_one('div > div.sb-aktion-aktion').get_text().split(',')
+                    for card in card_elements:
+                        card_info = card.select_one('div > div.sb-aktion-aktion').get_text().split(',')
                         
-                #         try:
-                #             player = card_info[0].split('\n')[0].strip()
-                #         except:
-                #             player = None
+                        try:
+                            player = card_info[0].split('\n')[0].strip()
+                        except:
+                            player = None
                         
-                #         try:   
-                #             card_type = card_info[0].split('\n')[1].strip().split('.')[1].strip()
-                #         except:
-                #             card_type = None
+                        try:   
+                            card_type = card_info[0].split('\n')[1].strip().split('.')[1].strip()
+                        except:
+                            card_type = None
                             
-                #         try:
-                #             reason = card_info[1].strip() if len(card_info) > 1 else None
-                #         except:
-                #             reason = None
+                        try:
+                            reason = card_info[1].strip() if len(card_info) > 1 else None
+                        except:
+                            reason = None
 
-                #         team_url_element = card.select_one('div > div.sb-aktion-wappen > a')
-                #         team_url = base_url + team_url_element.get_attribute_list('href')[0]
-                #         team_name = team_url_element.get_attribute_list('title')[0]
+                        team_url_element = card.select_one('div > div.sb-aktion-wappen > a')
+                        team_url = base_url + team_url_element.get_attribute_list('href')[0]
+                        team_name = team_url_element.get_attribute_list('title')[0]
 
-                #         cards_list.append({
-                #             "Team": team_name,
-                #             "Team URL": team_url,
-                #             "Player": player,
-                #             "Card Type": card_type,
-                #             "Reason": reason
-                #         })
+                        cards_list.append({
+                            "Team": team_name,
+                            "Team URL": team_url,
+                            "Player": player,
+                            "Card Type": card_type,
+                            "Reason": reason
+                        })
 
                 
-                #     match_dict[ano][match_id]["cards_list"] = cards_list
+                    match_dict[ano][match_id]["cards_list"] = cards_list
 
-                # except Exception as e:
-                #     print(f"Ocorreu um erro (cards): {e}")
+                except Exception as e:
+                    print(f"Ocorreu um erro (cards): {e}")
 
                     
-                # response = requests.get(scd_page, headers=headers)
-                # print(scd_page)
-                # data = response.text
-                # soup = BeautifulSoup(data, 'html.parser')
+                response = requests.get(scd_page, headers=headers)
+                print(scd_page)
+                data = response.text
+                soup = BeautifulSoup(data, 'html.parser')
                 
                 try:
                     players_dict_ids = []
@@ -353,61 +379,62 @@ def match_data(matches_list):
                         if "trainer" not in player_page:
                             player_id = player_data(player_page, players_dict)
                             if str(player_id) in players_dict:
-                                continue
-                            players_dict[-1]["Name"] = player_name
-                            players_dict[-1]["Profile URL"] = player_page
-                            players_dict[-1]["player_id"] = player_id
-                            players_dict_ids.append(player_id)   
+                                pass
+                            else:
+                                players_dict[-1]["Name"] = player_name
+                                players_dict[-1]["Profile URL"] = player_page
+                                players_dict[-1]["player_id"] = player_id
+                                players_dict_ids.append(player_id)   
                             
                     match_dict[ano][match_id]["players_id_list"] = players_dict_ids
 
                 except Exception as e:
                     print(f"Ocorreu um erro (players): {e}")
             
-                # response = requests.get(trd_page, headers=headers)
-                # print(trd_page)
-                # data = response.text
-                # soup = BeautifulSoup(data, 'html.parser')
+                response = requests.get(trd_page, headers=headers)
+                print(trd_page)
+                data = response.text
+                soup = BeautifulSoup(data, 'html.parser')
                 
-                # try:
-                #     data = soup.select('.sb-statistik-zahl')
+                try:
+                    data = soup.select('.sb-statistik-zahl')
                                     
-                #     total_shots_team1 = data[0].get_text()
-                #     total_shots_team2 = data[1].get_text()
-                #     shots_team1 = data[2].get_text()
-                #     shots_team2 = data[3].get_text()
-                #     shots_saved_team1 = data[4].get_text()
-                #     shots_saved_team2 = data[5].get_text()
-                #     corners_team1 = data[6].get_text()
-                #     corners_team2 = data[7].get_text()
-                #     free_kicks_team1 = data[8].get_text()
-                #     free_kicks_team2 = data[9].get_text()
-                #     fouls_team1 = data[10].get_text()
-                #     fouls_team2 = data[11].get_text()
-                #     offsides_team1 = data[12].get_text()
-                #     offsides_team2 = data[13].get_text()
+                    total_shots_team1 = data[0].get_text()
+                    total_shots_team2 = data[1].get_text()
+                    shots_team1 = data[2].get_text()
+                    shots_team2 = data[3].get_text()
+                    shots_saved_team1 = data[4].get_text()
+                    shots_saved_team2 = data[5].get_text()
+                    corners_team1 = data[6].get_text()
+                    corners_team2 = data[7].get_text()
+                    free_kicks_team1 = data[8].get_text()
+                    free_kicks_team2 = data[9].get_text()
+                    fouls_team1 = data[10].get_text()
+                    fouls_team2 = data[11].get_text()
+                    offsides_team1 = data[12].get_text()
+                    offsides_team2 = data[13].get_text()
                     
-                #     dict = {   
-                #             'total_shots_team1': total_shots_team1,
-                #             'total_shots_team2': total_shots_team2,
-                #             'shots_off_team1': shots_team1,
-                #             'shots_off_team2': shots_team2,
-                #             'shots_saved_team1': shots_saved_team1,
-                #             'shots_saved_team2': shots_saved_team2,
-                #             'corners_team1': corners_team1,
-                #             'corners_team2': corners_team2,
-                #             'free_kicks_team1': free_kicks_team1,
-                #             'free_kicks_team2': free_kicks_team2,
-                #             'fouls_team1': fouls_team1,
-                #             'fouls_team2': fouls_team2,
-                #             'offsides_team1': offsides_team1,
-                #             'offsides_team2': offsides_team2,
-                #     }
+                    dict = {   
+                            'total_shots_team1': total_shots_team1,
+                            'total_shots_team2': total_shots_team2,
+                            'shots_off_team1': shots_team1,
+                            'shots_off_team2': shots_team2,
+                            'shots_saved_team1': shots_saved_team1,
+                            'shots_saved_team2': shots_saved_team2,
+                            'corners_team1': corners_team1,
+                            'corners_team2': corners_team2,
+                            'free_kicks_team1': free_kicks_team1,
+                            'free_kicks_team2': free_kicks_team2,
+                            'fouls_team1': fouls_team1,
+                            'fouls_team2': fouls_team2,
+                            'offsides_team1': offsides_team1,
+                            'offsides_team2': offsides_team2,
+                    }
                     
-                #     match_dict[ano][match_id]["match_stats"] = dict
+                    match_dict[ano][match_id]["match_stats"] = dict
                 
-                # except Exception as e:
-                #     print(f"Ocorreu um erro (stats): {e}")
+                except Exception as e:
+                    print(f"Ocorreu um erro (stats): {e}")
                 
                 with open("managers_dict.json", "w") as file:
                     json.dump(managers_dict, file, indent=4)
@@ -415,7 +442,10 @@ def match_data(matches_list):
                     json.dump(stadiums_dict, file, indent=4)
                 with open("players_dict.json", "w") as file:
                     json.dump(players_dict, file, indent=4)
-                
+                with open("referees_dict.json", "w") as file:
+                    json.dump(referees_dict, file, indent=4)
+                with open("match_dict.json", "w") as file:
+                    json.dump(match_dict, file, indent=4)
     
     except Exception as e:
         print(f"Ocorreu um erro: {e}")
@@ -514,7 +544,6 @@ def referee_data(url, list):
     data = response.text
     soup = BeautifulSoup(data, 'html.parser')
 
-    dict2 = {}
     referee_id = url.split('/')[-1]
 
     try:
@@ -578,8 +607,7 @@ def referee_data(url, list):
 
         referee_info["Matches"] = dict
         
-        dict2[referee_id] = referee_info
-        list.append(dict2)
+        list[referee_id] = referee_info
         
         # pprint(list)
         return referee_id

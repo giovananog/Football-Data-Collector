@@ -13,11 +13,22 @@ headers = {
 def tables_data():
     
     try:
+        
+        try:
+            with open("table_data.json", "r") as file:
+                data_dict = json.load(file)
+        except FileNotFoundError:
+            data_dict = {}
+
         ano = 1995
-        data_dict = {}
         
         for _ in range(28):
-            ano = ano + 1
+            ano += 1
+            
+            if str(ano) in data_dict:
+                print(f"Dados para o ano {ano} já existem, pulando...")
+                continue
+            
             html = f"{tables_page}{ano}"
             response = requests.get(html, headers=headers)
             data = response.text
@@ -59,7 +70,8 @@ def tables_data():
 
             data_dict[ano] = teams
 
-        # pprint(data_dict)
+        with open("table_data.json", "w") as file:
+            json.dump(data_dict, file, indent=4)
                     
     except Exception as e:
         print(f"Ocorreu um erro: {e}")
@@ -367,7 +379,7 @@ def match_data(matches_list):
                 
                 except Exception as e:
                     print(f"Ocorreu um erro (stats): {e}")
-    
+                    
     except Exception as e:
         print(f"Ocorreu um erro: {e}")
 
@@ -608,6 +620,6 @@ def manager_data(url, list):
     except Exception as e:
         print(f"Ocorreu um erro (manager): {e}")
 
-matches_list = matches_data()
-match_data(matches_list)
-# tables_data()
+# matches_list = matches_data()
+# match_data(matches_list)
+tables_data()

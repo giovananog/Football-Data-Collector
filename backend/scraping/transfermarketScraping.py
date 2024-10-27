@@ -121,7 +121,12 @@ def match_data(matches_list):
     except FileNotFoundError:
         managers_dict = {}
         
-    stadiums_list = []
+    try:
+        with open("stadiums_dict.json", "r") as file:
+                stadiums_dict = json.load(file)
+    except FileNotFoundError:
+        stadiums_dict = {}
+        
     players_list = []
     referees_list = []
     match_dict = {}
@@ -150,43 +155,45 @@ def match_data(matches_list):
                 data = response.text
                 soup = BeautifulSoup(data, 'html.parser')
         
-                try:
-                    manager = soup.select('#\\30')
-                    fst_manager_url = manager[0].get_attribute_list("href")[0]
-                    scnd_manager_url = manager[1].get_attribute_list("href")[0]
-                    
-                    fst_manager_id = manager_data(fst_manager_url, managers_dict)
-                    if str(fst_manager_id) in managers_dict:
-                        continue
-                    
-                    match_dict[ano][match_id]["fst_manager_url"] = fst_manager_url
-                    match_dict[ano][match_id]["fst_manager_id"] = fst_manager_id
-                    managers_dict[-1][fst_manager_id]["manager_url"] = base_url + fst_manager_url
-                    
-                    scnd_manager_id = manager_data(scnd_manager_url, managers_dict)
-                    if str(scnd_manager_id) in managers_dict:
-                        continue
-                    
-                    match_dict[ano][match_id]["scnd_manager_url"] = scnd_manager_url
-                    match_dict[ano][match_id]["scnd_manager_id"] = scnd_manager_id
-                    managers_dict[-1][scnd_manager_id]["manager_url"] = base_url + scnd_manager_url
-                    
-                except Exception as e:
-                    print(f"Ocorreu um erro (manager): {e}")   
-
                 # try:
-                #     stadium = soup.select(f'#tm-main > div > div > div > div.box-content > div.sb-spieldaten > p.sb-zusatzinfos > span > a')
+                #     manager = soup.select('#\\30')
+                #     fst_manager_url = manager[0].get_attribute_list("href")[0]
+                #     scnd_manager_url = manager[1].get_attribute_list("href")[0]
                     
-                #     stadium_name = stadium[0].get_text()
-                #     stadium_url = stadium[0].get_attribute_list("href")[0]
+                #     fst_manager_id = manager_data(fst_manager_url, managers_dict)
+                #     if str(fst_manager_id) in managers_dict:
+                #         continue
                     
-                #     stadium_id = stadium_data(stadium_url, stadiums_list)
+                #     match_dict[ano][match_id]["fst_manager_url"] = fst_manager_url
+                #     match_dict[ano][match_id]["fst_manager_id"] = fst_manager_id
+                #     managers_dict[-1][fst_manager_id]["manager_url"] = base_url + fst_manager_url
                     
-                #     match_dict[ano][match_id]["stadium_id"] = stadium_id
-                #     match_dict[ano][match_id]["stadium_name"] = stadium_name
+                #     scnd_manager_id = manager_data(scnd_manager_url, managers_dict)
+                #     if str(scnd_manager_id) in managers_dict:
+                #         continue
+                    
+                #     match_dict[ano][match_id]["scnd_manager_url"] = scnd_manager_url
+                #     match_dict[ano][match_id]["scnd_manager_id"] = scnd_manager_id
+                #     managers_dict[-1][scnd_manager_id]["manager_url"] = base_url + scnd_manager_url
                     
                 # except Exception as e:
-                #     print(f"Ocorreu um erro (stadium): {e}")   
+                #     print(f"Ocorreu um erro (manager): {e}")   
+
+                try:
+                    stadium = soup.select(f'#tm-main > div > div > div > div.box-content > div.sb-spieldaten > p.sb-zusatzinfos > span > a')
+                    
+                    stadium_name = stadium[0].get_text()
+                    stadium_url = stadium[0].get_attribute_list("href")[0]
+                    
+                    stadium_id = stadium_data(stadium_url, stadiums_dict)
+                    if str(stadium_id) in stadiums_dict:
+                        continue
+                    
+                    match_dict[ano][match_id]["stadium_id"] = stadium_id
+                    match_dict[ano][match_id]["stadium_name"] = stadium_name
+                    
+                except Exception as e:
+                    print(f"Ocorreu um erro (stadium): {e}")   
                 
                 
                 # try:
@@ -397,6 +404,8 @@ def match_data(matches_list):
                 
                 with open("managers_dict.json", "w") as file:
                     json.dump(managers_dict, file, indent=4)
+                with open("stadiums_dict.json", "w") as file:
+                    json.dump(stadiums_dict, file, indent=4)
                 
     
     except Exception as e:
@@ -578,7 +587,6 @@ def stadium_data(url, list):
     soup = BeautifulSoup(data, 'html.parser')
     
     stadium_id = url.split('/')[-3]    
-    dict = {}
     
     try:
         stadium_info = {}
@@ -591,8 +599,7 @@ def stadium_data(url, list):
             
             stadium_info[title_text] = content_text
         
-        dict[stadium_id] = stadium_info
-        list.append(dict)
+        list[stadium_id] = stadium_info
         
         return stadium_id
         

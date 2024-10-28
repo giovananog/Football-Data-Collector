@@ -52,8 +52,8 @@ const TeamInfo = () => {
                 </Box>
               </Grid>
               <Grid item xs={4}>
-                <Typography variant="subtitle1" fontWeight="bold">Current transfer record:</Typography>
-                <Typography variant="body2" color="text.secondary">€545k</Typography>
+                <Typography variant="subtitle1" fontWeight="bold">Current Trainer:</Typography>
+                <Typography variant="body2" color="text.secondary">Técnico</Typography>
               </Grid>
             </Grid>
           </Box>

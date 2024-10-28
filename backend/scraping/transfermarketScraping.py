@@ -9,6 +9,59 @@ headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
 }
 
+def players_of_the_year():
+    try:
+        base_url = "https://www.transfermarkt.com/campeonato-brasileiro-serie-a/fussballerdesjahres/wettbewerb/BRA1/galerie/1/page/1"
+        
+        try:
+            with open("players_of_the_year.json", "r") as file:
+                data_dict = json.load(file)
+        except FileNotFoundError:
+            data_dict = {}
+        
+        page = 1
+        
+        for _ in range(23):
+            
+            url = base_url.replace(('page/1'), (f"page/{page}"))
+            page += 1
+            if str(page) in data_dict:
+                continue
+            
+            print(url)
+            response = requests.get(url, headers=headers)
+            data = response.text
+            soup = BeautifulSoup(data, 'html.parser')
+            
+            year = soup.select('.galerie-beschriftung-inhalt')[0].get_text()
+            
+            data_dict[year] = {}
+            
+            try: 
+                img = soup.select('.galerie-bild')[0].get_attribute_list('src')[0]
+                name = soup.select('.hauptlink a')[0].get_text()
+                image = soup.select('.bilderrahmen-fixed')[0].get_attribute_list('src')[0]
+                position = soup.select('.inline-table td')[2].get_text()
+                team_image = soup.select('.zentriert a img')[0].get_attribute_list('src')[0]
+                nat = soup.select('#yw1 > table > tbody > tr > td:nth-child(4) > img')[0].get_attribute_list('src')[0]
+            except: 
+                continue
+            
+            data_dict[year] = {
+                'Image 1': img,
+                'Name': name,
+                'Image 2': image,
+                'Position': position,
+                'Team Image': team_image,
+                'Nat': nat,
+            }
+                      
+        with open("players_of_the_year.json", "w") as file:
+            json.dump(data_dict, file, indent=4)
+                    
+    except Exception as e:
+        print(f"Ocorreu um erro: {e}")
+
 def get_minute_from_background_position(background_position):
     width_cell = 36  
     height_cell = 36.3
@@ -911,3 +964,4 @@ def manager_data(url, list):
 # match_data(matches_list)
 # tables_data()
 # top_goalscorers()
+players_of_the_year()

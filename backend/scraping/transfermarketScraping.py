@@ -201,7 +201,7 @@ def tables_data():
         ano = 1995
         base_url = 'https://www.transfermarkt.com'
         
-        for _ in range(2):
+        for _ in range(28):
             ano += 1
             
             if str(ano) not in data_dict:

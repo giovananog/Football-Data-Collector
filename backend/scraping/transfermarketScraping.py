@@ -9,6 +9,28 @@ headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
 }
 
+def get_minute_from_background_position(background_position):
+    width_cell = 36  
+    height_cell = 36.3
+    
+    position = background_position.replace('background-position:', '').strip().split(' ')
+    x = float(position[0].replace('px', '').strip())
+    y = float(position[1].replace('px', '').replace(';', '').strip())
+
+    col = int(-x // width_cell)  
+    row = int(-y // height_cell)  
+
+    if row == 11 and col == 0:
+        minute = 120  
+    elif row == 13:
+        minute = -1  
+    elif 0 <= row < 12 and 0 <= col < 10:  
+        minute = (row * 10) + col + 11 
+    else:
+        minute = -1  
+
+    return minute
+
 def teams_data(url):
     try:
         
@@ -388,8 +410,7 @@ def match_data(matches_list):
                     else:
                         match_dict[ano][match_id]["scnd_manager_url"] = scnd_manager_url
                         match_dict[ano][match_id]["scnd_manager_id"] = scnd_manager_id
-                        managers_dict[-1][scnd_manager_id]["manager_url"] = base_url + scnd_manager_url
-                    
+                        managers_dict[-1][scnd_manager_id]["manager_url"] = base_url + scnd_manager_url                 
                 except Exception as e:
                     print(f"Ocorreu um erro (manager): {e}")   
 
@@ -404,20 +425,16 @@ def match_data(matches_list):
                         pass
                     
                     match_dict[ano][match_id]["stadium_id"] = stadium_id
-                    match_dict[ano][match_id]["stadium_name"] = stadium_name
-                    
+                    match_dict[ano][match_id]["stadium_name"] = stadium_name                   
                 except Exception as e:
                     print(f"Ocorreu um erro (stadium): {e}")   
-                
-                
+                        
                 try:
                     stadium_attendence = soup.select('#tm-main > div:nth-child(1) > div > div > div.box-content > div.sb-spieldaten > p.sb-zusatzinfos > span > strong')
-                    match_dict[ano][match_id]["stadium_attendence"] = stadium_attendence[0].get_text().split(':')[-1].strip()
-                    
+                    match_dict[ano][match_id]["stadium_attendence"] = stadium_attendence[0].get_text().split(':')[-1].strip()                  
                 except Exception as e:
                     print(f"Ocorreu um erro (stadium attendence): {e}")
-                    
-                    
+                                      
                 try:
                     referees = soup.select(f'#tm-main > div:nth-child(1) > div > div > div.box-content > div.sb-spieldaten > p.sb-zusatzinfos > a')
                     referee_name = referees[0].get_text()
@@ -431,33 +448,34 @@ def match_data(matches_list):
                         pass
                     else:
                         match_dict[ano][match_id]["referee_id"] = referee_id
-                        match_dict[ano][match_id]["referee_name"] = referee_name
-                    
-                    
+                        match_dict[ano][match_id]["referee_name"] = referee_name           
                 except Exception as e:
                     print(f"Ocorreu um erro (referees): {e}")
-                
-                
+                       
                 try:
                     goals_list = []
 
                     goalscorer = soup.select('#sb-tore > ul > li > div > div.sb-aktion-aktion > a:nth-child(1)')
                     goal_team = soup.select('#sb-tore > ul > li > div > div.sb-aktion-wappen > a > img')
                     goal_info = soup.select('.sb-aktion-aktion')
+                    goal_minute = soup.select('#sb-tore > ul > li > div > div.sb-aktion-uhr > span')
+                    
 
                     for i in range(len(goalscorer)):
                         goal_scorer_url = goalscorer[i].get_attribute_list("href")[0]
                         goal_team_name = goal_team[i].get_attribute_list('title')[0]
+                        goal_minute_time = goal_minute[i].get_attribute_list('style')[0]
                         goal_info_name = goal_info[i].get_text().split(',')
 
                         goal_scorer = goal_info_name[0].strip()
                         shot_type = goal_info_name[1].strip()
-
+                        
                         goal_info_dict = {
                             "Team": goal_team_name,
                             "Scorer": goal_scorer,
                             "Scorer URL": base_url + goal_scorer_url,
-                            "Shot Type": shot_type
+                            "Shot Type": shot_type,
+                            "Minute": get_minute_from_background_position(goal_minute_time)
                         }
 
                         try:
@@ -478,8 +496,7 @@ def match_data(matches_list):
 
                 except Exception as e:
                     print(f"Ocorreu um erro (goals): {e}")
-
-                
+              
                 try:
                     substitutions = soup.select('#sb-wechsel > ul > li')
                     
@@ -493,9 +510,11 @@ def match_data(matches_list):
                         substituted_url = substitution.select_one('div > div.sb-aktion-aktion > span.sb-aktion-wechsel-aus > a').get_attribute_list("href")[0]
                         
                         substitution_team_name = substitution.select_one('div > div.sb-aktion-wappen > a > img').get_attribute_list("title")[0]
+                        substitution_minute = substitution.select_one('.sb-sprite-uhr-klein').get_attribute_list("style")[0]
 
                         substitution_list.append({
                             "Team": substitution_team_name,
+                            "Minute": get_minute_from_background_position(substitution_minute),
                             "Substitution": {
                                 "Name": substitution_name,
                                 "URL": substitution_url
@@ -506,8 +525,7 @@ def match_data(matches_list):
                             }
                         })
                         
-                    match_dict[ano][match_id]["substitutions_list"] = substitution_list
-                    
+                    match_dict[ano][match_id]["substitutions_list"] = substitution_list                  
                 except Exception as e:
                     print(f"Ocorreu um erro (substitutions): {e}")
 
@@ -518,6 +536,11 @@ def match_data(matches_list):
                     for card in card_elements:
                         card_info = card.select_one('div > div.sb-aktion-aktion').get_text().split(',')
                         
+                        try:
+                            card_minute = card.select_one('.sb-sprite-uhr-klein').get_attribute_list("style")[0]
+                        except:
+                            card_minute = None
+                                                    
                         try:
                             player = card_info[0].split('\n')[0].strip()
                         except:
@@ -542,16 +565,15 @@ def match_data(matches_list):
                             "Team URL": team_url,
                             "Player": player,
                             "Card Type": card_type,
-                            "Reason": reason
+                            "Reason": reason,
+                            "Minute": get_minute_from_background_position(card_minute)
                         })
 
                 
                     match_dict[ano][match_id]["cards_list"] = cards_list
-
                 except Exception as e:
                     print(f"Ocorreu um erro (cards): {e}")
-
-                    
+                 
                 response = requests.get(scd_page, headers=headers)
                 print(scd_page)
                 data = response.text
@@ -575,8 +597,7 @@ def match_data(matches_list):
                             players_dict[ano][player_id]["Profile URL"] = player_page
                             players_dict_ids.append(player_id)   
                             
-                    match_dict[ano][match_id]["players_id_list"] = players_dict_ids
-                    
+                    match_dict[ano][match_id]["players_id_list"] = players_dict_ids              
                 except Exception as e:
                     print(f"Ocorreu um erro (players): {e}")
             
@@ -620,8 +641,7 @@ def match_data(matches_list):
                             'offsides_team2': offsides_team2,
                     }
                     
-                    match_dict[ano][match_id]["match_stats"] = dict
-                
+                    match_dict[ano][match_id]["match_stats"] = dict            
                 except Exception as e:
                     print(f"Ocorreu um erro (stats): {e}")
                 
@@ -889,5 +909,5 @@ def manager_data(url, list):
 
 # matches_list = matches_data()
 # match_data(matches_list)
-tables_data()
+# tables_data()
 # top_goalscorers()

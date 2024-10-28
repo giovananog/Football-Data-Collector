@@ -9,6 +9,99 @@ headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
 }
 
+def teams_data(url, dict):
+    try:
+        
+        season = url.split('/')[-1]
+        
+        overview_page = url.replace('spielplan', 'startseite')
+        players_page = url.replace('spielplan', 'kader') + '/plus/1'
+        info_page = url.replace('spielplan', 'datenfakten').replace(f'/saison_id/{season}', "")
+        
+        response = requests.get(overview_page, headers=headers)
+        data = response.text
+        soup = BeautifulSoup(data, 'html.parser')
+        
+        team_id = url.split('/')[-3]
+        
+        if(team_id not in dict):
+            dict[team_id] = {}
+        
+        print(info_page)
+        header_contents = soup.select('.data-header__details .data-header__content')
+        header_contents_a = soup.select('.data-header__details .data-header__content a')
+        
+        try:
+            if ("General" not in dict[team_id]):
+                dict[team_id]["General"] = {
+                    "Squad Size": header_contents[0].get_text().strip(),
+                    "Average age:": header_contents[1].get_text().strip(),
+                    "Foreigners": header_contents_a[0].get_text(),
+                    "National team players": header_contents_a[1].get_text(),
+                    "Stadium": header_contents_a[2].get_text(),
+                }
+        except:
+            pass
+            
+        try:
+            manager = soup.select('#\\30')[0]            
+            manager_name = manager.get_attribute_list('title')[0]
+            manager_id = manager.get_attribute_list('href')[0].split('/')[-1]
+            
+            if (season not in dict[team_id]):
+                dict[team_id][season] = {
+                    "Manager Name": manager_name,
+                    "Manager ID": manager_id,
+                }
+        except:
+            pass
+        
+        try:
+            response = requests.get(info_page, headers=headers)
+            data = response.text
+            soup = BeautifulSoup(data, 'html.parser')
+            
+            dict[team_id]["General"]["Info"] = {}
+            other_info_title = soup.select('.profilheader th')
+            other_info_content = soup.select('.profilheader td')
+            
+            for i in range(len(other_info_content)):
+                dict[team_id]["General"]["Info"][other_info_title[i].get_text().strip()] = other_info_content[i].get_text().strip()
+        except:
+            pass
+        
+        players_data = [] 
+        try:
+            response = requests.get(players_page, headers=headers)
+            data = response.text
+            soup = BeautifulSoup(data, 'html.parser')
+            
+            rows = soup.select('.items tbody tr')            
+            
+            for row in rows:
+                player = {}
+                columns = row.find_all('td')
+                if(len(columns) == 13):
+                    player['Number'] = columns[0].get_text().strip()
+                    player['ID'] = columns[1].find_all('a')[0].get_attribute_list('href')[0][-1]
+                    player['Image'] = columns[1].find_all('img')[0].get_attribute_list('data-src')[0]
+                    player['Name'] = columns[3].get_text().strip()
+                    player['Position'] = columns[4].get_text().strip()
+                    player['Birth'] = columns[5].get_text().strip()
+                    player['Height'] = columns[8].get_text().strip()
+                    player['Foot'] = columns[9].get_text().strip()
+                    player['Joined'] = columns[10].get_text().strip()
+                
+                    players_data.append(player)
+        except:
+            pass
+            
+        dict[team_id][season]["Players List"] = players_data
+        pprint(dict)
+            
+    except Exception as e:
+        print(f"Ocorreu um erro (teams): {e}")
+ 
 def top_goalscorers():
     try:
         base_url = "https://www.transfermarkt.com/campeonato-brasileiro-serie-a/torschuetzenliste/wettbewerb/BRA1/plus/1?saison_id=1995&detailpos=&altersklasse=alle"
@@ -87,18 +180,18 @@ def top_goalscorers():
         print(f"Ocorreu um erro: {e}")
   
 def tables_data():
-    
     try:
-        
         try:
             with open("table_data.json", "r") as file:
                 data_dict = json.load(file)
         except FileNotFoundError:
             data_dict = {}
-
-        ano = 1995
         
-        for _ in range(28):
+        teams_dict = {}
+        ano = 1995
+        base_url = 'https://www.transfermarkt.com'
+        
+        for _ in range(2):
             ano += 1
             
             if ano in data_dict:
@@ -116,13 +209,17 @@ def tables_data():
 
             for index, elemento in enumerate(elementos):
                 text = elemento.get_text().strip()
+                url = str(elemento.find('a')).split('=')
         
                 if index % 10 == 0:
                     if team_data:  
                         teams.append(team_data)
                     team_data = {'Position': text}  
                 elif index % 10 == 1:
-                    team_data['Team'] = text
+                    team_url = base_url + url[1].split(' ')[0].strip().split("\"")[1].strip()
+                    team_data['Team'] = team_url
+                    
+                    teams_data(team_url, teams_dict)
                 elif index % 10 == 2:
                     team_data['Name'] = text
                 elif index % 10 == 3:
@@ -619,7 +716,7 @@ def player_data(url, list, ano):
             list[ano][player_id] = player_details
 
         except Exception as e:
-        print(f"Ocorreu um erro (player): {e}")
+            print(f"Ocorreu um erro (player): {e}")
 
     return player_id
  
@@ -781,7 +878,7 @@ def manager_data(url, list):
     except Exception as e:
         print(f"Ocorreu um erro (manager): {e}")
 
-matches_list = matches_data()
-match_data(matches_list)
-# tables_data()
+# matches_list = matches_data()
+# match_data(matches_list)
+tables_data()
 # top_goalscorers()

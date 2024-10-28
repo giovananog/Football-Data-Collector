@@ -21,7 +21,7 @@ const TeamInfo = () => {
           <Box>
             {/* Nome do Time */}
             <Typography variant="h4" component="div" fontWeight="bold" marginBottom={10}>
-              Guarani Futebol Clube (SP)
+              Campeonato Brasileiro Série A - 2023
             </Typography>
 
             {/* Informações do Time */}

@@ -9,9 +9,15 @@ headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
 }
 
-def teams_data(url, dict):
+def teams_data(url):
     try:
         
+        try:
+            with open("teams_data.json", "r") as file:
+                data_dict = json.load(file)
+        except FileNotFoundError:
+            data_dict = {}
+            
         season = url.split('/')[-1]
         
         overview_page = url.replace('spielplan', 'startseite')
@@ -24,80 +30,85 @@ def teams_data(url, dict):
         
         team_id = url.split('/')[-3]
         
-        if(team_id not in dict):
-            dict[team_id] = {}
+        if(team_id not in data_dict):
+            data_dict[team_id] = {}
         
-        print(info_page)
-        header_contents = soup.select('.data-header__details .data-header__content')
-        header_contents_a = soup.select('.data-header__details .data-header__content a')
-        
-        try:
-            if ("General" not in dict[team_id]):
-                dict[team_id]["General"] = {
-                    "Squad Size": header_contents[0].get_text().strip(),
-                    "Average age:": header_contents[1].get_text().strip(),
-                    "Foreigners": header_contents_a[0].get_text(),
-                    "National team players": header_contents_a[1].get_text(),
-                    "Stadium": header_contents_a[2].get_text(),
-                }
-        except:
-            pass
+        if(season not in data_dict[team_id]): 
+            header_contents = soup.select('.data-header__details .data-header__content')
+            header_contents_a = soup.select('.data-header__details .data-header__content a')
             
-        try:
-            manager = soup.select('#\\30')[0]            
-            manager_name = manager.get_attribute_list('title')[0]
-            manager_id = manager.get_attribute_list('href')[0].split('/')[-1]
-            
-            if (season not in dict[team_id]):
-                dict[team_id][season] = {
-                    "Manager Name": manager_name,
-                    "Manager ID": manager_id,
-                }
-        except:
-            pass
-        
-        try:
-            response = requests.get(info_page, headers=headers)
-            data = response.text
-            soup = BeautifulSoup(data, 'html.parser')
-            
-            dict[team_id]["General"]["Info"] = {}
-            other_info_title = soup.select('.profilheader th')
-            other_info_content = soup.select('.profilheader td')
-            
-            for i in range(len(other_info_content)):
-                dict[team_id]["General"]["Info"][other_info_title[i].get_text().strip()] = other_info_content[i].get_text().strip()
-        except:
-            pass
-        
-        players_data = [] 
-        try:
-            response = requests.get(players_page, headers=headers)
-            data = response.text
-            soup = BeautifulSoup(data, 'html.parser')
-            
-            rows = soup.select('.items tbody tr')            
-            
-            for row in rows:
-                player = {}
-                columns = row.find_all('td')
-                if(len(columns) == 13):
-                    player['Number'] = columns[0].get_text().strip()
-                    player['ID'] = columns[1].find_all('a')[0].get_attribute_list('href')[0][-1]
-                    player['Image'] = columns[1].find_all('img')[0].get_attribute_list('data-src')[0]
-                    player['Name'] = columns[3].get_text().strip()
-                    player['Position'] = columns[4].get_text().strip()
-                    player['Birth'] = columns[5].get_text().strip()
-                    player['Height'] = columns[8].get_text().strip()
-                    player['Foot'] = columns[9].get_text().strip()
-                    player['Joined'] = columns[10].get_text().strip()
+            try:
+                if ("General" not in data_dict[team_id]):
+                    data_dict[team_id]["General"] = {
+                        "Squad Size": header_contents[0].get_text().strip(),
+                        "Average age:": header_contents[1].get_text().strip(),
+                        "Foreigners": header_contents_a[0].get_text(),
+                        "National team players": header_contents_a[1].get_text(),
+                        "Stadium": header_contents_a[2].get_text(),
+                    }
+            except:
+                pass
                 
-                    players_data.append(player)
-        except:
-            pass
+            try:
+                manager = soup.select('#\\30')[0]            
+                manager_name = manager.get_attribute_list('title')[0]
+                manager_id = manager.get_attribute_list('href')[0].split('/')[-1]
+                
+                if (season not in data_dict[team_id]):
+                    data_dict[team_id][season] = {
+                        "Manager Name": manager_name,
+                        "Manager ID": manager_id,
+                    }
+            except:
+                pass
             
-        dict[team_id][season]["Players List"] = players_data
-        pprint(dict)
+            try:
+                response = requests.get(info_page, headers=headers)
+                data = response.text
+                soup = BeautifulSoup(data, 'html.parser')
+                
+                data_dict[team_id]["General"]["Info"] = {}
+                other_info_title = soup.select('.profilheader th')
+                other_info_content = soup.select('.profilheader td')
+                
+                for i in range(len(other_info_content)):
+                    data_dict[team_id]["General"]["Info"][other_info_title[i].get_text().strip()] = other_info_content[i].get_text().strip()
+            except:
+                pass
+            
+            players_data = [] 
+            try:
+                response = requests.get(players_page, headers=headers)
+                data = response.text
+                soup = BeautifulSoup(data, 'html.parser')
+                
+                rows = soup.select('.items tbody tr')            
+                
+                for row in rows:
+                    player = {}
+                    columns = row.find_all('td')
+                    if(len(columns) == 13):
+                        player['Number'] = columns[0].get_text().strip()
+                        player['ID'] = columns[1].find_all('a')[0].get_attribute_list('href')[0][-1]
+                        player['Image'] = columns[1].find_all('img')[0].get_attribute_list('data-src')[0]
+                        player['Name'] = columns[3].get_text().strip()
+                        player['Position'] = columns[4].get_text().strip()
+                        player['Birth'] = columns[5].get_text().strip()
+                        player['Height'] = columns[8].get_text().strip()
+                        player['Foot'] = columns[9].get_text().strip()
+                        player['Joined'] = columns[10].get_text().strip()
+                    
+                        players_data.append(player)
+            except:
+                pass
+            
+            if(season not in data_dict[team_id]):
+                data_dict[team_id][season] = {}
+                
+            data_dict[team_id][season]["Players List"] = players_data
+        
+        with open("teams_data.json", "w") as file:
+            json.dump(data_dict, file, indent=4)
             
     except Exception as e:
         print(f"Ocorreu um erro (teams): {e}")
@@ -187,60 +198,58 @@ def tables_data():
         except FileNotFoundError:
             data_dict = {}
         
-        teams_dict = {}
         ano = 1995
         base_url = 'https://www.transfermarkt.com'
         
         for _ in range(2):
             ano += 1
             
-            if ano in data_dict:
-                continue
+            if str(ano) not in data_dict:
             
-            html = f"{tables_page}{ano}"
-            response = requests.get(html, headers=headers)
-            data = response.text
-            soup = BeautifulSoup(data, 'html.parser')
+                html = f"{tables_page}{ano}"
+                response = requests.get(html, headers=headers)
+                data = response.text
+                soup = BeautifulSoup(data, 'html.parser')
+                
+                elementos = soup.select('.items td')
+                
+                teams = []
+                team_data = {}
+
+                for index, elemento in enumerate(elementos):
+                    text = elemento.get_text().strip()
+                    url = str(elemento.find('a')).split('=')
             
-            elementos = soup.select('.items td')
-            
-            teams = []
-            team_data = {}
+                    if index % 10 == 0:
+                        if team_data:  
+                            teams.append(team_data)
+                        team_data = {'Position': text}  
+                    elif index % 10 == 1:
+                        team_url = base_url + url[1].split(' ')[0].strip().split("\"")[1].strip()
+                        team_data['Team'] = team_url
+                        
+                        teams_data(team_url)
+                    elif index % 10 == 2:
+                        team_data['Name'] = text
+                    elif index % 10 == 3:
+                        team_data['Matches'] = text
+                    elif index % 10 == 4:
+                        team_data['Wins'] = text
+                    elif index % 10 == 5:
+                        team_data['Draws'] = text
+                    elif index % 10 == 6:
+                        team_data['Losses'] = text
+                    elif index % 10 == 7:
+                        team_data['Goals'] = text
+                    elif index % 10 == 8:
+                        team_data['Goal Difference'] = text
+                    elif index % 10 == 9:
+                        team_data['Points'] = text
 
-            for index, elemento in enumerate(elementos):
-                text = elemento.get_text().strip()
-                url = str(elemento.find('a')).split('=')
-        
-                if index % 10 == 0:
-                    if team_data:  
-                        teams.append(team_data)
-                    team_data = {'Position': text}  
-                elif index % 10 == 1:
-                    team_url = base_url + url[1].split(' ')[0].strip().split("\"")[1].strip()
-                    team_data['Team'] = team_url
-                    
-                    teams_data(team_url, teams_dict)
-                elif index % 10 == 2:
-                    team_data['Name'] = text
-                elif index % 10 == 3:
-                    team_data['Matches'] = text
-                elif index % 10 == 4:
-                    team_data['Wins'] = text
-                elif index % 10 == 5:
-                    team_data['Draws'] = text
-                elif index % 10 == 6:
-                    team_data['Losses'] = text
-                elif index % 10 == 7:
-                    team_data['Goals'] = text
-                elif index % 10 == 8:
-                    team_data['Goal Difference'] = text
-                elif index % 10 == 9:
-                    team_data['Points'] = text
+                if team_data:
+                    teams.append(team_data)  
 
-            if team_data:
-                teams.append(team_data)  
-
-            data_dict[ano] = teams
+                data_dict[ano] = teams
 
         with open("table_data.json", "w") as file:
             json.dump(data_dict, file, indent=4)

@@ -27,9 +27,7 @@ def top_goalscorers():
             ano += 1
             if str(ano) in data_dict:
                 continue
-            
-            print(url)
-                        
+                                    
             response = requests.get(url, headers=headers)
             data = response.text
             soup = BeautifulSoup(data, 'html.parser')
@@ -87,7 +85,6 @@ def top_goalscorers():
                     
     except Exception as e:
         print(f"Ocorreu um erro: {e}")
-  
   
 def tables_data():
     
@@ -156,10 +153,10 @@ def tables_data():
 
 def matches_data():
     try:
-        ano = 1995
+        ano = 2022
         info_list = []
         
-        for _ in range(2):
+        for _ in range(1):
             ano = ano + 1
             print(ano)
             year_list = []
@@ -167,12 +164,11 @@ def matches_data():
             data = response.text
             soup = BeautifulSoup(data, 'html.parser')
         
-            first_team = soup.select(f'#tm-main > div > div.row > div > div > div > table > tbody > tr > td.text-right.no-border-rechts.hauptlink > a')            
+            first_team = soup.select(f'#tm-main > div > div.row > div > div > div > table > tbody > tr > td.text-right.no-border-rechts.hauptlink > a')     
             score = soup.select(f'#tm-main > div > div.row > div > div > div > table > tbody > tr > td.zentriert.hauptlink > a')            
             scnd_team = soup.select(f'#tm-main > div > div.row > div > div > div > table > tbody > tr > td.no-border-links.hauptlink > a')            
             
-            
-            for i in range(len(first_team) - 1):
+            for i in range(len(first_team)):
                 dict = {
                 'first_team': first_team[i].get_text(),
                 'score': score[i].get_text(),
@@ -196,7 +192,7 @@ def match_data(matches_list):
     
     try:
         with open("managers_dict.json", "r") as file:
-                managers_dict = json.load(file)
+            managers_dict = json.load(file)
     except FileNotFoundError:
         managers_dict = {}
         
@@ -208,19 +204,19 @@ def match_data(matches_list):
         
     try:
         with open("players_dict.json", "r") as file:
-                players_dict = json.load(file)
+            players_dict = json.load(file)
     except FileNotFoundError:
         players_dict = {}
     
     try:
         with open("referees_dict.json", "r") as file:
-                referees_dict = json.load(file)
+            referees_dict = json.load(file)
     except FileNotFoundError:
         referees_dict = {}
         
     try:
         with open("match_dict.json", "r") as file:
-                match_dict = json.load(file)
+            match_dict = json.load(file)
     except FileNotFoundError:
         match_dict = {}
         
@@ -248,6 +244,9 @@ def match_data(matches_list):
                 else:
                     match_dict[ano] = {}
                     match_dict[ano][match_id] = {}  
+                
+                if(ano not in players_dict):
+                    players_dict[ano] = {}  
                     
                 
                 match_dict[ano][match_id]["score"] = dict['score']
@@ -257,6 +256,12 @@ def match_data(matches_list):
                 print(fst_page)
                 data = response.text
                 soup = BeautifulSoup(data, 'html.parser')
+                
+                try:
+                    matchday = soup.select('#tm-main > div:nth-child(1) > div > div > div.box-content > div.sb-spieldaten > p.sb-datum.hide-for-small > a:nth-child(1)')
+                    match_dict[ano][match_id]["matchday"] = matchday[0].get_text().split('.')[0]
+                except:
+                    print(f"Ocorreu um erro (matchday): {e}")   
         
                 try:
                     manager = soup.select('#\\30')
@@ -456,17 +461,16 @@ def match_data(matches_list):
                         player_page = base_url + player_url
                         
                         if "trainer" not in player_page:
-                            player_id = player_data(player_page, players_dict)
-                            if str(player_id) in players_dict:
-                                pass
-                            else:
-                                players_dict[-1]["Name"] = player_name
-                                players_dict[-1]["Profile URL"] = player_page
-                                players_dict[-1]["player_id"] = player_id
-                                players_dict_ids.append(player_id)   
+                            player_id = player_data(player_page, players_dict, ano)
+                            # if str(player_id) in players_dict[ano]:
+                            #     pass
+                            # else:
+                            players_dict[ano][player_id]["Name"] = player_name
+                            players_dict[ano][player_id]["Profile URL"] = player_page
+                            players_dict_ids.append(player_id)   
                             
                     match_dict[ano][match_id]["players_id_list"] = players_dict_ids
-
+                    
                 except Exception as e:
                     print(f"Ocorreu um erro (players): {e}")
             
@@ -529,87 +533,92 @@ def match_data(matches_list):
     except Exception as e:
         print(f"Ocorreu um erro: {e}")
 
-def player_data(url, list):
+def player_data(url, list, ano):
     base_url = 'https://www.transfermarkt.com'
     response = requests.get(url, headers=headers)
     data = response.text
     soup = BeautifulSoup(data, 'html.parser')
     player_id = url.split('/')[-5]
     
-    player_details = {}
+    if(player_id not in list[ano][player_id]):
+    
+        player_details = {}
 
-    try:
-        data = soup.select('.data-header__details .data-header__content')
-        
-        player_details["Age"] = data[0].get_text().strip()
-        player_details["City"] = data[1].get_text().strip()
-        player_details["Country"] = data[2].get_text().strip()
-        player_details["Height"] = data[3].get_text().strip()
-        player_details["Position"] = data[4].get_text().strip()
-
-        scnd_page = soup.select_one('#tm-main > div.row > div.large-8.columns > div:nth-child(2) > div.tm-tabs > a:nth-child(2)')
-        scnd_page_url = base_url + scnd_page.get_attribute_list('href')[0]
-        print(scnd_page_url)
-        
-        response = requests.get(scnd_page_url, headers=headers)
-        data = response.text
-        soup = BeautifulSoup(data, 'html.parser')
-        
-        stats_elements = soup.select('#tm-main > div.row > div > div:nth-child(2) > div.responsive-table > table > tbody > tr')
-        
-        player_stats = []
-        
-        for stats in stats_elements:
-            all_stats = stats.get_text().strip().split('\n')
+        try:
+            data = soup.select('.data-header__details .data-header__content')
+            img = soup.select('.data-header__profile-image')
             
-            length = len(all_stats)
             
-            if(length == 1):
-                break
-            elif (length > 9):
-                stat_record = {
-                    "Matchday": all_stats[0].strip(),
-                    "Date": all_stats[2].strip(),
-                    "First Team": all_stats[4].split('(')[0].strip(),
-                    "Second Team": all_stats[6].split('(')[0].strip(),
-                    "Result": all_stats[7].strip(),
-                    "Position on Matchday": all_stats[8].strip(),
-                    "Goals": all_stats[9].strip(),
-                    "Assists": all_stats[10].strip(),
-                    "Own Goals": all_stats[11].strip(),
-                    "Yellow Cards": all_stats[12].strip(),
-                    "Second Yellow Cards": all_stats[13].strip(),
-                    "Red Yellow Cards": all_stats[14].strip(),
-                    "Substitutions on": all_stats[15].strip(),
-                    "Substitutions off": all_stats[16].strip(),
-                    "Minutes Played": all_stats[17].strip(),
-                }
-                player_stats.append(stat_record)
-            else:
-                stat_record = {
-                    "Matchday": all_stats[0].strip(),
-                    "Date": all_stats[2].strip(),
-                    "First Team": all_stats[4].split('(')[0].strip(),
-                    "Second Team": all_stats[6].split('(')[0].strip(),
-                    "Result": all_stats[7].strip(),
-                    "Position on Matchday": all_stats[8].strip(),
-                    "Goals": '-',
-                    "Assists": '-',
-                    "Own Goals": '-',
-                    "Yellow Cards": '-',
-                    "Second Yellow Cards": '-',
-                    "Red Yellow Cards": '-',
-                    "Substitutions on": '-',
-                    "Substitutions off": '-',
-                    "Minutes Played": '-',
-                }
-                player_stats.append(stat_record)
-        
-        player_details["Match Statistics"] = player_stats
-        
-        list[player_id] = player_details
+            player_details["Age"] = data[0].get_text().strip()
+            player_details["City"] = data[1].get_text().strip()
+            player_details["Country"] = data[2].get_text().strip()
+            player_details["Height"] = data[3].get_text().strip()
+            player_details["Position"] = data[4].get_text().strip()
+            player_details["Image"] = img[0].get_attribute_list('src')[0]
 
-    except Exception as e:
+            scnd_page = soup.select_one('#tm-main > div.row > div.large-8.columns > div:nth-child(2) > div.tm-tabs > a:nth-child(2)')
+            scnd_page_url = base_url + scnd_page.get_attribute_list('href')[0]
+            print(scnd_page_url)
+            
+            response = requests.get(scnd_page_url, headers=headers)
+            data = response.text
+            soup = BeautifulSoup(data, 'html.parser')
+            
+            stats_elements = soup.select('#tm-main > div.row > div > div:nth-child(2) > div.responsive-table > table > tbody > tr')
+            
+            player_stats = []
+            
+            for stats in stats_elements:
+                all_stats = stats.get_text().strip().split('\n')
+                
+                length = len(all_stats)
+                
+                if(length == 1):
+                    break
+                elif (length > 9):
+                    stat_record = {
+                        "Matchday": all_stats[0].strip(),
+                        "Date": all_stats[2].strip(),
+                        "First Team": all_stats[4].split('(')[0].strip(),
+                        "Second Team": all_stats[6].split('(')[0].strip(),
+                        "Result": all_stats[7].strip(),
+                        "Position on Matchday": all_stats[8].strip(),
+                        "Goals": all_stats[9].strip(),
+                        "Assists": all_stats[10].strip(),
+                        "Own Goals": all_stats[11].strip(),
+                        "Yellow Cards": all_stats[12].strip(),
+                        "Second Yellow Cards": all_stats[13].strip(),
+                        "Red Yellow Cards": all_stats[14].strip(),
+                        "Substitutions on": all_stats[15].strip(),
+                        "Substitutions off": all_stats[16].strip(),
+                        "Minutes Played": all_stats[17].strip(),
+                    }
+                    player_stats.append(stat_record)
+                else:
+                    stat_record = {
+                        "Matchday": all_stats[0].strip(),
+                        "Date": all_stats[2].strip(),
+                        "First Team": all_stats[4].split('(')[0].strip(),
+                        "Second Team": all_stats[6].split('(')[0].strip(),
+                        "Result": all_stats[7].strip(),
+                        "Position on Matchday": all_stats[8].strip(),
+                        "Goals": '-',
+                        "Assists": '-',
+                        "Own Goals": '-',
+                        "Yellow Cards": '-',
+                        "Second Yellow Cards": '-',
+                        "Red Yellow Cards": '-',
+                        "Substitutions on": '-',
+                        "Substitutions off": '-',
+                        "Minutes Played": '-',
+                    }
+                    player_stats.append(stat_record)
+            
+            player_details["Match Statistics"] = player_stats
+            
+            list[ano][player_id] = player_details
+
+        except Exception as e:
         print(f"Ocorreu um erro (player): {e}")
 
     return player_id
@@ -628,12 +637,18 @@ def referee_data(url, list):
         data = soup.select('.data-header__label')
         data2 = soup.select('.data-header__label span')
         referee_info = {}
+        img = soup.select('.data-header__profile-image')
 
         for i in range(len(data)):
             title_text = data[i].get_text().strip().split(':')[0].split(' ')[0]
             content_text = data2[i].get_text().strip()
             referee_info[title_text] = content_text
-            
+        
+        try:
+            referee_info["Image"] = img[0].get_attribute_list('src')[0]
+        except:
+            pass
+        
         response = requests.get(base_url + url + action_url, headers=headers)
         print(base_url + url + action_url)
         data = response.text
@@ -705,6 +720,8 @@ def stadium_data(url, list):
         stadium_info = {}
         titles = soup.select(f'.profilheader th')
         contents = soup.select(f'.profilheader td')
+        img = soup.select('.datenfakten-wappen img')
+
                     
         for title, content in zip(titles, contents):
             title_text = title.get_text().strip().split(':')[0].split(' ')[0]
@@ -712,8 +729,12 @@ def stadium_data(url, list):
             
             stadium_info[title_text] = content_text
         
-        list[stadium_id] = stadium_info
+        try:
+            stadium_info["Image"] = img[0].get_attribute_list('src')[0]
+        except:
+            pass
         
+        list[stadium_id] = stadium_info
         return stadium_id
         
     except Exception as e:
@@ -726,12 +747,12 @@ def manager_data(url, list):
     soup = BeautifulSoup(data, 'html.parser')
     
     manager_id = url.split('/')[-1]
-    dict2 = {}
     
     try:
         title = soup.select('.data-header__items span')
         full_name = soup.select(".auflistung td")
         actual_team = soup.select('.data-header__club > a:nth-child(1)')
+        img = soup.select('.data-header__profile-image')
         
         full_name = full_name[0].get_text().strip()
         age = title[0].get_text().strip()
@@ -740,6 +761,7 @@ def manager_data(url, list):
         coaching_license = title[3].get_text().strip()
         avg_term = title[4].get_text().strip()
         actual_team = actual_team[0].get_text().strip()
+        img = img[0].get_attribute_list('src')[0]
         
         dict = {
             'age': age,
@@ -749,17 +771,17 @@ def manager_data(url, list):
             'coaching_license': coaching_license,
             'avg_term': avg_term,
             'actual_team': actual_team,
+            'img': img,
         }
         
         list[manager_id] = dict
-        # list.append(dict2)
         
         return manager_id
         
     except Exception as e:
         print(f"Ocorreu um erro (manager): {e}")
 
-# matches_list = matches_data()
-# match_data(matches_list)
+matches_list = matches_data()
+match_data(matches_list)
 # tables_data()
-top_goalscorers()
+# top_goalscorers()

@@ -1,192 +1,176 @@
 {
     "38808": {
         "age": "Sep 12, 1974 (50)",
-        "full_name": "Eduardo Germ\u00e1n Coudet",
+        "name": "Eduardo Coudet",
         "birth": "Buenos Aires",
         "country": "Argentina",
         "coaching_license": "UEFA Pro Licence",
-        "avg_term": "1.24 Years",
+        "avg_term": null,
         "actual_team": "Without Club",
-        "img": "https://img.a.transfermarkt.technology/portrait/header/38808-1600586507.jpg?lm=1"
+        "img": "https://img.a.transfermarkt.technology/portrait/header/38808-1600586507.jpg?lm=1",
+        "competition_data": {
+            "0": {
+                "season": "2024",
+                "team": "Internacional",
+                "matches": "13",
+                "wins": "5",
+                "draws": "4",
+                "losts": "4",
+                "points": "19",
+                "placement": "9."
+            },
+            "1": {
+                "season": "2023",
+                "team": "Internacional",
+                "matches": "23",
+                "wins": "9",
+                "draws": "6",
+                "losts": "8",
+                "points": "33",
+                "placement": "9."
+            },
+            "2": {
+                "season": "2023",
+                "team": "Atl\u00e9tico-MG",
+                "matches": "10",
+                "wins": "5",
+                "draws": "3",
+                "losts": "2",
+                "points": "18",
+                "placement": "4."
+            },
+            "3": {
+                "season": "2020",
+                "team": "Internacional",
+                "matches": "20",
+                "wins": "10",
+                "draws": "6",
+                "losts": "4",
+                "points": "36",
+                "placement": "2."
+            }
+        }
     },
     "50290": {
         "age": "Jan 22, 1973 (51)",
-        "full_name": "Jan 22, 1973 (51)",
+        "name": "Rog\u00e9rio Ceni",
         "birth": "Pato Branco",
         "country": "Brazil",
-        "coaching_license": "0.95 Years",
-        "avg_term": "4-2-3-1",
+        "coaching_license": null,
+        "avg_term": null,
         "actual_team": "EC Bahia",
-        "img": "https://img.a.transfermarkt.technology/portrait/header/50290-1499162635.jpg?lm=1"
-    },
-    "38445": {
-        "age": "Dec 9, 1973 (50)",
-        "full_name": "Cl\u00e1udio Aparecido Tencati",
-        "birth": "Indian\u00f3polis",
-        "country": "Brazil",
-        "coaching_license": "1.89 Years",
-        "avg_term": "4-4-2",
-        "actual_team": "Crici\u00fama EC",
-        "img": "https://img.a.transfermarkt.technology/portrait/header/38445-1663428748.jpg?lm=1"
-    },
-    "32869": {
-        "age": "Apr 25, 1975 (49)",
-        "full_name": "Roger Machado Marques",
-        "birth": "Porto Alegre",
-        "country": "Brazil",
-        "coaching_license": "0.65 Years",
-        "avg_term": "4-2-3-1",
-        "actual_team": "Internacional",
-        "img": "https://img.a.transfermarkt.technology/portrait/header/32869-1597994353.jpg?lm=1"
-    },
-    "41120": {
-        "age": "Mar 27, 1974 (50)",
-        "full_name": "Fernando Diniz Silva",
-        "birth": "Patos de Minas",
-        "country": "Brazil",
-        "coaching_license": "UEFA Pro Licence",
-        "avg_term": "0.67 Years",
-        "actual_team": "Cruzeiro",
-        "img": "https://img.a.transfermarkt.technology/portrait/header/41120-1699348258.jpg?lm=1"
-    },
-    "6175": {
-        "age": "Oct 15, 1970 (54)",
-        "full_name": "Pedro Miguel Faria Caixinha",
-        "birth": "Beja",
-        "country": "Portugal",
-        "coaching_license": "UEFA Pro Licence",
-        "avg_term": "1.34 Years",
-        "actual_team": "Without Club",
-        "img": "https://img.a.transfermarkt.technology/portrait/header/6175-1425631007.jpg?lm=1"
-    },
-    "72121": {
-        "age": "Jul 16, 1984 (40)",
-        "full_name": "Thiago Carpini Barbosa",
-        "birth": "Valinhos",
-        "country": "Brazil",
-        "coaching_license": "0.46 Years",
-        "avg_term": "4-2-3-1",
-        "actual_team": "EC Vit\u00f3ria",
-        "img": "https://img.a.transfermarkt.technology/portrait/header/72121-1713454602.jpg?lm=1"
-    },
-    "45679": {
-        "age": "May 13, 1975 (49)",
-        "full_name": "Juan Pablo Vojvoda Rizzo",
-        "birth": "General Baldiserra",
-        "country": "Argentina",
-        "coaching_license": "1.11 Years",
-        "avg_term": "4-2-3-1",
-        "actual_team": "Fortaleza",
-        "img": "https://img.a.transfermarkt.technology/portrait/header/45679-1556629222.png?lm=1"
-    },
-    "4778": {
-        "age": "Aug 29, 1959 (65)",
-        "full_name": "Ram\u00f3n \u00c1ngel D\u00edaz",
-        "birth": "La Rioja",
-        "country": "Argentina",
-        "coaching_license": "1.07 Years",
-        "avg_term": "4-3-3 Attacking",
-        "actual_team": "Corinthians",
-        "img": "https://img.a.transfermarkt.technology/portrait/header/4778-1681409186.jpg?lm=1"
-    },
-    "4728": {
-        "age": "Sep 9, 1962 (62)",
-        "full_name": "Renato Portaluppi",
-        "birth": "Guapor\u00e9",
-        "country": "Brazil",
-        "coaching_license": "1.00 Years",
-        "avg_term": "4-2-3-1",
-        "actual_team": "Gr\u00eamio",
-        "img": "https://img.a.transfermarkt.technology/portrait/header/_1396521491.jpg?lm=1"
-    },
-    "52873": {
-        "age": "Oct 9, 1982 (42)",
-        "full_name": "Ant\u00f3nio Jos\u00e9 Cardoso de Oliveira",
-        "birth": "Lisboa",
-        "country": "Portugal",
-        "coaching_license": "UEFA Pro Licence",
-        "avg_term": "0.47 Years",
-        "actual_team": "Without Club",
-        "img": "https://img.a.transfermarkt.technology/portrait/header/52873-1649775898.jpg?lm=1"
-    },
-    "39953": {
-        "age": "Sep 7, 1980 (44)",
-        "full_name": "Gabriel Alejandro Milito",
-        "birth": "Bernal",
-        "country": "Argentina",
-        "coaching_license": "1.06 Years",
-        "avg_term": "3-4-2-1",
-        "actual_team": "Atl\u00e9tico-MG",
-        "img": "https://img.a.transfermarkt.technology/portrait/header/39953-1634947021.JPG?lm=1"
-    },
-    "4732": {
-        "age": "Jun 7, 1963 (61)",
-        "full_name": "Alexi Stival",
-        "birth": "Curitiba",
-        "country": "Brazil",
-        "coaching_license": "0.51 Years",
-        "avg_term": "4-2-3-1",
-        "actual_team": "Without Club",
-        "img": "https://img.a.transfermarkt.technology/portrait/header/4732-1662410836.jpg?lm=1"
-    },
-    "22198": {
-        "age": "Mar 14, 1979 (45)",
-        "full_name": "Jair Zaksauskas Ribeiro Ventura",
-        "birth": "Rio de Janeiro",
-        "country": "Brazil",
-        "coaching_license": "0.55 Years",
-        "avg_term": "4-2-3-1",
-        "actual_team": "Juventude",
-        "img": "https://img.a.transfermarkt.technology/portrait/header/22198-1662690190.jpeg?lm=1"
-    },
-    "6623": {
-        "age": "May 25, 1961 (63)",
-        "full_name": "Adenor Leonardo Bacchi",
-        "birth": "Caxias do Sul",
-        "country": "Brazil",
-        "coaching_license": "UEFA Pro Licence",
-        "avg_term": "1.36 Years",
-        "actual_team": "Without Club",
-        "img": "https://img.a.transfermarkt.technology/portrait/header/6623-1448023024.jpg?lm=1"
-    },
-    "110764": {
-        "age": "Jun 19, 1977 (47)",
-        "full_name": "Jun 19, 1977 (47)",
-        "birth": "S\u00e3o Paulo",
-        "country": "Brazil",
-        "coaching_license": "0.54 Years",
-        "avg_term": "4-4-2 Diamond",
-        "actual_team": "Without Club",
-        "img": "https://img.a.transfermarkt.technology/portrait/header/110764-1716603951.jpg?lm=1"
-    },
-    "24055": {
-        "age": "Jan 1, 1972 (52)",
-        "full_name": "Artur Jorge Torres Gomes Ara\u00fajo Amorim",
-        "birth": "Braga",
-        "country": "Portugal",
-        "coaching_license": "UEFA Pro Licence",
-        "avg_term": "0.91 Years",
-        "actual_team": "Botafogo",
-        "img": "https://img.a.transfermarkt.technology/portrait/header/24055-1658747420.png?lm=1"
-    },
-    "14262": {
-        "age": "Apr 21, 1978 (46)",
-        "full_name": "Leonardo Rodrigues Cond\u00e9",
-        "birth": "Piau",
-        "country": "Brazil",
-        "coaching_license": "0.63 Years",
-        "avg_term": "4-2-3-1",
-        "actual_team": "Cear\u00e1 SC",
-        "img": "https://img.a.transfermarkt.technology/portrait/header/14262-1725326171.jpg?lm=1"
-    },
-    "23009": {
-        "age": "Dec 22, 1978 (45)",
-        "full_name": "Abel Fernando Moreira Ferreira",
-        "birth": "Penafiel",
-        "country": "Portugal",
-        "coaching_license": "UEFA Pro Licence",
-        "avg_term": "1.72 Years",
-        "actual_team": "Palmeiras",
-        "img": "https://img.a.transfermarkt.technology/portrait/header/23009-1537879535.jpg?lm=1"
+        "img": "https://img.a.transfermarkt.technology/portrait/header/50290-1499162635.jpg?lm=1",
+        "competition_data": {
+            "0": {
+                "season": "2024",
+                "team": "EC Bahia",
+                "matches": "31",
+                "wins": "13",
+                "draws": "7",
+                "losts": "11",
+                "points": "46",
+                "placement": "7."
+            },
+            "1": {
+                "season": "2023",
+                "team": "EC Bahia",
+                "matches": "16",
+                "wins": "7",
+                "draws": "1",
+                "losts": "8",
+                "points": "22",
+                "placement": "16."
+            },
+            "2": {
+                "season": "2023",
+                "team": "S\u00e3o Paulo",
+                "matches": "1",
+                "wins": "0",
+                "draws": "0",
+                "losts": "1",
+                "points": "0",
+                "placement": "14."
+            },
+            "3": {
+                "season": "2022",
+                "team": "S\u00e3o Paulo",
+                "matches": "38",
+                "wins": "13",
+                "draws": "15",
+                "losts": "10",
+                "points": "54",
+                "placement": "9."
+            },
+            "4": {
+                "season": "2021",
+                "team": "S\u00e3o Paulo",
+                "matches": "13",
+                "wins": "5",
+                "draws": "3",
+                "losts": "5",
+                "points": "18",
+                "placement": "13."
+            },
+            "5": {
+                "season": "2021",
+                "team": "Flamengo",
+                "matches": "8",
+                "wins": "4",
+                "draws": "0",
+                "losts": "4",
+                "points": "12",
+                "placement": "8."
+            },
+            "6": {
+                "season": "2020",
+                "team": "Flamengo",
+                "matches": "18",
+                "wins": "11",
+                "draws": "3",
+                "losts": "4",
+                "points": "36",
+                "placement": "1."
+            },
+            "7": {
+                "season": "2020",
+                "team": "Fortaleza",
+                "matches": "19",
+                "wins": "6",
+                "draws": "7",
+                "losts": "6",
+                "points": "25",
+                "placement": "11."
+            },
+            "8": {
+                "season": "2019",
+                "team": "Fortaleza",
+                "matches": "30",
+                "wins": "13",
+                "draws": "6",
+                "losts": "11",
+                "points": "45",
+                "placement": "9."
+            },
+            "9": {
+                "season": "2019",
+                "team": "Cruzeiro",
+                "matches": "7",
+                "wins": "2",
+                "draws": "2",
+                "losts": "3",
+                "points": "8",
+                "placement": "17."
+            },
+            "10": {
+                "season": "2017",
+                "team": "S\u00e3o Paulo",
+                "matches": "11",
+                "wins": "3",
+                "draws": "2",
+                "losts": "6",
+                "points": "11",
+                "placement": "17."
+            }
+        }
     }
 }

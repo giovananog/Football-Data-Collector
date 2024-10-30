@@ -40,6 +40,7 @@ def players_of_the_year():
             try: 
                 img = soup.select('.galerie-bild')[0].get_attribute_list('src')[0]
                 name = soup.select('.hauptlink a')[0].get_text()
+                id = soup.select('.hauptlink a')[0].get_attribute_list('href')[0].split('/')[-1]
                 image = soup.select('.bilderrahmen-fixed')[0].get_attribute_list('src')[0]
                 position = soup.select('.inline-table td')[2].get_text()
                 team_image = soup.select('.zentriert a img')[0].get_attribute_list('src')[0]
@@ -50,6 +51,7 @@ def players_of_the_year():
             data_dict[year] = {
                 'Image 1': img,
                 'Name': name,
+                'Player ID': id,
                 'Image 2': image,
                 'Position': position,
                 'Team Image': team_image,
@@ -1127,8 +1129,8 @@ def manager_data(url, list):
         except Exception as e:
             print(f"Ocorreu um erro (manager): {e}")
 
-matches_list = matches_data()
-match_data(matches_list)
+# matches_list = matches_data()
+# match_data(matches_list)
 # tables_data()
 # top_goalscorers()
-# players_of_the_year()
+players_of_the_year()

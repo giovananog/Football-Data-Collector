@@ -223,7 +223,7 @@ def top_goalscorers():
         
         ano = 1995
         
-        for _ in range(28):
+        for _ in range(2):
             
             url = base_url.replace(str(1995), str(ano))
             ano += 1
@@ -241,6 +241,8 @@ def top_goalscorers():
             team_data = {}
             clean_elements = []
             i = 0
+            
+            print(url)
             
             for e in elementos:
                 if (e.get_text().strip() != "" and e.get_text().strip() != "-"):
@@ -324,7 +326,7 @@ def tables_data():
                         team_data = {'Position': text}  
                     elif index % 10 == 1:
                         team_url = base_url + url[1].split(' ')[0].strip().split("\"")[1].strip()
-                        team_data['Team'] = team_url
+                        team_data['Team ID'] = team_url.split('/')[-3]
                         
                         teams_data(team_url)
                     elif index % 10 == 2:
@@ -1131,6 +1133,6 @@ def manager_data(url, list):
 
 # matches_list = matches_data()
 # match_data(matches_list)
-# tables_data()
+tables_data()
 # top_goalscorers()
-players_of_the_year()
+# players_of_the_year()

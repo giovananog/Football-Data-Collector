@@ -377,11 +377,11 @@ def match_data(matches_list):
     # except FileNotFoundError:
     #     managers_dict = {}
         
-    try:
-        with open("stadiums_dict.json", "r") as file:
-                stadiums_dict = json.load(file)
-    except FileNotFoundError:
-        stadiums_dict = {}
+    # try:
+    #     with open("stadiums_dict.json", "r") as file:
+    #             stadiums_dict = json.load(file)
+    # except FileNotFoundError:
+    #     stadiums_dict = {}
         
     # try:
     #     with open("players_dict.json", "r") as file:
@@ -389,11 +389,11 @@ def match_data(matches_list):
     # except FileNotFoundError:
     #     players_dict = {}
     
-    # try:
-    #     with open("referees_dict.json", "r") as file:
-    #         referees_dict = json.load(file)
-    # except FileNotFoundError:
-    #     referees_dict = {}
+    try:
+        with open("referees_dict.json", "r") as file:
+            referees_dict = json.load(file)
+    except FileNotFoundError:
+        referees_dict = {}
         
     # try:
     #     with open("match_dict.json", "r") as file:
@@ -467,20 +467,20 @@ def match_data(matches_list):
                 # except Exception as e:
                 #     print(f"Ocorreu um erro (manager): {e}")   
 
-                try:
-                    stadium = soup.select(f'#tm-main > div > div > div > div.box-content > div.sb-spieldaten > p.sb-zusatzinfos > span > a')
+                # try:
+                #     stadium = soup.select(f'#tm-main > div > div > div > div.box-content > div.sb-spieldaten > p.sb-zusatzinfos > span > a')
                     
-                    stadium_name = stadium[0].get_text()
-                    stadium_url = stadium[0].get_attribute_list("href")[0]
+                #     stadium_name = stadium[0].get_text()
+                #     stadium_url = stadium[0].get_attribute_list("href")[0]
                     
-                    stadium_id = stadium_data(stadium_url, stadiums_dict)
-                    if str(stadium_id) in stadiums_dict:
-                        pass
+                #     stadium_id = stadium_data(stadium_url, stadiums_dict)
+                #     if str(stadium_id) in stadiums_dict:
+                #         pass
                     
-                    # match_dict[ano][match_id]["stadium_id"] = stadium_id
-                    # match_dict[ano][match_id]["stadium_name"] = stadium_name                   
-                except Exception as e:
-                    print(f"Ocorreu um erro (stadium): {e}")   
+                #     # match_dict[ano][match_id]["stadium_id"] = stadium_id
+                #     # match_dict[ano][match_id]["stadium_name"] = stadium_name                   
+                # except Exception as e:
+                #     print(f"Ocorreu um erro (stadium): {e}")   
                         
                 # try:
                 #     stadium_attendence = soup.select('#tm-main > div:nth-child(1) > div > div > div.box-content > div.sb-spieldaten > p.sb-zusatzinfos > span > strong')
@@ -488,22 +488,24 @@ def match_data(matches_list):
                 # except Exception as e:
                 #     print(f"Ocorreu um erro (stadium attendence): {e}")
                                       
-                # try:
-                #     referees = soup.select(f'#tm-main > div:nth-child(1) > div > div > div.box-content > div.sb-spieldaten > p.sb-zusatzinfos > a')
-                #     referee_name = referees[0].get_text()
-                #     referee_url = referees[0].get_attribute_list("href")[0]
-                #     # print(referees)
+                try:
+                    referees = soup.select(f'#tm-main > div:nth-child(1) > div > div > div.box-content > div.sb-spieldaten > p.sb-zusatzinfos > a')
+                    referee_name = referees[0].get_text()
+                    referee_url = referees[0].get_attribute_list("href")[0]
                     
-                #     referee_id = referee_data(referee_url, referees_dict)
-                #     print(referee_id)
+                    referee_id = referee_data(referee_url, referees_dict)
                     
-                #     if str(referee_id) in referees_dict:
-                #         pass
-                #     else:
-                #         match_dict[ano][match_id]["referee_id"] = referee_id
-                #         match_dict[ano][match_id]["referee_name"] = referee_name           
-                # except Exception as e:
-                #     print(f"Ocorreu um erro (referees): {e}")
+                    try:
+                        referees_dict[referee_id]["Name"] = referee_name
+                    except:
+                        pass
+                    
+                    # try:
+                    #     match_dict[ano][match_id]["referee_id"] = referee_id
+                    # except:
+                    #     pass    
+                except Exception as e:
+                    print(f"Ocorreu um erro (referees): {e}")
                        
                 # try:
                 #     goals_list = []
@@ -699,12 +701,12 @@ def match_data(matches_list):
                 
                 # with open("managers_dict.json", "w") as file:
                 #     json.dump(managers_dict, file, indent=4)
-                with open("stadiums_dict.json", "w") as file:
-                    json.dump(stadiums_dict, file, indent=4)
+                # with open("stadiums_dict.json", "w") as file:
+                #     json.dump(stadiums_dict, file, indent=4)
                 # with open("players_dict.json", "w") as file:
                 #     json.dump(players_dict, file, indent=4)
-                # with open("referees_dict.json", "w") as file:
-                #     json.dump(referees_dict, file, indent=4)
+                with open("referees_dict.json", "w") as file:
+                    json.dump(referees_dict, file, indent=4)
                 # with open("match_dict.json", "w") as file:
                 #     json.dump(match_dict, file, indent=4)
     
@@ -810,81 +812,97 @@ def referee_data(url, list):
     soup = BeautifulSoup(data, 'html.parser')
 
     referee_id = url.split('/')[-1]
-
-    try:
-        data = soup.select('.data-header__label')
-        data2 = soup.select('.data-header__label span')
-        referee_info = {}
-        img = soup.select('.data-header__profile-image')
-
-        for i in range(len(data)):
-            title_text = data[i].get_text().strip().split(':')[0].split(' ')[0]
-            content_text = data2[i].get_text().strip()
-            referee_info[title_text] = content_text
-        
+    
+    if(referee_id not in list):
         try:
-            referee_info["Image"] = img[0].get_attribute_list('src')[0]
-        except:
-            pass
-        
-        response = requests.get(base_url + url + action_url, headers=headers)
-        print(base_url + url + action_url)
-        data = response.text
-        soup = BeautifulSoup(data, 'html.parser')
+            data = soup.select('.data-header__label')
+            data2 = soup.select('.data-header__label span')
+            referee_info = {}
+            img = soup.select('.data-header__profile-image')
 
-        stats = soup.select('#tm-main > div.row > div.large-8.columns > div > div.responsive-table > table > tbody > tr > td')
+            referee_info = {
+                "date_of_birth_age": None,
+                "citizenship": None,
+                "first_league_debut": None,
+            }
 
-        teams = []
-        dict = {}
-        team_data = {}
-        filtered_stats = []
+            for item in soup.select('.data-header__items'):
+                for li in item.find_all('li', class_='data-header__label'):
+                    label = li.get_text(strip=True)
+                    content = li.find('span', class_='data-header__content')
+                    
+                    if content:
+                        content_text = content.get_text(strip=True)
+                        if label.startswith("Date of birth/Age:"):
+                            referee_info["date_of_birth_age"] = content_text
+                        elif label.startswith("Citizenship:"):
+                            referee_info["citizenship"] = content_text
+                        elif label.startswith("1st league debut:"):
+                            referee_info["first_league_debut"] = content_text
 
-        for elemento in stats:
-            colspan = elemento.get('colspan')
-            if not colspan and elemento:
-                filtered_stats.append(elemento)                
-        
-
-        i = 0
-        for index, elemento in enumerate(filtered_stats):
-            text = elemento.get_text().strip().split('  ')[0]
-
-            if index % 11 == 0:
-                if team_data:
-                    teams.append(team_data)
-                team_data = {'Matchday': text }
-            elif index % 11 == 1:
-                team_data['Date'] = text
-            elif index % 11 == 3:
-                team_data['Home Team'] = text
-            elif index % 11 == 5:
-                team_data['Away Team'] = text
-            elif index % 11 == 6:
-                team_data['Result'] = text
-            elif index % 11 == 7:
-                team_data['Yellow Cards'] = text
-            elif index % 11 == 8:
-                team_data['Scnd Yellow Cards'] = text
-            elif index % 11 == 9:
-                team_data['Red Cards'] = text
-            elif index % 11 == 10:
-                team_data['Penalty Kicks'] = text
-                i = i + 1
-
-            teams.append(team_data)
-            teams = []
+            print(referee_info)
+                        
+            try:
+                referee_info["Image"] = img[0].get_attribute_list('src')[0]
+            except:
+                pass
             
-            dict[i] = teams
+            response = requests.get(base_url + url + action_url, headers=headers)
+            print(base_url + url + action_url)
+            data = response.text
+            soup = BeautifulSoup(data, 'html.parser')
 
-        referee_info["Matches"] = dict
-        
-        list[referee_id] = referee_info
-        
-        # pprint(list)
-        return referee_id
+            stats = soup.select('#tm-main > div.row > div.large-8.columns > div > div.responsive-table > table > tbody > tr > td')
 
-    except Exception as e:
-        print(f"Ocorreu um erro (referee): {e}")
+            teams = []
+            dict = {}
+            team_data = {}
+            filtered_stats = []
+
+            for elemento in stats:
+                colspan = elemento.get('colspan')
+                if not colspan and elemento:
+                    filtered_stats.append(elemento)                
+            
+            i = 0
+            for index, elemento in enumerate(filtered_stats):
+                text = elemento.get_text().strip().split('  ')[0]
+
+                if index % 11 == 0:
+                    if team_data:
+                        teams.append(team_data)
+                    team_data = {'Matchday': text }
+                elif index % 11 == 1:
+                    team_data['Date'] = text
+                elif index % 11 == 3:
+                    team_data['Home Team'] = text
+                elif index % 11 == 5:
+                    team_data['Away Team'] = text
+                elif index % 11 == 6:
+                    team_data['Result'] = text
+                elif index % 11 == 7:
+                    team_data['Yellow Cards'] = text
+                elif index % 11 == 8:
+                    team_data['Scnd Yellow Cards'] = text
+                elif index % 11 == 9:
+                    team_data['Red Cards'] = text
+                elif index % 11 == 10:
+                    team_data['Penalty Kicks'] = text
+                    i = i + 1
+
+                teams.append(team_data)
+                teams = []
+                
+                dict[i] = teams
+
+            referee_info["Matches"] = dict
+            
+            list[referee_id] = referee_info
+
+            return referee_id
+
+        except Exception as e:
+            print(f"Ocorreu um erro (referee): {e}")
 
 def stadium_data(url, list):
     base_url = 'https://www.transfermarkt.com'
@@ -897,9 +915,15 @@ def stadium_data(url, list):
     
     try:
         img = soup.select('.datenfakten-wappen img')
+        team_img = soup.select('#tm-main > header > div.data-header__profile-container > img')
         
         try:
             stadium_info["Image"] = img[0].get_attribute_list('src')[0]
+        except:
+            pass
+        
+        try:
+            stadium_info["Team Image"] = team_img[0].get_attribute_list('src')[0]
         except:
             pass
         

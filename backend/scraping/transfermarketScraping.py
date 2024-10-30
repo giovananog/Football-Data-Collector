@@ -114,6 +114,8 @@ def teams_data(url):
             data_dict[team_id][season] = {}
             header_contents = soup.select('.data-header__details .data-header__content')
             header_contents_a = soup.select('.data-header__details .data-header__content a')
+            print(url)
+            
             
             try:
                 if ("General" not in data_dict[team_id]):
@@ -183,14 +185,15 @@ def teams_data(url):
                 data = response.text
                 soup = BeautifulSoup(data, 'html.parser')
                 
-                rows = soup.select('.items tbody tr')            
+                rows = soup.select('.items tbody tr')       
+                print(players_page)     
                 
                 for row in rows:
                     player = {}
                     columns = row.find_all('td')
                     if(len(columns) == 13):
                         player['Number'] = columns[0].get_text().strip()
-                        player['ID'] = columns[1].find_all('a')[0].get_attribute_list('href')[0][-1]
+                        player['ID'] = columns[1].find_all('a')[0].get_attribute_list('href')[0].split('/')[-1]
                         player['Image'] = columns[1].find_all('img')[0].get_attribute_list('data-src')[0]
                         player['Name'] = columns[3].get_text().strip()
                         player['Position'] = columns[4].get_text().strip()
@@ -221,7 +224,7 @@ def top_goalscorers():
         except FileNotFoundError:
             data_dict = {}
         
-        ano = 1995
+        ano = 2020
         
         for _ in range(2):
             
@@ -250,7 +253,13 @@ def top_goalscorers():
 
             for index, elemento in enumerate(clean_elements):
                 text = elemento.get_text().strip()
-        
+                
+                try:
+                    id = elemento.select('a')[0].get_attribute_list('href')[0].split('/')[-5]
+                    team_data['ID'] = id
+                except:
+                    pass
+                
                 if index % 12 == 0:
                     if team_data:  
                         teams.append(team_data)

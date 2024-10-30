@@ -33,12 +33,12 @@
             "Name": "Paulo Rink",
             "Position": "Centre-Forward",
             "Age": "23\u00a0",
-            "Appearances": "17",
+            "Appearances": "18",
             "Assists": "1",
             "Penalty Kicks": "0",
-            "Minutes Played": "1.422'",
-            "Minutes per Goal": "109'",
-            "Goals per Match": "0.76",
+            "Minutes Played": "1.512'",
+            "Minutes per Goal": "116'",
+            "Goals per Match": "0.72",
             "Goals": "13",
             "Image": "https://img.a.transfermarkt.technology/portrait/medium/88-1464084180.jpg?lm=1"
         },
@@ -61,12 +61,12 @@
             "Name": "T\u00falio Maravilha",
             "Position": "Centre-Forward",
             "Age": "27\u00a0",
-            "Appearances": "17",
+            "Appearances": "18",
             "Assists": "0",
             "Penalty Kicks": "0",
-            "Minutes Played": "1.507'",
-            "Minutes per Goal": "126'",
-            "Goals per Match": "0.71",
+            "Minutes Played": "1.597'",
+            "Minutes per Goal": "133'",
+            "Goals per Match": "0.67",
             "Goals": "12",
             "Image": "https://img.a.transfermarkt.technology/portrait/medium/17551-1727292082.jpg?lm=1"
         }
@@ -76,6 +76,20 @@
     "1999": [
         {
             "Table Position": "1",
+            "Name": "Jean",
+            "Position": "Centre-Back",
+            "Age": "21\u00a0",
+            "Appearances": "1",
+            "Assists": "0",
+            "Penalty Kicks": "0",
+            "Minutes Played": "90'",
+            "Minutes per Goal": "90'",
+            "Goals per Match": "1.00",
+            "Goals": "1",
+            "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1"
+        },
+        {
+            "Table Position": "2",
             "Name": "Fran\u00e7a",
             "Position": "Centre-Forward",
             "Age": "23\u00a0",
@@ -89,7 +103,7 @@
             "Image": "https://img.a.transfermarkt.technology/portrait/medium/1515-1702980431.jpg?lm=1"
         },
         {
-            "Table Position": "2",
+            "Table Position": "3",
             "Name": "A\u00edlton",
             "Position": "Attacking Midfield",
             "Age": "19\u00a0",
@@ -103,7 +117,7 @@
             "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1"
         },
         {
-            "Table Position": "3",
+            "Table Position": "4",
             "Name": "Dod\u00f4",
             "Position": "Centre-Forward",
             "Age": "25\u00a0",
@@ -117,7 +131,7 @@
             "Image": "https://img.a.transfermarkt.technology/portrait/medium/s_52666_15064_2010_1.jpg?lm=1"
         },
         {
-            "Table Position": "4",
+            "Table Position": "5",
             "Name": "Emerson",
             "Position": "Left Winger",
             "Age": "20\u00a0",
@@ -129,20 +143,6 @@
             "Goals per Match": "1.00",
             "Goals": "1",
             "Image": "https://img.a.transfermarkt.technology/portrait/medium/57159-1543928565.jpg?lm=1"
-        },
-        {
-            "Table Position": "5",
-            "Name": "Jean",
-            "Position": "Centre-Back",
-            "Age": "21\u00a0",
-            "Appearances": "1",
-            "Assists": "0",
-            "Penalty Kicks": "0",
-            "Minutes Played": "90'",
-            "Minutes per Goal": "90'",
-            "Goals per Match": "1.00",
-            "Goals": "1",
-            "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1"
         }
     ],
     "2000": [],

@@ -1,0 +1,79 @@
+{
+    "1996": [
+        {
+            "Table Position": "1",
+            "ID": "210032",
+            "Name": "Paulo Nunes",
+            "Position": "Second Striker",
+            "Age": "25\u00a0",
+            "Appearances": "26",
+            "Assists": "0",
+            "Penalty Kicks": "0",
+            "Minutes Played": "2.297'",
+            "Minutes per Goal": "144'",
+            "Goals per Match": "0.62",
+            "Goals": "16",
+            "Image": "https://img.a.transfermarkt.technology/portrait/medium/210032-1698165570.jpg?lm=1"
+        },
+        {
+            "Table Position": "2",
+            "ID": "253469",
+            "Name": "Renaldo",
+            "Position": "Centre-Forward",
+            "Age": "26\u00a0",
+            "Appearances": "17",
+            "Assists": "0",
+            "Penalty Kicks": "0",
+            "Minutes Played": "1.284'",
+            "Minutes per Goal": "80'",
+            "Goals per Match": "0.94",
+            "Goals": "16",
+            "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1"
+        },
+        {
+            "Table Position": "3",
+            "ID": "88",
+            "Name": "Paulo Rink",
+            "Position": "Centre-Forward",
+            "Age": "23\u00a0",
+            "Appearances": "18",
+            "Assists": "1",
+            "Penalty Kicks": "0",
+            "Minutes Played": "1.512'",
+            "Minutes per Goal": "116'",
+            "Goals per Match": "0.72",
+            "Goals": "13",
+            "Image": "https://img.a.transfermarkt.technology/portrait/medium/88-1464084180.jpg?lm=1"
+        },
+        {
+            "Table Position": "4",
+            "ID": "2960",
+            "Name": "Djalminha",
+            "Position": "Attacking Midfield",
+            "Age": "25\u00a0",
+            "Appearances": "22",
+            "Assists": "0",
+            "Penalty Kicks": "0",
+            "Minutes Played": "1.868'",
+            "Minutes per Goal": "156'",
+            "Goals per Match": "0.55",
+            "Goals": "12",
+            "Image": "https://img.a.transfermarkt.technology/portrait/medium/s_2960_123_2014_02_27_1.jpg?lm=1"
+        },
+        {
+            "Table Position": "5",
+            "ID": "17551",
+            "Name": "T\u00falio Maravilha",
+            "Position": "Centre-Forward",
+            "Age": "27\u00a0",
+            "Appearances": "18",
+            "Assists": "0",
+            "Penalty Kicks": "0",
+            "Minutes Played": "1.597'",
+            "Minutes per Goal": "133'",
+            "Goals per Match": "0.67",
+            "Goals": "12",
+            "Image": "https://img.a.transfermarkt.technology/portrait/medium/17551-1727292082.jpg?lm=1"
+        }
+    ]
+}

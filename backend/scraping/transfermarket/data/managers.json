@@ -1,0 +1,50 @@
+{
+    "38808": {
+        "age": "Sep 12, 1974 (50)",
+        "name": "Eduardo Coudet",
+        "birth": "Buenos Aires",
+        "country": "Argentina",
+        "formation": "4-2-3-1",
+        "coaching_license": "UEFA Pro Licence",
+        "avg_term": null,
+        "actual_team": "Without Club",
+        "img": "https://img.a.transfermarkt.technology/portrait/header/38808-1600586507.jpg?lm=1",
+        "competition_data": {}
+    },
+    "50290": {
+        "age": "Jan 22, 1973 (51)",
+        "name": "Rog\u00e9rio Ceni",
+        "birth": "Pato Branco",
+        "country": "Brazil",
+        "formation": "4-2-3-1",
+        "coaching_license": null,
+        "avg_term": null,
+        "actual_team": "EC Bahia",
+        "img": "https://img.a.transfermarkt.technology/portrait/header/50290-1499162635.jpg?lm=1",
+        "competition_data": {}
+    },
+    "38445": {
+        "age": "Dec 9, 1973 (50)",
+        "name": "Cl\u00e1udio Tencati",
+        "birth": "Indian\u00f3polis",
+        "country": "Brazil",
+        "formation": "4-3-3 Attacking",
+        "coaching_license": null,
+        "avg_term": null,
+        "actual_team": "Crici\u00fama EC",
+        "img": "https://img.a.transfermarkt.technology/portrait/header/38445-1663428748.jpg?lm=1",
+        "competition_data": {}
+    },
+    "32869": {
+        "age": "Apr 25, 1975 (49)",
+        "name": "Roger Machado",
+        "birth": "Porto Alegre",
+        "country": "Brazil",
+        "formation": "4-2-3-1",
+        "coaching_license": null,
+        "avg_term": null,
+        "actual_team": "Internacional",
+        "img": "https://img.a.transfermarkt.technology/portrait/header/32869-1597994353.jpg?lm=1",
+        "competition_data": {}
+    }
+}

@@ -111,3 +111,26 @@ async function populateTableTables() {
 }
 
 
+const jsonDataStadiums = JSON.parse(fs.readFileSync('../scraping/stadiums_dict.json', 'utf8'));
+
+async function populateTableStadiums() {
+    try {
+        for (const [stadium_id, playerInfo] of Object.entries(jsonDataStadiums)) {
+            await pool.query(`
+                INSERT INTO top_goalscorers (id, name, team_id)
+                VALUES ($1, $2, $3)`,
+                [
+                    stadium_id,
+                    cleanData(playerInfo["name"]), 
+                    cleanData(playerInfo["Team ID"])
+                ]
+            );
+        }
+        console.log('Dados inseridos com sucesso!');
+    } catch (err) {
+        console.error('Erro ao inserir dados:', err);
+    } finally {
+        await pool.end(); 
+    }
+}
+

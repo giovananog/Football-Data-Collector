@@ -253,3 +253,34 @@ async function populateTablePlayer() {
         await pool.end(); 
     }
 }
+
+const jsonDataTeam = JSON.parse(fs.readFileSync('../scraping/referees.json', 'utf8'));
+
+async function populateTableTeam() {
+    try {
+        for (const [year, playerInfo] of Object.entries(jsonDataStadiumsDetails)) {
+            await pool.query(`
+                INSERT INTO top_goalscorers (squad_size, average_age, foreigners, national_team_players, stadium, address, tel, website, founded, members)
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
+                [
+                    year,
+                    cleanData(playerInfo["Squad Size"]), 
+                    cleanData(playerInfo["Average age"]), 
+                    cleanData(playerInfo["Foreigners"]),
+                    cleanData(playerInfo["National team players"]),
+                    cleanData(playerInfo["Position"]),
+                    cleanData(playerInfo["Stadium"]),
+                    cleanData(playerInfo["Address"]),
+                    cleanData(playerInfo["Tel"]),
+                    cleanData(playerInfo["Website"]),
+                    cleanData(playerInfo["Members"])
+                ]
+            );
+        }
+        console.log('Dados inseridos com sucesso!');
+    } catch (err) {
+        console.error('Erro ao inserir dados:', err);
+    } finally {
+        await pool.end(); 
+    }
+}

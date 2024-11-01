@@ -168,3 +168,33 @@ async function populateTableStadiumsDetails() {
         await pool.end(); 
     }
 }
+
+const jsonDataCoach = JSON.parse(fs.readFileSync('../scraping/managers.json', 'utf8'));
+
+async function populateTableCoach() {
+    try {
+        for (const [year, playerInfo] of Object.entries(jsonDataStadiumsDetails)) {
+            await pool.query(`
+                INSERT INTO top_goalscorers (id, age, name, birth, country, formation, coaching_license, avg_term, actual_team, img)
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
+                [
+                    year,
+                    cleanData(playerInfo["age"]), 
+                    cleanData(playerInfo["name"]), 
+                    cleanData(playerInfo["birth"]),
+                    cleanData(playerInfo["country"]),
+                    cleanData(playerInfo["formation"]),
+                    cleanData(playerInfo["coaching_license"]),
+                    cleanData(playerInfo["avg_term"]),
+                    cleanData(playerInfo["actual_team"]),
+                    cleanData(playerInfo["img"])
+                ]
+            );
+        }
+        console.log('Dados inseridos com sucesso!');
+    } catch (err) {
+        console.error('Erro ao inserir dados:', err);
+    } finally {
+        await pool.end(); 
+    }
+}

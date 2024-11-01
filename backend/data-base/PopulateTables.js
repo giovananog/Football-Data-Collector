@@ -45,5 +45,37 @@ async function populateTablePlayerOfTheYear() {
     }
 }
 
+const jsonDataTopGoalscorers = JSON.parse(fs.readFileSync('../scraping/transfermarket/data/top_goalscorers_dict.json', 'utf8'));
 
-populateTablePlayerOfTheYear()
+async function populateTableTopGoalscorers() {
+    try {
+        for (const [year, playerInfo] of Object.entries(jsonDataTopGoalscorers)) {
+            await pool.query(`
+                INSERT INTO top_goalscorers (player_id, season, table_position, name, position, age, appearances, assists, penalty_kicks, minutes_played, minutes_per_goal, goals_per_match, goals, image)
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)`,
+                [
+                    cleanData(playerInfo["ID"]), 
+                    year,
+                    cleanData(playerInfo["Table Position"]),
+                    cleanData(playerInfo["Name"]),
+                    cleanData(playerInfo["Position"]),
+                    cleanData(playerInfo["Age"]),
+                    cleanData(playerInfo["Appearances"]),
+                    cleanData(playerInfo["Assists"]),
+                    cleanData(playerInfo["Penalty Kicks"]),
+                    cleanData(playerInfo["Minutes Played"]),
+                    cleanData(playerInfo["Minutes per Goal"]),
+                    cleanData(playerInfo["Minutes per Match"]),
+                    cleanData(playerInfo["Goals"]),
+                    cleanData(playerInfo["Image"]
+                ]
+            );
+        }
+        console.log('Dados inseridos com sucesso!');
+    } catch (err) {
+        console.error('Erro ao inserir dados:', err);
+    } finally {
+        await pool.end(); 
+    }
+}
+

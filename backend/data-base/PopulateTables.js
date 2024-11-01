@@ -67,7 +67,7 @@ async function populateTableTopGoalscorers() {
                     cleanData(playerInfo["Minutes per Goal"]),
                     cleanData(playerInfo["Minutes per Match"]),
                     cleanData(playerInfo["Goals"]),
-                    cleanData(playerInfo["Image"]
+                    cleanData(playerInfo["Image"])
                 ]
             );
         }
@@ -78,4 +78,36 @@ async function populateTableTopGoalscorers() {
         await pool.end(); 
     }
 }
+
+const jsonDataTables = JSON.parse(fs.readFileSync('../scraping/transfermarket/data/table_data.json', 'utf8'));
+
+async function populateTableTables() {
+    try {
+        for (const [year, playerInfo] of Object.entries(jsonDataTables)) {
+            await pool.query(`
+                INSERT INTO top_goalscorers (position, team_id, season, name, matches, wins, draws, losses, goals, goal_difference, points)
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
+                [
+                    cleanData(playerInfo["Position"]), 
+                    cleanData(playerInfo["Team ID"]),
+                    year,
+                    cleanData(playerInfo["Name"]),
+                    cleanData(playerInfo["Matches"]),
+                    cleanData(playerInfo["Wins"]),
+                    cleanData(playerInfo["Draws"]),
+                    cleanData(playerInfo["Losses"]),
+                    cleanData(playerInfo["Goals"]),
+                    cleanData(playerInfo["Goal Difference"]),
+                    cleanData(playerInfo["Points"])
+                ]
+            );
+        }
+        console.log('Dados inseridos com sucesso!');
+    } catch (err) {
+        console.error('Erro ao inserir dados:', err);
+    } finally {
+        await pool.end(); 
+    }
+}
+
 

@@ -134,3 +134,37 @@ async function populateTableStadiums() {
     }
 }
 
+const jsonDataStadiumsDetails = JSON.parse(fs.readFileSync('../scraping/stadiums_dict.json', 'utf8'));
+
+async function populateTableStadiumsDetails() {
+    try {
+        for (const [year, playerInfo] of Object.entries(jsonDataStadiumsDetails)) {
+            await pool.query(`
+                INSERT INTO top_goalscorers (stadium_id, name, capacity, boxes, box_seats, built, formely, undersoil_heating, running_track, surface, pitch_size, address, Image, Team Image, tel )
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)`,
+                [
+                    year,
+                    cleanData(playerInfo["name"]), 
+                    cleanData(playerInfo["capacity"]), 
+                    cleanData(playerInfo["boxes"]),
+                    cleanData(playerInfo["box_seats"]),
+                    cleanData(playerInfo["built"]),
+                    cleanData(playerInfo["formely"]),
+                    cleanData(playerInfo["undersoil_heating"]),
+                    cleanData(playerInfo["running_track"]),
+                    cleanData(playerInfo["surface"]),
+                    cleanData(playerInfo["pitch_size"]),
+                    cleanData(playerInfo["address"]),
+                    cleanData(playerInfo["Image"]),
+                    cleanData(playerInfo["Team Image"]),
+                    cleanData(playerInfo["tel"]),
+                ]
+            );
+        }
+        console.log('Dados inseridos com sucesso!');
+    } catch (err) {
+        console.error('Erro ao inserir dados:', err);
+    } finally {
+        await pool.end(); 
+    }
+}

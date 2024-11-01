@@ -22,26 +22,29 @@ def referee_data(url, list):
             referee_info = {}
             img = soup.select('.data-header__profile-image')
 
-            referee_info = {
-                "date_of_birth_age": None,
-                "citizenship": None,
-                "first_league_debut": None,
-            }
+            try:
+                referee_info = {
+                    "date_of_birth_age": None,
+                    "citizenship": None,
+                    "first_league_debut": None,
+                }
 
-            for item in soup.select('.data-header__items'):
-                for li in item.find_all('li', class_='data-header__label'):
-                    label = li.get_text(strip=True)
-                    content = li.find('span', class_='data-header__content')
-                    
-                    if content:
-                        content_text = content.get_text(strip=True)
-                        if label.startswith("Date of birth/Age:"):
-                            referee_info["date_of_birth_age"] = content_text
-                        elif label.startswith("Citizenship:"):
-                            referee_info["citizenship"] = content_text
-                        elif label.startswith("1st league debut:"):
-                            referee_info["first_league_debut"] = content_text
+                for item in soup.select('.data-header__items'):
+                    for li in item.find_all('li', class_='data-header__label'):
+                        label = li.get_text(strip=True)
+                        content = li.find('span', class_='data-header__content')
                         
+                        if content:
+                            content_text = content.get_text(strip=True)
+                            if label.startswith("Date of birth/Age:"):
+                                referee_info["date_of_birth_age"] = content_text
+                            elif label.startswith("Citizenship:"):
+                                referee_info["citizenship"] = content_text
+                            elif label.startswith("1st league debut:"):
+                                referee_info["first_league_debut"] = content_text
+            except:
+                pass 
+              
             try:
                 referee_info["Image"] = img[0].get_attribute_list('src')[0]
             except:
@@ -50,50 +53,54 @@ def referee_data(url, list):
             response = requests.get(base_url + url + action_url, headers=headers)
             data = response.text
             soup = BeautifulSoup(data, 'html.parser')
-
-            stats = soup.select('#tm-main > div.row > div.large-8.columns > div > div.responsive-table > table > tbody > tr > td')
-
-            teams = []
-            dict = {}
-            team_data = {}
-            filtered_stats = []
-
-            for elemento in stats:
-                colspan = elemento.get('colspan')
-                if not colspan and elemento:
-                    filtered_stats.append(elemento)                
             
-            i = 0
-            for index, elemento in enumerate(filtered_stats):
-                text = elemento.get_text().strip().split('  ')[0]
+            
+            dict = {}
+            try:
+                stats = soup.select('#tm-main > div.row > div.large-8.columns > div > div.responsive-table > table > tbody > tr > td')
 
-                if index % 11 == 0:
-                    if team_data:
-                        teams.append(team_data)
-                    team_data = {'Matchday': text }
-                elif index % 11 == 1:
-                    team_data['Date'] = text
-                elif index % 11 == 3:
-                    team_data['Home Team'] = text
-                elif index % 11 == 5:
-                    team_data['Away Team'] = text
-                elif index % 11 == 6:
-                    team_data['Result'] = text
-                elif index % 11 == 7:
-                    team_data['Yellow Cards'] = text
-                elif index % 11 == 8:
-                    team_data['Scnd Yellow Cards'] = text
-                elif index % 11 == 9:
-                    team_data['Red Cards'] = text
-                elif index % 11 == 10:
-                    team_data['Penalty Kicks'] = text
-                    i = i + 1
-
-                teams.append(team_data)
                 teams = []
-                
-                dict[i] = teams
+                team_data = {}
+                filtered_stats = []
 
+                for elemento in stats:
+                    colspan = elemento.get('colspan')
+                    if not colspan and elemento:
+                        filtered_stats.append(elemento)                
+                
+                i = 0
+                for index, elemento in enumerate(filtered_stats):
+                    text = elemento.get_text().strip().split('  ')[0]
+
+                    if index % 11 == 0:
+                        if team_data:
+                            teams.append(team_data)
+                        team_data = {'Matchday': text }
+                    elif index % 11 == 1:
+                        team_data['Date'] = text
+                    elif index % 11 == 3:
+                        team_data['Home Team'] = text
+                    elif index % 11 == 5:
+                        team_data['Away Team'] = text
+                    elif index % 11 == 6:
+                        team_data['Result'] = text
+                    elif index % 11 == 7:
+                        team_data['Yellow Cards'] = text
+                    elif index % 11 == 8:
+                        team_data['Scnd Yellow Cards'] = text
+                    elif index % 11 == 9:
+                        team_data['Red Cards'] = text
+                    elif index % 11 == 10:
+                        team_data['Penalty Kicks'] = text
+                        i = i + 1
+
+                    teams.append(team_data)
+                    teams = []
+                    
+                    dict[i] = teams
+            except:
+                pass
+            
             referee_info["Matches"] = dict
             
             list[referee_id] = referee_info

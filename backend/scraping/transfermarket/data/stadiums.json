@@ -1,1 +1,34 @@
-{}
+{
+    "6600": {
+        "name": "Est\u00e1dio Beira-Rio",
+        "capacity": "50.848",
+        "boxes": "39",
+        "box_seats": "165",
+        "built": "1969",
+        "formerly": "Est\u00e1dio Jos\u00e9 Pinheiro Borda",
+        "undersoil_heating": "Yes",
+        "running_track": "No",
+        "surface": "Natural grass",
+        "pitch_size": "108m x 72m",
+        "address": "Est\u00e1dio Beira-Rio\nRua Padre Cacique, 891\nPorto Alegre (RS)\nBrazil",
+        "Image": null,
+        "Team Image": "https://tmssl.akamaized.net//images/wappen/head/6600.png?lm=1644878605",
+        "tel": "+55 51 32304600"
+    },
+    "7178": {
+        "name": "Est\u00e1dio Heriberto H\u00fclse",
+        "capacity": "19.225",
+        "boxes": null,
+        "box_seats": null,
+        "built": null,
+        "formerly": null,
+        "undersoil_heating": "No",
+        "running_track": "No",
+        "surface": "Natural grass",
+        "pitch_size": null,
+        "address": "Est\u00e1dio Heriberto H\u00fclse\nRua Treze de Maio 46\n88802-290\u00a0Crici\u00fama\nBrazil",
+        "Image": null,
+        "Team Image": "https://tmssl.akamaized.net//images/wappen/head/7178.png?lm=1412878993",
+        "tel": "+55 48-3046-7550"
+    }
+}

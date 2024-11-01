@@ -47,21 +47,24 @@ def manager_data(url, list):
                         elif label.startswith("Coaching Licence"):
                             license = content_text
             
-            full_name = full_name[0].get_text().strip()
-            actual_team = actual_team[0].get_text().strip()
-            img = img[0].get_attribute_list('src')[0]
-            
-            dict = {
-                'age': age,
-                'name': full_name,
-                'birth': birth,
-                'country': country,
-                'formation': formation,
-                'coaching_license': license,
-                'avg_term': avg_term,
-                'actual_team': actual_team,
-                'img': img,
-            }
+            try:
+                full_name = full_name[0].get_text().strip()
+                actual_team = actual_team[0].get_text().strip()
+                img = img[0].get_attribute_list('src')[0]
+                
+                dict = {
+                    'age': age,
+                    'name': full_name,
+                    'birth': birth,
+                    'country': country,
+                    'formation': formation,
+                    'coaching_license': license,
+                    'avg_term': avg_term,
+                    'actual_team': actual_team,
+                    'img': img,
+                }
+            except:
+                pass
             
             list[manager_id] = dict
             
@@ -70,37 +73,45 @@ def manager_data(url, list):
             data = response.text
             soup = BeautifulSoup(data, 'html.parser')
 
-            table = soup.select('.items')
-            all_data = []
-
-            for row in table[1].find_all('tr'):
-                if "Campeonato Brasileiro Série A" in row.get_text():
-                    for next_row in row.find_next_siblings('tr'):
-                        if(next_row.find('td').get_attribute_list('colspan')[0]):
-                            if int(next_row.find('td').get_attribute_list('colspan')[0]) > 8:
-                                break
-
-                        dados = [td.get_text().strip() for td in next_row.find_all('td')]
-                        all_data.append(dados)
-                
-            list[manager_id]["competition_data"] = {}
             dict = {}
-            i = 0
-            for dados in all_data:
-                dict[i] = {
-                    'season': dados[0],
-                    'team_id': dados[1].get_attribute_list('href')[0].split('/')[-3],
-                    'matches': dados[3],
-                    'wins': dados[4],
-                    'draws': dados[5],
-                    'losts': dados[6],
-                    'points': dados[7],
-                    'ppm': dados[8],
-                    'placement': dados[9],
-                }
-                i += 1
+            try:
+                team_id = soup.select('.hauptlink .links .no-border-links a')[0].get_attribute_list('href')[0].split('/')[-3]
+                table = soup.select('.items')
+                all_data = []
+
+                for row in table[1].find_all('tr'):
+                    if "Campeonato Brasileiro Série A" in row.get_text():
+                        for next_row in row.find_next_siblings('tr'):
+                            if(next_row.find('td').get_attribute_list('colspan')[0]):
+                                if int(next_row.find('td').get_attribute_list('colspan')[0]) > 8:
+                                    break
+
+                            dados = [td.get_text().strip() for td in next_row.find_all('td')]
+                            all_data.append(dados)
+                    
+                list[manager_id]["competition_data"] = {}
+                i = 0
+                for dados in all_data:
+                    
+                    dict[i] = {
+                        'season': dados[0],
+                        'team_id': team_id,
+                        'matches': dados[3],
+                        'wins': dados[4],
+                        'draws': dados[5],
+                        'losts': dados[6],
+                        'points': dados[7],
+                        'ppm': dados[8],
+                        'placement': dados[9],
+                    }
+                    i += 1
+            except:
+                pass
             
+            # if(dict == {}):
             list[manager_id]["competition_data"] = dict
+            # else:
+                # list[manager_id]["competition_data"] = dict
             
             return manager_id
             

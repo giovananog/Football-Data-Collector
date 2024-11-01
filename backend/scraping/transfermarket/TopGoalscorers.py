@@ -11,7 +11,7 @@ def top_goalscorers(ano, range_value):
         base_url = "https://www.transfermarkt.com/campeonato-brasileiro-serie-a/torschuetzenliste/wettbewerb/BRA1/plus/1?saison_id=1995&detailpos=&altersklasse=alle"
         
         try:
-            with open("../data/top_goalcorers.json", "r") as file:
+            with open("../data/top_goalscorers.json", "r") as file:
                 data_dict = json.load(file)
         except FileNotFoundError:
             data_dict = {}
@@ -81,7 +81,7 @@ def top_goalscorers(ano, range_value):
 
             data_dict[ano] = teams
 
-        with open("../data/top_goalcorers.json", "w") as file:
+        with open("../data/top_goalscorers.json", "w") as file:
             json.dump(data_dict, file, indent=4)
                     
     except Exception as e:

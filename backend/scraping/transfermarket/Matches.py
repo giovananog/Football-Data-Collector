@@ -32,6 +32,7 @@ def matches_data(ano, range_value):
                 'first_team': first_team[i].get_text(),
                 'score': score[i].get_text(),
                 'scnd_team': scnd_team[i].get_text(),
+                'url': score[i].get_attribute_list("href")[0],
                 'id': score[i].get_attribute_list("href")[0].split('/')[-1],
                 'ano': ano,
                 }
@@ -74,7 +75,7 @@ def match_data(matches_list):
         referees_dict = {}
         
     try:
-        with open("../data/managers.json", "r") as file:
+        with open("../data/matches.json", "r") as file:
             match_dict = json.load(file)
     except FileNotFoundError:
         match_dict = {}
@@ -88,7 +89,7 @@ def match_data(matches_list):
         for list in matches_list:
             for dict in list:
                 
-                fst_page = dict['url']
+                fst_page = base_url + dict['url']
                 match_id = fst_page.split("/")[-1]
                 
                 ano = str(dict['ano'])
@@ -114,7 +115,6 @@ def match_data(matches_list):
                     
                 
                 match_dict[ano][match_id]["score"] = score
-                match_dict[ano][match_id]["id"] = id  
                 match_dict[ano][match_id]["fst_team"] = fst_team  
                 match_dict[ano][match_id]["scnd_team"] = scnd_team  
                 
@@ -126,12 +126,15 @@ def match_data(matches_list):
                     matchday = soup.select('#tm-main > div:nth-child(1) > div > div > div.box-content > div.sb-spieldaten > p.sb-datum.hide-for-small > a:nth-child(1)')
                     match_dict[ano][match_id]["matchday"] = matchday[0].get_text().split('.')[0]
                 except:
-                    print(f"Error (matchday): {e}")   
+                    print(f"Error (matchday)")   
         
                 try:
                     manager = soup.select('#\\30')
+
                     fst_manager_url = manager[0].get_attribute_list("href")[0]
                     scnd_manager_url = manager[1].get_attribute_list("href")[0]
+                    
+                    print(f'------------{fst_manager_url} e {scnd_manager_url}------------')
                     
                     fst_manager_id = manager_data(fst_manager_url, managers_dict)
                     match_dict[ano][match_id]["fst_manager_id"] = fst_manager_id
@@ -148,7 +151,10 @@ def match_data(matches_list):
                     team_id = stadium_url.split('/')[-3]
                     
                     stadium_id = stadium_data(stadium_url, stadiums_dict)
-                    stadiums_dict[stadium_id]["Team ID"] = team_id
+                    
+                    # print(stadium_url)
+                    # stadiums_dict[stadium_id]["Team ID"] = team_id
+                    
                     match_dict[ano][match_id]["stadium_id"] = stadium_id
                 except Exception as e:
                     print(f"Error (stadium): {e}")   
@@ -182,16 +188,17 @@ def match_data(matches_list):
                     goals_list = []
 
                     goalscorer = soup.select('#sb-tore > ul > li > div > div.sb-aktion-aktion > a:nth-child(1)')
-                    goal_team = soup.select('#sb-tore > ul > li > div > div.sb-aktion-wappen > a > img')
+                    goal_team = soup.select('#sb-tore > ul > li > div > div.sb-aktion-wappen > a')
                     goal_info = soup.select('.sb-aktion-aktion')
+                    goal_info_a = soup.select('.sb-aktion-aktion a')
                     goal_minute = soup.select('#sb-tore > ul > li > div > div.sb-aktion-uhr > span')
                     
 
                     for i in range(len(goalscorer)):
-                        goal_scorer_id = goalscorer[i].get_attribute_list("href")[0].split('/')[-1]
+                        goal_scorer_id = goal_info_a[i].get_attribute_list("href")[0].split('/')[-5]
                         goal_team_id = goal_team[i].get_attribute_list('href')[0].split('/')[-3]
                         goal_minute_time = goal_minute[i].get_attribute_list('style')[0]
-                        goal_info_name = goal_info[i].get_text().split(',')
+                        goal_info_name = goal_info[i].get_text().strip().split(',')
 
                         shot_type = goal_info_name[1].strip()
                         
@@ -203,7 +210,7 @@ def match_data(matches_list):
                         }
 
                         try:
-                            assist_player = goal_info[i].select('a')[1].get_attribute_list('href')[0].split('/')[-1]
+                            assist_player = goal_info[i].select('a')[1].get_attribute_list('href')[0].split('/')[-3]
                             goal_info_dict["Assist Player ID"] = assist_player
                         except IndexError:
                             goal_info_dict["Assist Player ID"] = None
@@ -333,7 +340,7 @@ def match_data(matches_list):
                     offsides_team1 = data[12].get_text()
                     offsides_team2 = data[13].get_text()
                     
-                    dict = {
+                    match_stats_dict = {
                         'team1': {
                             'total_shots': total_shots_team1,
                             'shots_off': shots_team1,
@@ -355,7 +362,7 @@ def match_data(matches_list):
                 }
 
                     
-                    match_dict[ano][match_id]["match_stats"] = dict            
+                    match_dict[ano][match_id]["match_stats"] = match_stats_dict            
                 except Exception as e:
                     print(f"Error (stats): {e}")
                 
@@ -367,7 +374,7 @@ def match_data(matches_list):
                     json.dump(players_dict, file, indent=4)
                 with open("../data/referees.json", "w") as file:
                     json.dump(referees_dict, file, indent=4)
-                with open("../data/managers.json", "w") as file:
+                with open("../data/matches.json", "w") as file:
                     json.dump(match_dict, file, indent=4)
     
     except Exception as e:

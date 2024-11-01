@@ -1,1 +1,1337 @@
-{}
+{
+    "978": {
+        "1996": {
+            "Players List": []
+        },
+        "General": {
+            "Squad Size": "33",
+            "Average age:": "27.6",
+            "Foreigners": "10",
+            "National team players": "4",
+            "Stadium": "Est\u00e1dio S\u00e3o Janu\u00e1rio",
+            "Manager ID": "4725",
+            "Info": {
+                "Address": "Club de Regatas Vasco da Gama",
+                "Tel": "+55 21 21767373",
+                "Website": "www.crvascodagama.com",
+                "Founded": "Aug 21, 1898",
+                "Members": "53.957 (Score: Dec 27, 2018)"
+            }
+        }
+    },
+    "1023": {
+        "1996": {
+            "Players List": []
+        },
+        "General": {
+            "Squad Size": "30",
+            "Average age:": "26.4",
+            "Foreigners": "6",
+            "National team players": "6",
+            "Stadium": "Allianz Parque",
+            "Manager ID": "1976",
+            "Info": {
+                "Address": "Sociedade Esportiva Palmeiras",
+                "Tel": "+55 11 38746500",
+                "Website": "www.palmeiras.com.br",
+                "Founded": "Aug 26, 1914",
+                "Members": "175.974"
+            }
+        }
+    },
+    "6600": {
+        "1996": {
+            "Players List": []
+        },
+        "General": {
+            "Squad Size": "31",
+            "Average age:": "27.4",
+            "Foreigners": "8",
+            "National team players": "3",
+            "Stadium": "Est\u00e1dio Beira-Rio",
+            "Manager ID": "5267",
+            "Info": {
+                "Address": "Sport Club Internacional",
+                "Tel": "+55 51 32304600",
+                "Website": "www.internacional.com.br",
+                "Founded": "Apr 4, 1909",
+                "Members": "142.000 (Score: Sep 8, 2019)"
+            }
+        }
+    },
+    "330": {
+        "1996": {
+            "Players List": [
+                {
+                    "Number": "-",
+                    "ID": "253469",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Renaldo",
+                    "Position": "Centre-Forward",
+                    "Birth": "Mar 19, 1970 (25)",
+                    "Height": "1,71m",
+                    "Foot": "",
+                    "Joined": "Jan 1, 2002"
+                }
+            ]
+        },
+        "General": {
+            "Squad Size": "34",
+            "Average age:": "27.3",
+            "Foreigners": "9",
+            "National team players": "5",
+            "Stadium": "Arena MRV",
+            "Manager ID": "1352",
+            "Info": {
+                "Address": "Clube Atl\u00e9tico Mineiro",
+                "Tel": "+55 31 32901313",
+                "Website": "www.atletico.com.br",
+                "Founded": "Mar 25, 1908",
+                "Members": "85.000 (Score: Aug 24, 2023)"
+            }
+        }
+    },
+    "614": {
+        "1996": {
+            "Players List": [
+                {
+                    "Number": "-",
+                    "ID": "27352",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/27352-1698240712.jpg?lm=1",
+                    "Name": "Clemer",
+                    "Position": "Goalkeeper",
+                    "Birth": "Oct 20, 1968 (27)",
+                    "Height": "N/Am",
+                    "Foot": "N/A",
+                    "Joined": "Jan 1, 1997"
+                },
+                {
+                    "Number": "-",
+                    "ID": "258052",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Z\u00e9 Carlos",
+                    "Position": "Goalkeeper",
+                    "Birth": "Feb 7, 1962 (33)",
+                    "Height": "1,92m",
+                    "Foot": "",
+                    "Joined": "Jan 1, 1996"
+                },
+                {
+                    "Number": "-",
+                    "ID": "444683",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "F\u00e1bio Noronha",
+                    "Position": "Goalkeeper",
+                    "Birth": "Oct 12, 1975 (20)",
+                    "Height": "1,82m",
+                    "Foot": "right",
+                    "Joined": ""
+                },
+                {
+                    "Number": "-",
+                    "ID": "26233",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Fabiano",
+                    "Position": "Centre-Back",
+                    "Birth": "Aug 4, 1975 (20)",
+                    "Height": "1,78m",
+                    "Foot": "right",
+                    "Joined": "Jan 1, 2005"
+                },
+                {
+                    "Number": "-",
+                    "ID": "2943",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "J\u00falio C\u00e9sar",
+                    "Position": "Centre-Back",
+                    "Birth": "Nov 18, 1978 (17)",
+                    "Height": "1,85m",
+                    "Foot": "right",
+                    "Joined": ""
+                },
+                {
+                    "Number": "-",
+                    "ID": "17284",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/17284-1493278309.jpg?lm=1",
+                    "Name": "J\u00fanior Baiano",
+                    "Position": "Centre-Back",
+                    "Birth": "Mar 14, 1970 (25)",
+                    "Height": "N/Am",
+                    "Foot": "N/A",
+                    "Joined": "Jan 5, 2004"
+                },
+                {
+                    "Number": "-",
+                    "ID": "20398",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Bruno Quadros",
+                    "Position": "Centre-Back",
+                    "Birth": "Feb 3, 1977 (18)",
+                    "Height": "1,84m",
+                    "Foot": "right",
+                    "Joined": "Jul 1, 2000"
+                },
+                {
+                    "Number": "-",
+                    "ID": "567345",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Ademar Braga",
+                    "Position": "Centre-Back",
+                    "Birth": "Aug 12, 1976 (19)",
+                    "Height": "1,87m",
+                    "Foot": "",
+                    "Joined": "Jan 1, 1997"
+                },
+                {
+                    "Number": "-",
+                    "ID": "785560",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "M\u00e1rcio Costa",
+                    "Position": "Centre-Back",
+                    "Birth": "May 18, 1971 (24)",
+                    "Height": "1,89m",
+                    "Foot": "right",
+                    "Joined": ""
+                },
+                {
+                    "Number": "4",
+                    "ID": "23193",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/s_23193_679_2012_2.jpg?lm=1",
+                    "Name": "Luiz Alberto",
+                    "Position": "Centre-Back",
+                    "Birth": "Dec 1, 1977 (18)",
+                    "Height": "1,86m",
+                    "Foot": "right",
+                    "Joined": "Jan 1, 1997"
+                },
+                {
+                    "Number": "20",
+                    "ID": "1599",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/1599-1447749353.jpg?lm=1",
+                    "Name": "Juan",
+                    "Position": "Centre-Back",
+                    "Birth": "Feb 1, 1979 (16)",
+                    "Height": "1,82m",
+                    "Foot": "right",
+                    "Joined": "Jan 1, 2016"
+                },
+                {
+                    "Number": "6",
+                    "ID": "31422",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/s_31422_123_2013_09_17_1.jpg?lm=1",
+                    "Name": "Athirson",
+                    "Position": "Left-Back",
+                    "Birth": "Jan 16, 1977 (18)",
+                    "Height": "N/Am",
+                    "Foot": "N/A",
+                    "Joined": "Jan 1, 2004"
+                },
+                {
+                    "Number": "-",
+                    "ID": "9778",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/s_9778_199_2012_2.jpg?lm=1",
+                    "Name": "Alessandro",
+                    "Position": "Right-Back",
+                    "Birth": "Jan 10, 1979 (16)",
+                    "Height": "1,79m",
+                    "Foot": "right",
+                    "Joined": "Mar 1, 2003"
+                },
+                {
+                    "Number": "-",
+                    "ID": "112148",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Dida",
+                    "Position": "Right-Back",
+                    "Birth": "Feb 4, 1979 (16)",
+                    "Height": "1,71m",
+                    "Foot": "right",
+                    "Joined": "Jan 1, 1997"
+                },
+                {
+                    "Number": "-",
+                    "ID": "5557",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/s_5557_5677_2010_1.jpg?lm=1",
+                    "Name": "Paulo C\u00e9sar",
+                    "Position": "Right Midfield",
+                    "Birth": "Aug 26, 1978 (17)",
+                    "Height": "1,76m",
+                    "Foot": "right",
+                    "Joined": "Jan 1, 1996"
+                }
+            ]
+        },
+        "General": {
+            "Squad Size": "29",
+            "Average age:": "27.3",
+            "Foreigners": "8",
+            "National team players": "9",
+            "Stadium": "Est\u00e1dio Jornalista M\u00e1rio Filho",
+            "Manager ID": "5013",
+            "Info": {
+                "Address": "Clube de Regatas do Flamengo",
+                "Tel": "+55 21 25290100",
+                "Website": "www.flamengo.com.br",
+                "Founded": "Nov 15, 1895",
+                "Members": "109.442 (Score: Jul 12, 2019)"
+            }
+        }
+    },
+    "221": {
+        "1996": {
+            "Players List": []
+        },
+        "General": {
+            "Squad Size": "38",
+            "Average age:": "28.4",
+            "Foreigners": "8",
+            "National team players": "4",
+            "Stadium": "Est\u00e1dio Urbano Caldeira",
+            "Manager ID": "1976",
+            "Info": {
+                "Address": "Santos Futebol Clube",
+                "Tel": "+55 13 32574000",
+                "Website": "www.santosfc.com.br",
+                "Founded": "Apr 14, 1912",
+                "Members": "48.117 (Score: Feb 27, 2023)"
+            }
+        }
+    },
+    "10492": {
+        "1996": {
+            "Players List": []
+        },
+        "General": {
+            "Squad Size": "33",
+            "Average age:": "28.0",
+            "Foreigners": "1",
+            "National team players": "0",
+            "Stadium": "Est\u00e1dio Alfredo Jaconi ",
+            "Manager ID": "65950",
+            "Info": {
+                "Address": "Esporte Clube Juventude",
+                "Website": "www.juventude.com.br",
+                "Founded": "Jun 29, 1913",
+                "Members": "3.020 (Score: Jan 23, 2015)"
+            }
+        }
+    },
+    "2125": {
+        "1996": {
+            "Players List": []
+        },
+        "General": {
+            "Squad Size": "32",
+            "Average age:": "27.9",
+            "Foreigners": "1",
+            "National team players": "0",
+            "Stadium": "Est\u00e1dio Manoel Barradas",
+            "Manager ID": "83607",
+            "Info": {
+                "Address": "Esporte Clube Vit\u00f3ria",
+                "Tel": "+55 (71) 33339120",
+                "Website": "www.ecvitoria.com.br",
+                "Founded": "May 13, 1899",
+                "Members": "33.136 (Score: Nov 29, 2023)"
+            }
+        }
+    },
+    "537": {
+        "1996": {
+            "Players List": []
+        },
+        "General": {
+            "Squad Size": "34",
+            "Average age:": "28.0",
+            "Foreigners": "7",
+            "National team players": "7",
+            "Stadium": "Est\u00e1dio Ol\u00edmpico Nilton Santos",
+            "Manager ID": "28481",
+            "Info": {
+                "Address": "Botafogo de Futebol e Regatas",
+                "Tel": "+55 21 25461950",
+                "Website": "www.botafogo.com.br",
+                "Founded": "Jul 1, 1894",
+                "Members": "56.417 (Score: Mar 15, 2024)"
+            }
+        }
+    },
+    "585": {
+        "1996": {
+            "Players List": [
+                {
+                    "Number": "-",
+                    "ID": "13811",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/13811-1591950054.jpg?lm=1",
+                    "Name": "Rog\u00e9rio Ceni",
+                    "Position": "Goalkeeper",
+                    "Birth": "Jan 22, 1973 (22)",
+                    "Height": "1,88m",
+                    "Foot": "right",
+                    "Joined": "Sep 7, 1990"
+                },
+                {
+                    "Number": "-",
+                    "ID": "68830",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Fran\u00e7a",
+                    "Position": "Goalkeeper",
+                    "Birth": "Jan 28, 1978 (17)",
+                    "Height": "1,90m",
+                    "Foot": "right",
+                    "Joined": ""
+                },
+                {
+                    "Number": "-",
+                    "ID": "586",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/586-1493384591.jpg?lm=1",
+                    "Name": "Marcelo Bordon",
+                    "Position": "Centre-Back",
+                    "Birth": "Jan 7, 1976 (19)",
+                    "Height": "N/Am",
+                    "Foot": "N/A",
+                    "Joined": "Jan 1, 1995"
+                },
+                {
+                    "Number": "-",
+                    "ID": "5819",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/5819-1606828318.jpg?lm=1",
+                    "Name": "Serginho",
+                    "Position": "Left-Back",
+                    "Birth": "Jun 27, 1971 (24)",
+                    "Height": "1,81m",
+                    "Foot": "left",
+                    "Joined": "Jan 1, 1996"
+                },
+                {
+                    "Number": "-",
+                    "ID": "7570",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/7570-1723138716.jpg?lm=1",
+                    "Name": "F\u00e1bio Aur\u00e9lio",
+                    "Position": "Left-Back",
+                    "Birth": "Sep 24, 1979 (16)",
+                    "Height": "1,78m",
+                    "Foot": "left",
+                    "Joined": "Jan 1, 1997"
+                },
+                {
+                    "Number": "-",
+                    "ID": "5343",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/5343-1414137444.jpg?lm=1",
+                    "Name": "Edm\u00edlson",
+                    "Position": "Defensive Midfield",
+                    "Birth": "Jul 10, 1976 (19)",
+                    "Height": "1,86m",
+                    "Foot": "right",
+                    "Joined": "Nov 1, 1995"
+                },
+                {
+                    "Number": "-",
+                    "ID": "26024",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/s_26024_123_2010_1.jpg?lm=1",
+                    "Name": "Sidney Moraes",
+                    "Position": "Defensive Midfield",
+                    "Birth": "Mar 3, 1977 (18)",
+                    "Height": "1,77m",
+                    "Foot": "right",
+                    "Joined": "Jan 1, 1997"
+                },
+                {
+                    "Number": "-",
+                    "ID": "735249",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Alexandre Gallo",
+                    "Position": "Central Midfield",
+                    "Birth": "May 29, 1967 (28)",
+                    "Height": "1,85m",
+                    "Foot": "",
+                    "Joined": ""
+                },
+                {
+                    "Number": "-",
+                    "ID": "5883",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Alberto Valentim",
+                    "Position": "Right Midfield",
+                    "Birth": "Mar 22, 1975 (20)",
+                    "Height": "1,81m",
+                    "Foot": "right",
+                    "Joined": "Jan 1, 1997"
+                },
+                {
+                    "Number": "-",
+                    "ID": "7660",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/7660-1724156451.jpg?lm=1",
+                    "Name": "Denilson",
+                    "Position": "Left Winger",
+                    "Birth": "Aug 24, 1977 (18)",
+                    "Height": "1,77m",
+                    "Foot": "left",
+                    "Joined": "Jan 1, 1995"
+                },
+                {
+                    "Number": "-",
+                    "ID": "52666",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/s_52666_15064_2010_1.jpg?lm=1",
+                    "Name": "Dod\u00f4",
+                    "Position": "Centre-Forward",
+                    "Birth": "May 2, 1974 (21)",
+                    "Height": "1,77m",
+                    "Foot": "right",
+                    "Joined": "Jul 1, 1996"
+                },
+                {
+                    "Number": "-",
+                    "ID": "102165",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "V\u00edctor Aristiz\u00e1bal",
+                    "Position": "Centre-Forward",
+                    "Birth": "Dec 9, 1971 (24)",
+                    "Height": "1,74m",
+                    "Foot": "right",
+                    "Joined": "Jan 1, 1996"
+                }
+            ]
+        },
+        "General": {
+            "Squad Size": "38",
+            "Average age:": "27.0",
+            "Foreigners": "11",
+            "National team players": "8",
+            "Stadium": "MorumBIS",
+            "Manager ID": "2121",
+            "Info": {
+                "Address": "S\u00e3o Paulo Futebol Clube",
+                "Tel": "+55 11 37498000",
+                "Website": "www.saopaulofc.net",
+                "Founded": "Dec 16, 1935",
+                "Members": "151.724 (Score: Aug 19, 2018)"
+            }
+        }
+    },
+    "309": {
+        "1996": {
+            "Players List": []
+        },
+        "General": {
+            "Squad Size": "19",
+            "Average age:": "27.7",
+            "Foreigners": "0",
+            "National team players": "0",
+            "Stadium": "Est\u00e1dio Durival Britto e Silva",
+            "Manager ID": "4725",
+            "Info": {
+                "Address": "Paran\u00e1 Clube",
+                "Tel": "+55 41 30294747",
+                "Website": "www.paranaclube.com.br",
+                "Founded": "Dec 19, 1989"
+            }
+        }
+    },
+    "210": {
+        "1996": {
+            "Players List": [
+                {
+                    "Number": "-",
+                    "ID": "43002",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/43002-1698186436.jpg?lm=1",
+                    "Name": "Danrlei",
+                    "Position": "Goalkeeper",
+                    "Birth": "Apr 18, 1973 (22)",
+                    "Height": "1,85m",
+                    "Foot": "right",
+                    "Joined": "Jan 1, 1993"
+                },
+                {
+                    "Number": "-",
+                    "ID": "733552",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Murilo",
+                    "Position": "Goalkeeper",
+                    "Birth": "Nov 19, 1973 (22)",
+                    "Height": "1,88m",
+                    "Foot": "",
+                    "Joined": "Jan 1, 1994"
+                },
+                {
+                    "Number": "-",
+                    "ID": "8142",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/8142-1698196981.jpg?lm=1",
+                    "Name": "Roger Machado",
+                    "Position": "Centre-Back",
+                    "Birth": "Apr 25, 1975 (20)",
+                    "Height": "1,76m",
+                    "Foot": "left",
+                    "Joined": "Jan 1, 1994"
+                },
+                {
+                    "Number": "-",
+                    "ID": "13154",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "\u00c9der Ga\u00facho",
+                    "Position": "Centre-Back",
+                    "Birth": "Oct 7, 1977 (18)",
+                    "Height": "1,88m",
+                    "Foot": "left",
+                    "Joined": "Jan 1, 1996"
+                },
+                {
+                    "Number": "-",
+                    "ID": "117630",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/117630-1532356096.jpg?lm=1",
+                    "Name": "Mauro Galv\u00e3o",
+                    "Position": "Centre-Back",
+                    "Birth": "Dec 19, 1961 (34)",
+                    "Height": "N/Am",
+                    "Foot": "N/A",
+                    "Joined": "Jan 1, 2001"
+                },
+                {
+                    "Number": "-",
+                    "ID": "134013",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Catalino Rivarola",
+                    "Position": "Centre-Back",
+                    "Birth": "Apr 30, 1965 (30)",
+                    "Height": "1,87m",
+                    "Foot": "",
+                    "Joined": "Jan 1, 1995"
+                },
+                {
+                    "Number": "-",
+                    "ID": "181541",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Luciano Dias",
+                    "Position": "Centre-Back",
+                    "Birth": "Jul 25, 1970 (25)",
+                    "Height": "1,86m",
+                    "Foot": "right",
+                    "Joined": "Jul 1, 1992"
+                },
+                {
+                    "Number": "-",
+                    "ID": "734130",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Wagner Fernandes",
+                    "Position": "Centre-Back",
+                    "Birth": "Apr 8, 1967 (28)",
+                    "Height": "1,87m",
+                    "Foot": "right",
+                    "Joined": "Jan 1, 1995"
+                },
+                {
+                    "Number": "-",
+                    "ID": "785510",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Djair",
+                    "Position": "Centre-Back",
+                    "Birth": "Dec 24, 1976 (19)",
+                    "Height": "1,87m",
+                    "Foot": "",
+                    "Joined": "Jan 1, 1997"
+                },
+                {
+                    "Number": "-",
+                    "ID": "735045",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Andr\u00e9 Silva",
+                    "Position": "Left-Back",
+                    "Birth": "Mar 3, 1973 (22)",
+                    "Height": "1,75m",
+                    "Foot": "left",
+                    "Joined": "Aug 8, 1996"
+                },
+                {
+                    "Number": "-",
+                    "ID": "130283",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/s_130283_123_2013_03_21_1.jpg?lm=1",
+                    "Name": "Francisco Arce",
+                    "Position": "Right-Back",
+                    "Birth": "Apr 2, 1971 (24)",
+                    "Height": "1,78m",
+                    "Foot": "right",
+                    "Joined": "Jul 1, 1994"
+                },
+                {
+                    "Number": "-",
+                    "ID": "735041",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Marco Ant\u00f4nio",
+                    "Position": "Right-Back",
+                    "Birth": "Jan 24, 1971 (24)",
+                    "Height": "1,76m",
+                    "Foot": "right",
+                    "Joined": ""
+                },
+                {
+                    "Number": "-",
+                    "ID": "70",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/s_70_123_2013_10_02_1.jpg?lm=1",
+                    "Name": "\u00c9merson",
+                    "Position": "Defensive Midfield",
+                    "Birth": "Apr 4, 1976 (19)",
+                    "Height": "N/Am",
+                    "Foot": "N/A",
+                    "Joined": "Jan 1, 1993"
+                },
+                {
+                    "Number": "-",
+                    "ID": "22742",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Otac\u00edlio",
+                    "Position": "Defensive Midfield",
+                    "Birth": "Nov 14, 1972 (23)",
+                    "Height": "1,82m",
+                    "Foot": "right",
+                    "Joined": "Jan 1, 1997"
+                },
+                {
+                    "Number": "-",
+                    "ID": "210037",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Dinho",
+                    "Position": "Defensive Midfield",
+                    "Birth": "Oct 15, 1966 (29)",
+                    "Height": "1,78m",
+                    "Foot": "right",
+                    "Joined": "Jan 1, 1995"
+                },
+                {
+                    "Number": "-",
+                    "ID": "210047",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Goiano",
+                    "Position": "Defensive Midfield",
+                    "Birth": "Aug 31, 1968 (27)",
+                    "Height": "N/Am",
+                    "Foot": "N/A",
+                    "Joined": "Jan 1, 1995"
+                },
+                {
+                    "Number": "-",
+                    "ID": "735040",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Jo\u00e3o Ant\u00f4nio",
+                    "Position": "Defensive Midfield",
+                    "Birth": "Jun 14, 1966 (29)",
+                    "Height": "-",
+                    "Foot": "",
+                    "Joined": ""
+                },
+                {
+                    "Number": "-",
+                    "ID": "15978",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/h_x_s_15978_16_2009_1.jpg?lm=1",
+                    "Name": "Tinga",
+                    "Position": "Central Midfield",
+                    "Birth": "Jan 13, 1978 (17)",
+                    "Height": "N/Am",
+                    "Foot": "N/A",
+                    "Joined": "Jan 1, 2001"
+                },
+                {
+                    "Number": "-",
+                    "ID": "590993",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "J\u00e9",
+                    "Position": "Central Midfield",
+                    "Birth": "Feb 28, 1978 (17)",
+                    "Height": "1,76m",
+                    "Foot": "",
+                    "Joined": ""
+                },
+                {
+                    "Number": "-",
+                    "ID": "733551",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Andr\u00e9 Vieira",
+                    "Position": "Central Midfield",
+                    "Birth": "Jan 31, 1974 (21)",
+                    "Height": "1,78m",
+                    "Foot": "right",
+                    "Joined": "Jan 1, 1994"
+                },
+                {
+                    "Number": "-",
+                    "ID": "172529",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/s_172529_123_2013_10_10_1.jpg?lm=1",
+                    "Name": "Carlos Miguel",
+                    "Position": "Attacking Midfield",
+                    "Birth": "Jun 12, 1972 (23)",
+                    "Height": "1,77m",
+                    "Foot": "left",
+                    "Joined": "Jan 1, 2003"
+                },
+                {
+                    "Number": "-",
+                    "ID": "585011",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Paulo Henrique",
+                    "Position": "Attacking Midfield",
+                    "Birth": "Feb 21, 1972 (23)",
+                    "Height": "1,72m",
+                    "Foot": "left",
+                    "Joined": ""
+                },
+                {
+                    "Number": "-",
+                    "ID": "3373",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/3373-1515762355.jpg?lm=1",
+                    "Name": "Ronaldinho",
+                    "Position": "Left Winger",
+                    "Birth": "Mar 21, 1980 (15)",
+                    "Height": "1,82m",
+                    "Foot": "right",
+                    "Joined": "Jan 1, 1998"
+                },
+                {
+                    "Number": "-",
+                    "ID": "152844",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Z\u00e9 Alcino",
+                    "Position": "Left Winger",
+                    "Birth": "Jun 8, 1974 (21)",
+                    "Height": "1,79m",
+                    "Foot": "both",
+                    "Joined": "Jan 1, 1996"
+                },
+                {
+                    "Number": "-",
+                    "ID": "210032",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/210032-1698165570.jpg?lm=1",
+                    "Name": "Paulo Nunes",
+                    "Position": "Second Striker",
+                    "Birth": "Oct 30, 1971 (24)",
+                    "Height": "1,74m",
+                    "Foot": "right",
+                    "Joined": "Jan 1, 2000"
+                },
+                {
+                    "Number": "-",
+                    "ID": "27355",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Dauri",
+                    "Position": "Centre-Forward",
+                    "Birth": "Oct 31, 1973 (22)",
+                    "Height": "1,77m",
+                    "Foot": "right",
+                    "Joined": "Mar 1, 1997"
+                },
+                {
+                    "Number": "-",
+                    "ID": "145578",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Maur\u00edcio Pantera",
+                    "Position": "Centre-Forward",
+                    "Birth": "Jun 3, 1975 (20)",
+                    "Height": "1,74m",
+                    "Foot": "right",
+                    "Joined": ""
+                },
+                {
+                    "Number": "-",
+                    "ID": "27732",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/27732-1711628399.jpg?lm=1",
+                    "Name": "Rodrigo Gral",
+                    "Position": "Centre-Forward",
+                    "Birth": "Feb 21, 1977 (18)",
+                    "Height": "1,77m",
+                    "Foot": "right",
+                    "Joined": "Jan 1, 1995"
+                },
+                {
+                    "Number": "-",
+                    "ID": "532442",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Marcos",
+                    "Position": "Centre-Forward",
+                    "Birth": "Mar 21, 1974 (21)",
+                    "Height": "1,89m",
+                    "Foot": "",
+                    "Joined": "Jan 1, 1997"
+                }
+            ]
+        },
+        "General": {
+            "Squad Size": "35",
+            "Average age:": "28.0",
+            "Foreigners": "11",
+            "National team players": "3",
+            "Stadium": "Arena do Gr\u00eamio",
+            "Manager ID": "1068",
+            "Info": {
+                "Address": "Gr\u00eamio Foot-Ball Porto Alegrense",
+                "Tel": "+55 51 32172244",
+                "Website": "www.gremio.net",
+                "Founded": "Sep 15, 1903",
+                "Members": "148.613 (Score: Jan 26, 2019)"
+            }
+        }
+    },
+    "776": {
+        "1996": {
+            "Players List": []
+        },
+        "General": {
+            "Squad Size": "31",
+            "Average age:": "25.7",
+            "Foreigners": "3",
+            "National team players": "1",
+            "Stadium": "Est\u00e1dio Major Ant\u00f4nio Couto Pereira",
+            "Manager ID": "7810",
+            "Info": {
+                "Address": "Coritiba Foot Ball Club",
+                "Tel": "+55 (41) 32181909",
+                "Website": "www.coritiba.com.br",
+                "Founded": "Oct 12, 1909",
+                "Members": "38.000"
+            }
+        }
+    },
+    "199": {
+        "1996": {
+            "Players List": []
+        },
+        "General": {
+            "Squad Size": "33",
+            "Average age:": "27.1",
+            "Foreigners": "9",
+            "National team players": "5",
+            "Stadium": "Neo Qu\u00edmica Arena ",
+            "Manager ID": "1529",
+            "Info": {
+                "Address": "Sport Club Corinthians Paulista",
+                "Tel": "+55 11 61953000",
+                "Website": "www.corinthians.com.br",
+                "Founded": "Sep 1, 1910",
+                "Members": "116.188 (Score: Jan 6, 2019)"
+            }
+        }
+    },
+    "609": {
+        "1996": {
+            "Players List": [
+                {
+                    "Number": "-",
+                    "ID": "27380",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Jean",
+                    "Position": "Goalkeeper",
+                    "Birth": "Oct 1, 1972 (23)",
+                    "Height": "1,90m",
+                    "Foot": "",
+                    "Joined": ""
+                },
+                {
+                    "Number": "-",
+                    "ID": "5800",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/5800-1447749019.jpg?lm=1",
+                    "Name": "Dida",
+                    "Position": "Goalkeeper",
+                    "Birth": "Oct 7, 1973 (22)",
+                    "Height": "1,96m",
+                    "Foot": "left",
+                    "Joined": "Jan 1, 1994"
+                },
+                {
+                    "Number": "-",
+                    "ID": "53786",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/s_53786_3197_2012_2.jpg?lm=1",
+                    "Name": "Harlei",
+                    "Position": "Goalkeeper",
+                    "Birth": "Mar 30, 1972 (23)",
+                    "Height": "1,82m",
+                    "Foot": "right",
+                    "Joined": "Jan 1, 1992"
+                },
+                {
+                    "Number": "-",
+                    "ID": "103561",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/s_103561_123_2013_10_10_1.jpg?lm=1",
+                    "Name": "Gon\u00e7alves",
+                    "Position": "Centre-Back",
+                    "Birth": "Feb 22, 1966 (29)",
+                    "Height": "1,78m",
+                    "Foot": "right",
+                    "Joined": "Jan 1, 1997"
+                },
+                {
+                    "Number": "-",
+                    "ID": "181639",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/181639-1711597879.jpg?lm=1",
+                    "Name": "Jo\u00e3o Carlos",
+                    "Position": "Centre-Back",
+                    "Birth": "Sep 10, 1972 (23)",
+                    "Height": "1,83m",
+                    "Foot": "",
+                    "Joined": "Jul 1, 2001"
+                },
+                {
+                    "Number": "-",
+                    "ID": "203791",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Gelson Baresi",
+                    "Position": "Centre-Back",
+                    "Birth": "May 11, 1974 (21)",
+                    "Height": "1,80m",
+                    "Foot": "right",
+                    "Joined": "Aug 1, 1995"
+                },
+                {
+                    "Number": "-",
+                    "ID": "561095",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Wilson Gottardo",
+                    "Position": "Centre-Back",
+                    "Birth": "May 23, 1963 (32)",
+                    "Height": "1,81m",
+                    "Foot": "right",
+                    "Joined": "Jul 1, 1997"
+                },
+                {
+                    "Number": "-",
+                    "ID": "732922",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Rog\u00e9rio Louren\u00e7o",
+                    "Position": "Centre-Back",
+                    "Birth": "Mar 20, 1971 (24)",
+                    "Height": "N/Am",
+                    "Foot": "N/A",
+                    "Joined": "Jan 1, 1997"
+                },
+                {
+                    "Number": "-",
+                    "ID": "732924",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "C\u00e9lio L\u00facio",
+                    "Position": "Centre-Back",
+                    "Birth": "Feb 11, 1971 (24)",
+                    "Height": "1,81m",
+                    "Foot": "right",
+                    "Joined": "Jan 1, 1991"
+                },
+                {
+                    "Number": "-",
+                    "ID": "735277",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Marcos",
+                    "Position": "Centre-Back",
+                    "Birth": "Oct 25, 1970 (25)",
+                    "Height": "1,76m",
+                    "Foot": "",
+                    "Joined": ""
+                },
+                {
+                    "Number": "-",
+                    "ID": "229374",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Nonato",
+                    "Position": "Left-Back",
+                    "Birth": "Feb 23, 1967 (28)",
+                    "Height": "1,69m",
+                    "Foot": "",
+                    "Joined": "Aug 1, 1990"
+                },
+                {
+                    "Number": "-",
+                    "ID": "223767",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "V\u00edtor",
+                    "Position": "Right-Back",
+                    "Birth": "Sep 28, 1972 (23)",
+                    "Height": "1,77m",
+                    "Foot": "",
+                    "Joined": "Jan 1, 1996"
+                },
+                {
+                    "Number": "-",
+                    "ID": "52901",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Ricardinho",
+                    "Position": "Defensive Midfield",
+                    "Birth": "Jun 24, 1976 (19)",
+                    "Height": "1,70m",
+                    "Foot": "",
+                    "Joined": "Jan 1, 2007"
+                },
+                {
+                    "Number": "-",
+                    "ID": "371573",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Donizete Oliveira",
+                    "Position": "Defensive Midfield",
+                    "Birth": "Feb 21, 1968 (27)",
+                    "Height": "1,76m",
+                    "Foot": "",
+                    "Joined": "Jan 1, 1999"
+                },
+                {
+                    "Number": "-",
+                    "ID": "732919",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Fabinho",
+                    "Position": "Defensive Midfield",
+                    "Birth": "Jan 12, 1970 (25)",
+                    "Height": "1,75m",
+                    "Foot": "right",
+                    "Joined": "Jul 20, 1995"
+                },
+                {
+                    "Number": "-",
+                    "ID": "310473",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Palhinha",
+                    "Position": "Central Midfield",
+                    "Birth": "Dec 14, 1967 (28)",
+                    "Height": "1,73m",
+                    "Foot": "",
+                    "Joined": "Jul 1, 1995"
+                },
+                {
+                    "Number": "-",
+                    "ID": "735274",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Tico",
+                    "Position": "Central Midfield",
+                    "Birth": "Dec 12, 1973 (22)",
+                    "Height": "-",
+                    "Foot": "",
+                    "Joined": ""
+                },
+                {
+                    "Number": "-",
+                    "ID": "735276",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Donizete Amorim",
+                    "Position": "Central Midfield",
+                    "Birth": "Jan 22, 1976 (19)",
+                    "Height": "1,72m",
+                    "Foot": "right",
+                    "Joined": "Jan 1, 1999"
+                },
+                {
+                    "Number": "-",
+                    "ID": "5883",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Alberto Valentim",
+                    "Position": "Right Midfield",
+                    "Birth": "Mar 22, 1975 (20)",
+                    "Height": "1,81m",
+                    "Foot": "right",
+                    "Joined": ""
+                },
+                {
+                    "Number": "-",
+                    "ID": "7609",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/7609-1607163854.jpg?lm=1",
+                    "Name": "Geovanni",
+                    "Position": "Attacking Midfield",
+                    "Birth": "Jan 11, 1980 (15)",
+                    "Height": "1,70m",
+                    "Foot": "right",
+                    "Joined": "Jul 1, 2006"
+                },
+                {
+                    "Number": "-",
+                    "ID": "30577",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/30577-1671633448.jpg?lm=1",
+                    "Name": "Roberto Palacios",
+                    "Position": "Attacking Midfield",
+                    "Birth": "Dec 28, 1972 (23)",
+                    "Height": "1,69m",
+                    "Foot": "right",
+                    "Joined": "Jul 1, 1997"
+                },
+                {
+                    "Number": "-",
+                    "ID": "36413",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Cleison",
+                    "Position": "Attacking Midfield",
+                    "Birth": "Mar 13, 1972 (23)",
+                    "Height": "1,80m",
+                    "Foot": "right",
+                    "Joined": "Jan 1, 1992"
+                },
+                {
+                    "Number": "-",
+                    "ID": "223139",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Eliv\u00e9lton",
+                    "Position": "Attacking Midfield",
+                    "Birth": "Jul 31, 1971 (24)",
+                    "Height": "1,72m",
+                    "Foot": "",
+                    "Joined": "Jan 1, 1997"
+                },
+                {
+                    "Number": "-",
+                    "ID": "735272",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Leo Mineiro",
+                    "Position": "Attacking Midfield",
+                    "Birth": "Nov 5, 1978 (17)",
+                    "Height": "1,80m",
+                    "Foot": "",
+                    "Joined": ""
+                },
+                {
+                    "Number": "-",
+                    "ID": "53220",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/53220-1726688412.jpg?lm=1",
+                    "Name": "Alex Mineiro",
+                    "Position": "Right Winger",
+                    "Birth": "Mar 15, 1975 (20)",
+                    "Height": "1,75m",
+                    "Foot": "right",
+                    "Joined": "Jan 1, 2000"
+                },
+                {
+                    "Number": "-",
+                    "ID": "26541",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/26541-1490099471.jpg?lm=1",
+                    "Name": "Bebeto",
+                    "Position": "Centre-Forward",
+                    "Birth": "Feb 16, 1964 (31)",
+                    "Height": "1,76m",
+                    "Foot": "both",
+                    "Joined": "Dec 1, 1997"
+                },
+                {
+                    "Number": "-",
+                    "ID": "37499",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/37499-1723139446.jpg?lm=1",
+                    "Name": "F\u00e1bio J\u00fanior",
+                    "Position": "Centre-Forward",
+                    "Birth": "Nov 22, 1977 (18)",
+                    "Height": "N/Am",
+                    "Foot": "N/A",
+                    "Joined": "Jan 13, 2002"
+                },
+                {
+                    "Number": "-",
+                    "ID": "55450",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/55450-1675351348.jpg?lm=1",
+                    "Name": "Da Silva",
+                    "Position": "Centre-Forward",
+                    "Birth": "Apr 12, 1976 (19)",
+                    "Height": "1,79m",
+                    "Foot": "",
+                    "Joined": "Jan 1, 1997"
+                },
+                {
+                    "Number": "-",
+                    "ID": "59504",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/59504-1729116347.jpg?lm=1",
+                    "Name": "Marcelo Ramos",
+                    "Position": "Centre-Forward",
+                    "Birth": "Jun 25, 1973 (22)",
+                    "Height": "1,78m",
+                    "Foot": "right",
+                    "Joined": "Jan 1, 2002"
+                },
+                {
+                    "Number": "-",
+                    "ID": "131835",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Jos\u00e9 Duarte",
+                    "Position": "Centre-Forward",
+                    "Birth": "Jul 6, 1980 (15)",
+                    "Height": "1,87m",
+                    "Foot": "",
+                    "Joined": ""
+                },
+                {
+                    "Number": "-",
+                    "ID": "204016",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/204016-1711597274.jpg?lm=1",
+                    "Name": "Donizete",
+                    "Position": "Centre-Forward",
+                    "Birth": "Oct 24, 1968 (27)",
+                    "Height": "1,80m",
+                    "Foot": "",
+                    "Joined": "Nov 1, 1997"
+                },
+                {
+                    "Number": "-",
+                    "ID": "227512",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/s_227512_123_2012_12_11_1.jpg?lm=1",
+                    "Name": "Reinaldo",
+                    "Position": "Centre-Forward",
+                    "Birth": "Jul 1, 1976 (19)",
+                    "Height": "1,79m",
+                    "Foot": "right",
+                    "Joined": "Jan 1, 1997"
+                },
+                {
+                    "Number": "-",
+                    "ID": "251300",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "D\u00e9",
+                    "Position": "Striker",
+                    "Birth": "Jan 2, 1976 (19)",
+                    "Height": "1,75m",
+                    "Foot": "",
+                    "Joined": ""
+                },
+                {
+                    "Number": "-",
+                    "ID": "366222",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "A\u00edlton",
+                    "Position": "Centre-Forward",
+                    "Birth": "Sep 1, 1968 (27)",
+                    "Height": "1,78m",
+                    "Foot": "",
+                    "Joined": "Jan 1, 1997"
+                },
+                {
+                    "Number": "-",
+                    "ID": "555751",
+                    "Image": "https://img.a.transfermarkt.technology/portrait/medium/default.jpg?lm=1",
+                    "Name": "Lu\u00eds Fernando",
+                    "Position": "Centre-Forward",
+                    "Birth": "Feb 22, 1964 (31)",
+                    "Height": "1,70m",
+                    "Foot": "",
+                    "Joined": "Jul 1, 1995"
+                }
+            ]
+        },
+        "General": {
+            "Squad Size": "35",
+            "Average age:": "25.4",
+            "Foreigners": "6",
+            "National team players": "3",
+            "Stadium": "Est\u00e1dio Governador Magalh\u00e3es Pinto",
+            "Manager ID": "2699",
+            "Info": {
+                "Address": "Cruzeiro Esporte Clube",
+                "Tel": "+55 31 34991020",
+                "Website": "www.cruzeiro.com.br",
+                "Founded": "Jan 2, 1921",
+                "Members": "86.544 (Score: Aug 29, 2024)"
+            }
+        }
+    },
+    "2462": {
+        "1996": {
+            "Players List": []
+        },
+        "General": {
+            "Squad Size": "36",
+            "Average age:": "29.4",
+            "Foreigners": "8",
+            "National team players": "3",
+            "Stadium": "Est\u00e1dio Jornalista M\u00e1rio Filho",
+            "Manager ID": "5405",
+            "Info": {
+                "Address": "Fluminense Football Club",
+                "Tel": "+55 21 25537240",
+                "Website": "www.fluminense.com.br",
+                "Founded": "Jul 21, 1902",
+                "Members": "66.537 (Score: Jan 3, 2024)"
+            }
+        }
+    }
+}

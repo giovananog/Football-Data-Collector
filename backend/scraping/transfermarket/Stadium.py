@@ -12,7 +12,8 @@ def stadium_data(url, list):
     data = response.text
     soup = BeautifulSoup(data, 'html.parser')
     
-    stadium_id = url.split('/')[-3]   
+    stadium_id = url.split('/')[-3] 
+    print(stadium_id)  
     
     if (stadium_id not in list):
         try:
@@ -84,8 +85,8 @@ def stadium_data(url, list):
             complete_address = "\n".join(full_address)
             stadium_info["address"] = complete_address
             list[stadium_id] = stadium_info
-            return stadium_id
             
         except Exception as e:
             print(f"Error (stadium): {e}")
    
+        return stadium_id

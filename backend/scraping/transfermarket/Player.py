@@ -14,7 +14,7 @@ def player_data(url, list, ano):
     player_id = url.split('/')[-5]
     
     if(player_id not in list[ano]):
-        player_id[ano][player_id] = {}
+        list[ano][player_id] = {}
         player_details = {}
 
         try:

@@ -1,1 +1,419 @@
-{}
+{
+    "2024": {
+        "4316187": {
+            "score": "2:1",
+            "fst_team": "Internacional",
+            "scnd_team": "EC Bahia",
+            "matchday": "1",
+            "fst_manager_id": "38808",
+            "scnd_manager_id": "50290",
+            "stadium_id": "6600",
+            "stadium_attendence": "22.045",
+            "referee_id": "43029",
+            "goals_list": [
+                {
+                    "Team ID": "10010",
+                    "Scorer Player ID": "875328",
+                    "Shot Type": "Right-footed shot",
+                    "Minute": 70,
+                    "Assist Player ID": "2023",
+                    "Assist Type": "Pass"
+                },
+                {
+                    "Team ID": "6600",
+                    "Scorer Player ID": "578872",
+                    "Shot Type": "Left-footed shot",
+                    "Minute": 72,
+                    "Assist Player ID": null,
+                    "Assist Type": null
+                },
+                {
+                    "Team ID": "6600",
+                    "Scorer Player ID": "674732",
+                    "Shot Type": "Header",
+                    "Minute": 83,
+                    "Assist Player ID": "2023",
+                    "Assist Type": "Corner"
+                }
+            ],
+            "substitutions_list": [
+                {
+                    "Minute": 46,
+                    "Type": "Tactical",
+                    "Substituted ID": "982549",
+                    "Substitution ID": "674732",
+                    "Team ID": "6600"
+                },
+                {
+                    "Minute": 46,
+                    "Type": "Tactical",
+                    "Substituted ID": "388266",
+                    "Substitution ID": "162812",
+                    "Team ID": "10010"
+                },
+                {
+                    "Minute": 46,
+                    "Type": "Tactical",
+                    "Substituted ID": "703322",
+                    "Substitution ID": "277335",
+                    "Team ID": "6600"
+                },
+                {
+                    "Minute": 46,
+                    "Type": "Tactical",
+                    "Substituted ID": "294873",
+                    "Substitution ID": "45319",
+                    "Team ID": "6600"
+                },
+                {
+                    "Minute": 64,
+                    "Type": "Tactical",
+                    "Substituted ID": "727751",
+                    "Substitution ID": "875328",
+                    "Team ID": "10010"
+                },
+                {
+                    "Minute": 76,
+                    "Type": "Tactical",
+                    "Substituted ID": "236202",
+                    "Substitution ID": "193782",
+                    "Team ID": "6600"
+                },
+                {
+                    "Minute": 80,
+                    "Type": "Tactical",
+                    "Substituted ID": "392487",
+                    "Substitution ID": "205041",
+                    "Team ID": "10010"
+                },
+                {
+                    "Minute": 80,
+                    "Type": "Tactical",
+                    "Substituted ID": "52896",
+                    "Substitution ID": "257740",
+                    "Team ID": "10010"
+                },
+                {
+                    "Minute": 83,
+                    "Type": "Tactical",
+                    "Substituted ID": "678439",
+                    "Substitution ID": "1095552",
+                    "Team ID": "6600"
+                }
+            ],
+            "cards_list": [
+                {
+                    "Team ID": "10010",
+                    "Player ID": "875328",
+                    "Card Type": "Yellow card",
+                    "Reason": "Foul",
+                    "Minute": 13
+                },
+                {
+                    "Team ID": "6600",
+                    "Player ID": "875328",
+                    "Card Type": "Yellow card",
+                    "Reason": "Foul",
+                    "Minute": 29
+                },
+                {
+                    "Team ID": "6600",
+                    "Player ID": "875328",
+                    "Card Type": "Yellow card",
+                    "Reason": "Dissent",
+                    "Minute": 41
+                },
+                {
+                    "Team ID": "6600",
+                    "Player ID": "875328",
+                    "Card Type": "Yellow card",
+                    "Reason": "Foul",
+                    "Minute": 88
+                },
+                {
+                    "Team ID": "6600",
+                    "Player ID": "875328",
+                    "Card Type": "Yellow card",
+                    "Reason": "Foul",
+                    "Minute": 90
+                },
+                {
+                    "Team ID": "10010",
+                    "Player ID": "875328",
+                    "Card Type": "Yellow card",
+                    "Reason": null,
+                    "Minute": 90
+                },
+                {
+                    "Team ID": "6600",
+                    "Player ID": "875328",
+                    "Card Type": "Yellow card",
+                    "Reason": "Dissent",
+                    "Minute": 90
+                },
+                {
+                    "Team ID": "10010",
+                    "Player ID": "875328",
+                    "Card Type": "Yellow card",
+                    "Reason": "Foul",
+                    "Minute": 90
+                }
+            ],
+            "players_id_list": [],
+            "match_stats": {
+                "team1": {
+                    "total_shots": "17",
+                    "shots_off": "7",
+                    "shots_saved": "3",
+                    "corners": "6",
+                    "free_kicks": "13",
+                    "fouls": "20",
+                    "offsides": "3"
+                },
+                "team2": {
+                    "total_shots": "9",
+                    "shots_off": "3",
+                    "shots_saved": "6",
+                    "corners": "3",
+                    "free_kicks": "19",
+                    "fouls": "13",
+                    "offsides": "2"
+                }
+            }
+        },
+        "4316196": {
+            "score": "1:1",
+            "fst_team": "Crici\u00fama EC",
+            "scnd_team": "Juventude",
+            "matchday": "1",
+            "fst_manager_id": "38445",
+            "scnd_manager_id": "32869",
+            "stadium_id": "7178",
+            "stadium_attendence": "12.408",
+            "referee_id": "42801",
+            "goals_list": [
+                {
+                    "Team ID": "7178",
+                    "Scorer Player ID": "404321",
+                    "Shot Type": "Left-footed shot",
+                    "Minute": 36,
+                    "Assist Player ID": "2023",
+                    "Assist Type": "Pass"
+                },
+                {
+                    "Team ID": "10492",
+                    "Scorer Player ID": "348769",
+                    "Shot Type": "Counter attack goal",
+                    "Minute": 64,
+                    "Assist Player ID": "2023",
+                    "Assist Type": "Pass"
+                }
+            ],
+            "substitutions_list": [
+                {
+                    "Minute": 18,
+                    "Type": "Injury",
+                    "Substituted ID": "164013",
+                    "Substitution ID": "535037",
+                    "Team ID": "10492"
+                },
+                {
+                    "Minute": 58,
+                    "Type": "Tactical",
+                    "Substituted ID": "37418",
+                    "Substitution ID": "75471",
+                    "Team ID": "7178"
+                },
+                {
+                    "Minute": 61,
+                    "Type": "Tactical",
+                    "Substituted ID": "29091",
+                    "Substitution ID": "813120",
+                    "Team ID": "10492"
+                },
+                {
+                    "Minute": 72,
+                    "Type": "Tactical",
+                    "Substituted ID": "816144",
+                    "Substitution ID": "800177",
+                    "Team ID": "10492"
+                },
+                {
+                    "Minute": 73,
+                    "Type": "Injury",
+                    "Substituted ID": "555310",
+                    "Substitution ID": "583064",
+                    "Team ID": "10492"
+                },
+                {
+                    "Minute": 78,
+                    "Type": "Tactical",
+                    "Substituted ID": "697845",
+                    "Substitution ID": "158333",
+                    "Team ID": "7178"
+                },
+                {
+                    "Minute": 78,
+                    "Type": "Tactical",
+                    "Substituted ID": "100091",
+                    "Substitution ID": "401533",
+                    "Team ID": "7178"
+                },
+                {
+                    "Minute": 86,
+                    "Type": "Tactical",
+                    "Substituted ID": "404321",
+                    "Substitution ID": "224481",
+                    "Team ID": "7178"
+                },
+                {
+                    "Minute": 86,
+                    "Type": "Tactical",
+                    "Substituted ID": "520470",
+                    "Substitution ID": "177690",
+                    "Team ID": "7178"
+                }
+            ],
+            "cards_list": [
+                {
+                    "Team ID": "10492",
+                    "Player ID": "404321",
+                    "Card Type": "Yellow card",
+                    "Reason": "Dissent",
+                    "Minute": 32
+                },
+                {
+                    "Team ID": "10492",
+                    "Player ID": "404321",
+                    "Card Type": "Yellow card",
+                    "Reason": "Dissent",
+                    "Minute": 33
+                },
+                {
+                    "Team ID": "10492",
+                    "Player ID": "404321",
+                    "Card Type": "Yellow card",
+                    "Reason": "Foul",
+                    "Minute": 45
+                },
+                {
+                    "Team ID": "7178",
+                    "Player ID": "404321",
+                    "Card Type": "Yellow card",
+                    "Reason": "Handball",
+                    "Minute": 59
+                },
+                {
+                    "Team ID": "10492",
+                    "Player ID": "404321",
+                    "Card Type": "Yellow card",
+                    "Reason": "Dissent",
+                    "Minute": 64
+                },
+                {
+                    "Team ID": "7178",
+                    "Player ID": "404321",
+                    "Card Type": "Yellow card",
+                    "Reason": "Foul",
+                    "Minute": 67
+                },
+                {
+                    "Team ID": "7178",
+                    "Player ID": "404321",
+                    "Card Type": "Yellow card",
+                    "Reason": "Foul",
+                    "Minute": 90
+                },
+                {
+                    "Team ID": "10492",
+                    "Player ID": "404321",
+                    "Card Type": "Yellow card",
+                    "Reason": "Time wasting",
+                    "Minute": 90
+                },
+                {
+                    "Team ID": "10492",
+                    "Player ID": "404321",
+                    "Card Type": "Yellow card",
+                    "Reason": "Dissent",
+                    "Minute": 90
+                },
+                {
+                    "Team ID": "7178",
+                    "Player ID": "404321",
+                    "Card Type": "Yellow card",
+                    "Reason": null,
+                    "Minute": 90
+                }
+            ],
+            "players_id_list": [
+                "375532",
+                "349420",
+                "188715",
+                "348769",
+                "697845",
+                "646432",
+                "348262",
+                "520470",
+                "100091",
+                "37418",
+                "404321",
+                "79242",
+                "323850",
+                "363174",
+                "788402",
+                "672292",
+                "555310",
+                "205179",
+                "29091",
+                "816144",
+                "102574",
+                "164013",
+                "598975",
+                "1215637",
+                "177690",
+                "158333",
+                "1027713",
+                "872452",
+                "891569",
+                "401533",
+                "75471",
+                "224481",
+                "1017149",
+                "738502",
+                "733453",
+                "1086632",
+                "809716",
+                "1096266",
+                "1226336",
+                "583064",
+                "892091",
+                "1053933",
+                "813120",
+                "800177",
+                "658665",
+                "535037"
+            ],
+            "match_stats": {
+                "team1": {
+                    "total_shots": "10",
+                    "shots_off": "4",
+                    "shots_saved": "3",
+                    "corners": "0",
+                    "free_kicks": "15",
+                    "fouls": "11",
+                    "offsides": "3"
+                },
+                "team2": {
+                    "total_shots": "15",
+                    "shots_off": "7",
+                    "shots_saved": "2",
+                    "corners": "4",
+                    "free_kicks": "9",
+                    "fouls": "15",
+                    "offsides": "4"
+                }
+            }
+        }
+    }
+}

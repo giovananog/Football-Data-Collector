@@ -1,1 +1,607 @@
-{}
+{
+    "43029": {
+        "date_of_birth_age": "Mar 19, 1987 (37)",
+        "citizenship": "Brazil",
+        "first_league_debut": "10.11.2022",
+        "Image": "https://img.a.transfermarkt.technology/portrait/header/default.jpg?lm=1",
+        "Matches": {
+            "0": [
+                {
+                    "Matchday": "37",
+                    "Date": "Nov 10, 2022",
+                    "Home Team": "Juventude",
+                    "Away Team": "Flamengo\u00a0\u00a0\n",
+                    "Result": "2:2",
+                    "Yellow Cards": "9",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "-"
+                }
+            ],
+            "1": [
+                {
+                    "Matchday": "1",
+                    "Date": "Apr 16, 2023",
+                    "Home Team": "Flamengo",
+                    "Away Team": "Coritiba FC\u00a0\u00a0\n",
+                    "Result": "3:0",
+                    "Yellow Cards": "6",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "1"
+                }
+            ],
+            "2": [
+                {
+                    "Matchday": "3",
+                    "Date": "Apr 30, 2023",
+                    "Home Team": "Internacional",
+                    "Away Team": "Goi\u00e1s\u00a0\u00a0\n",
+                    "Result": "1:0",
+                    "Yellow Cards": "5",
+                    "Scnd Yellow Cards": "1",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "-"
+                }
+            ],
+            "3": [
+                {
+                    "Matchday": "6",
+                    "Date": "May 14, 2023",
+                    "Home Team": "Vasco da Gama",
+                    "Away Team": "Santos\u00a0\u00a0\n",
+                    "Result": "0:1",
+                    "Yellow Cards": "5",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "-"
+                }
+            ],
+            "4": [
+                {
+                    "Matchday": "7",
+                    "Date": "May 20, 2023",
+                    "Home Team": "Coritiba FC",
+                    "Away Team": "Atl\u00e9tico-MG\u00a0\u00a0\n",
+                    "Result": "1:2",
+                    "Yellow Cards": "11",
+                    "Scnd Yellow Cards": "2",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "2"
+                }
+            ],
+            "5": [
+                {
+                    "Matchday": "9",
+                    "Date": "Jun 4, 2023",
+                    "Home Team": "Fluminense",
+                    "Away Team": "RB Bragantino\u00a0\u00a0\n",
+                    "Result": "2:1",
+                    "Yellow Cards": "7",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "-"
+                }
+            ],
+            "6": [
+                {
+                    "Matchday": "10",
+                    "Date": "Jun 10, 2023",
+                    "Home Team": "EC Bahia",
+                    "Away Team": "Cruzeiro\u00a0\u00a0\n",
+                    "Result": "2:2",
+                    "Yellow Cards": "6",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "-"
+                }
+            ],
+            "7": [
+                {
+                    "Matchday": "14",
+                    "Date": "Jul 8, 2023",
+                    "Home Team": "Atl\u00e9tico-MG",
+                    "Away Team": "Corinthians\u00a0\u00a0\n",
+                    "Result": "0:1",
+                    "Yellow Cards": "5",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "-"
+                }
+            ],
+            "8": [
+                {
+                    "Matchday": "15",
+                    "Date": "Jul 16, 2023",
+                    "Home Team": "Internacional",
+                    "Away Team": "Palmeiras\u00a0\u00a0\n",
+                    "Result": "0:0",
+                    "Yellow Cards": "4",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "-"
+                }
+            ],
+            "9": [
+                {
+                    "Matchday": "16",
+                    "Date": "Jul 22, 2023",
+                    "Home Team": "Flamengo",
+                    "Away Team": "Am\u00e9rica-MG\u00a0\u00a0\n",
+                    "Result": "1:1",
+                    "Yellow Cards": "6",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "-"
+                }
+            ],
+            "10": [
+                {
+                    "Matchday": "17",
+                    "Date": "Jul 29, 2023",
+                    "Home Team": "Fluminense",
+                    "Away Team": "Santos\u00a0\u00a0\n",
+                    "Result": "1:0",
+                    "Yellow Cards": "12",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "1"
+                }
+            ],
+            "11": [
+                {
+                    "Matchday": "18",
+                    "Date": "Aug 6, 2023",
+                    "Home Team": "S\u00e3o Paulo",
+                    "Away Team": "Atl\u00e9tico-MG\u00a0\u00a0\n",
+                    "Result": "0:2",
+                    "Yellow Cards": "11",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "1"
+                }
+            ],
+            "12": [
+                {
+                    "Matchday": "19",
+                    "Date": "Aug 13, 2023",
+                    "Home Team": "Gr\u00eamio",
+                    "Away Team": "Fluminense\u00a0\u00a0\n",
+                    "Result": "2:1",
+                    "Yellow Cards": "7",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "-"
+                }
+            ],
+            "13": [
+                {
+                    "Matchday": "21",
+                    "Date": "Aug 27, 2023",
+                    "Home Team": "Am\u00e9rica-MG",
+                    "Away Team": "S\u00e3o Paulo\u00a0\u00a0\n",
+                    "Result": "2:1",
+                    "Yellow Cards": "6",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "2",
+                    "Penalty Kicks": "1"
+                }
+            ],
+            "14": [
+                {
+                    "Matchday": "23",
+                    "Date": "Sep 15, 2023",
+                    "Home Team": "Fortaleza",
+                    "Away Team": "Corinthians\u00a0\u00a0\n",
+                    "Result": "2:1",
+                    "Yellow Cards": "3",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "1"
+                }
+            ],
+            "15": [
+                {
+                    "Matchday": "24",
+                    "Date": "Sep 24, 2023",
+                    "Home Team": "Atl\u00e9tico-MG",
+                    "Away Team": "Cuiab\u00e1-MT\u00a0\u00a0\n",
+                    "Result": "1:0",
+                    "Yellow Cards": "6",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "-"
+                }
+            ],
+            "16": [
+                {
+                    "Matchday": "26",
+                    "Date": "Oct 15, 2023",
+                    "Home Team": "Cuiab\u00e1-MT",
+                    "Away Team": "Cruzeiro\u00a0\u00a0\n",
+                    "Result": "0:0",
+                    "Yellow Cards": "3",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "-"
+                }
+            ],
+            "17": [
+                {
+                    "Matchday": "27",
+                    "Date": "Oct 19, 2023",
+                    "Home Team": "Goi\u00e1s",
+                    "Away Team": "S\u00e3o Paulo\u00a0\u00a0\n",
+                    "Result": "2:0",
+                    "Yellow Cards": "7",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "-"
+                }
+            ],
+            "18": [
+                {
+                    "Matchday": "28",
+                    "Date": "Oct 21, 2023",
+                    "Home Team": "EC Bahia",
+                    "Away Team": "Fortaleza\u00a0\u00a0\n",
+                    "Result": "2:0",
+                    "Yellow Cards": "10",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "-"
+                }
+            ],
+            "19": [
+                {
+                    "Matchday": "29",
+                    "Date": "Oct 26, 2023",
+                    "Home Team": "Gr\u00eamio",
+                    "Away Team": "Flamengo\u00a0\u00a0\n",
+                    "Result": "3:2",
+                    "Yellow Cards": "7",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "-"
+                }
+            ],
+            "20": [
+                {
+                    "Matchday": "30",
+                    "Date": "Oct 29, 2023",
+                    "Home Team": "Palmeiras",
+                    "Away Team": "EC Bahia\u00a0\u00a0\n",
+                    "Result": "1:0",
+                    "Yellow Cards": "4",
+                    "Scnd Yellow Cards": "1",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "-"
+                }
+            ],
+            "21": [
+                {
+                    "Matchday": "31",
+                    "Date": "Nov 2, 2023",
+                    "Home Team": "Goi\u00e1s",
+                    "Away Team": "RB Bragantino\u00a0\u00a0\n",
+                    "Result": "0:2",
+                    "Yellow Cards": "6",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "-"
+                }
+            ],
+            "22": [
+                {
+                    "Matchday": "32",
+                    "Date": "Nov 4, 2023",
+                    "Home Team": "Am\u00e9rica-MG",
+                    "Away Team": "Atl\u00e9tico-MG\u00a0\u00a0\n",
+                    "Result": "1:1",
+                    "Yellow Cards": "4",
+                    "Scnd Yellow Cards": "2",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "-"
+                }
+            ],
+            "23": [
+                {
+                    "Matchday": "33",
+                    "Date": "Nov 8, 2023",
+                    "Home Team": "Internacional",
+                    "Away Team": "Fluminense\u00a0\u00a0\n",
+                    "Result": "0:0",
+                    "Yellow Cards": "4",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "-"
+                }
+            ],
+            "24": [
+                {
+                    "Matchday": "33",
+                    "Date": "Nov 9, 2023",
+                    "Home Team": "Flamengo",
+                    "Away Team": "Palmeiras\u00a0\u00a0\n",
+                    "Result": "3:0",
+                    "Yellow Cards": "2",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "1",
+                    "Penalty Kicks": "-"
+                }
+            ],
+            "25": [
+                {
+                    "Matchday": "34",
+                    "Date": "Nov 12, 2023",
+                    "Home Team": "Gr\u00eamio",
+                    "Away Team": "Corinthians\u00a0\u00a0\n",
+                    "Result": "0:1",
+                    "Yellow Cards": "8",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "2",
+                    "Penalty Kicks": "-"
+                }
+            ],
+            "26": [
+                {
+                    "Matchday": "35",
+                    "Date": "Nov 26, 2023",
+                    "Home Team": "Am\u00e9rica-MG",
+                    "Away Team": "Flamengo\u00a0\u00a0\n",
+                    "Result": "0:3",
+                    "Yellow Cards": "8",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "-"
+                }
+            ],
+            "27": [
+                {
+                    "Matchday": "36",
+                    "Date": "Nov 30, 2023",
+                    "Home Team": "Coritiba FC",
+                    "Away Team": "Botafogo\u00a0\u00a0\n",
+                    "Result": "1:1",
+                    "Yellow Cards": "5",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "2",
+                    "Penalty Kicks": "1"
+                }
+            ],
+            "28": [
+                {
+                    "Matchday": "37",
+                    "Date": "Dec 3, 2023",
+                    "Home Team": "Flamengo",
+                    "Away Team": "Cuiab\u00e1-MT\u00a0\u00a0\n",
+                    "Result": "2:1",
+                    "Yellow Cards": "2",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "1"
+                }
+            ],
+            "29": [
+                {
+                    "Matchday": "1",
+                    "Date": "Apr 13, 2024",
+                    "Home Team": "Internacional",
+                    "Away Team": "EC Bahia\u00a0\u00a0\n",
+                    "Result": "2:1",
+                    "Yellow Cards": "8",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "-"
+                }
+            ],
+            "30": [
+                {
+                    "Matchday": "3",
+                    "Date": "Apr 21, 2024",
+                    "Home Team": "Palmeiras",
+                    "Away Team": "Flamengo\u00a0\u00a0\n",
+                    "Result": "0:0",
+                    "Yellow Cards": "9",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "-"
+                }
+            ],
+            "31": [
+                {
+                    "Matchday": "6",
+                    "Date": "May 12, 2024",
+                    "Home Team": "Atl\u00e9tico-GO",
+                    "Away Team": "Cruzeiro\u00a0\u00a0\n",
+                    "Result": "0:1",
+                    "Yellow Cards": "3",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "-"
+                }
+            ],
+            "32": [
+                {
+                    "Matchday": "9",
+                    "Date": "Jun 18, 2024",
+                    "Home Team": "Atl\u00e9tico-MG",
+                    "Away Team": "Palmeiras\u00a0\u00a0\n",
+                    "Result": "0:4",
+                    "Yellow Cards": "7",
+                    "Scnd Yellow Cards": "1",
+                    "Red Cards": "1",
+                    "Penalty Kicks": "1"
+                }
+            ],
+            "33": [
+                {
+                    "Matchday": "13",
+                    "Date": "Jun 30, 2024",
+                    "Home Team": "Fortaleza",
+                    "Away Team": "Juventude\u00a0\u00a0\n",
+                    "Result": "2:1",
+                    "Yellow Cards": "2",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "1"
+                }
+            ],
+            "34": [
+                {
+                    "Matchday": "15",
+                    "Date": "Jul 7, 2024",
+                    "Home Team": "Flamengo",
+                    "Away Team": "Cuiab\u00e1-MT\u00a0\u00a0\n",
+                    "Result": "1:1",
+                    "Yellow Cards": "4",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "-"
+                }
+            ],
+            "35": [
+                {
+                    "Matchday": "25",
+                    "Date": "Aug 31, 2024",
+                    "Home Team": "Cuiab\u00e1-MT",
+                    "Away Team": "Crici\u00fama EC\u00a0\u00a0\n",
+                    "Result": "2:1",
+                    "Yellow Cards": "4",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "-"
+                }
+            ],
+            "36": [
+                {
+                    "Matchday": "16",
+                    "Date": "Sep 26, 2024",
+                    "Home Team": "RB Bragantino",
+                    "Away Team": "Internacional\u00a0\u00a0\n",
+                    "Result": "2:2",
+                    "Yellow Cards": "5",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "-"
+                }
+            ],
+            "37": [
+                {
+                    "Matchday": "31",
+                    "Date": "Oct 26, 2024",
+                    "Home Team": "Athletico-PR",
+                    "Away Team": "Cruzeiro\u00a0\u00a0\n",
+                    "Result": "3:0",
+                    "Yellow Cards": "3",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "1",
+                    "Penalty Kicks": "-"
+                }
+            ],
+            "38": []
+        },
+        "Name": "Rodrigo Jose Pereira de Lima"
+    },
+    "42801": {
+        "date_of_birth_age": "Dec 19, 1989 (34)",
+        "citizenship": "Brazil",
+        "first_league_debut": "13.04.2024",
+        "Image": "https://img.a.transfermarkt.technology/portrait/header/default.jpg?lm=1",
+        "Matches": {
+            "0": [
+                {
+                    "Matchday": "1",
+                    "Date": "Apr 13, 2024",
+                    "Home Team": "Crici\u00fama EC",
+                    "Away Team": "Juventude\u00a0\u00a0\n",
+                    "Result": "1:1",
+                    "Yellow Cards": "10",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "-"
+                }
+            ],
+            "1": [
+                {
+                    "Matchday": "3",
+                    "Date": "Apr 20, 2024",
+                    "Home Team": "Gr\u00eamio",
+                    "Away Team": "Cuiab\u00e1-MT\u00a0\u00a0\n",
+                    "Result": "1:0",
+                    "Yellow Cards": "6",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "-"
+                }
+            ],
+            "2": [
+                {
+                    "Matchday": "11",
+                    "Date": "Jun 22, 2024",
+                    "Home Team": "Cuiab\u00e1-MT",
+                    "Away Team": "Atl\u00e9tico-GO\u00a0\u00a0\n",
+                    "Result": "0:0",
+                    "Yellow Cards": "4",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "-"
+                }
+            ],
+            "3": [
+                {
+                    "Matchday": "12",
+                    "Date": "Jun 28, 2024",
+                    "Home Team": "S\u00e3o Paulo",
+                    "Away Team": "Crici\u00fama EC\u00a0\u00a0\n",
+                    "Result": "2:1",
+                    "Yellow Cards": "6",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "-"
+                }
+            ],
+            "4": [
+                {
+                    "Matchday": "15",
+                    "Date": "Jul 7, 2024",
+                    "Home Team": "S\u00e3o Paulo",
+                    "Away Team": "RB Bragantino\u00a0\u00a0\n",
+                    "Result": "2:0",
+                    "Yellow Cards": "4",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "1"
+                }
+            ],
+            "5": [
+                {
+                    "Matchday": "22",
+                    "Date": "Aug 11, 2024",
+                    "Home Team": "Cuiab\u00e1-MT",
+                    "Away Team": "Gr\u00eamio\u00a0\u00a0\n",
+                    "Result": "1:3",
+                    "Yellow Cards": "3",
+                    "Scnd Yellow Cards": "-",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "-"
+                }
+            ],
+            "6": [
+                {
+                    "Matchday": "24",
+                    "Date": "Aug 24, 2024",
+                    "Home Team": "Atl\u00e9tico-GO",
+                    "Away Team": "Juventude\u00a0\u00a0\n",
+                    "Result": "2:1",
+                    "Yellow Cards": "9",
+                    "Scnd Yellow Cards": "2",
+                    "Red Cards": "-",
+                    "Penalty Kicks": "1"
+                }
+            ],
+            "7": []
+        },
+        "Name": "Bruno Pereira Vasconcelos"
+    }
+}

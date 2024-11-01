@@ -11,7 +11,7 @@ def teams_data(url):
     try:
         
         try:
-            with open("data/teams.json", "r") as file:
+            with open("../data/teams.json", "r") as file:
                 data_dict = json.load(file)
         except FileNotFoundError:
             data_dict = {}
@@ -117,7 +117,7 @@ def teams_data(url):
                 
             data_dict[team_id][season]["Players List"] = players_data
         
-        with open("data/teams.json", "w") as file:
+        with open("../data/teams.json", "w") as file:
             json.dump(data_dict, file, indent=4)
             
     except Exception as e:

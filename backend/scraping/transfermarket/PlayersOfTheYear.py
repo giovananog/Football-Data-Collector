@@ -42,7 +42,7 @@ def players_of_the_year():
                     id = soup.select('.hauptlink a')[0].get_attribute_list('href')[0].split('/')[-1]
                     image = soup.select('.bilderrahmen-fixed')[0].get_attribute_list('src')[0]
                     position = soup.select('.inline-table td')[2].get_text()
-                    team_image = soup.select('.zentriert a img')[0].get_attribute_list('src')[0]
+                    team_image = soup.select('.zentriert a')[0].get_attribute_list('href')[0].split('/')[-3]
                     nat = soup.select('#yw1 > table > tbody > tr > td:nth-child(4) > img')[0].get_attribute_list('src')[0]
                 except: 
                     continue

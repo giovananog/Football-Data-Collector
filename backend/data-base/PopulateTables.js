@@ -45,7 +45,7 @@ async function populateTablePlayerOfTheYear() {
     }
 }
 
-const jsonDataTopGoalscorers = JSON.parse(fs.readFileSync('../scraping/transfermarket/data/top_goalscorers_dict.json', 'utf8'));
+const jsonDataTopGoalscorers = JSON.parse(fs.readFileSync('../scraping/transfermarket/data/top_goalscorers.json', 'utf8'));
 
 async function populateTableTopGoalscorers() {
     try {
@@ -79,7 +79,7 @@ async function populateTableTopGoalscorers() {
     }
 }
 
-const jsonDataTables = JSON.parse(fs.readFileSync('../scraping/transfermarket/data/table_data.json', 'utf8'));
+const jsonDataTables = JSON.parse(fs.readFileSync('../scraping/transfermarket/data/tables.json', 'utf8'));
 
 async function populateTableTables() {
     try {
@@ -111,7 +111,7 @@ async function populateTableTables() {
 }
 
 
-const jsonDataStadiums = JSON.parse(fs.readFileSync('../scraping/stadiums_dict.json', 'utf8'));
+const jsonDataStadiums = JSON.parse(fs.readFileSync('../scraping/transfermarket/data/stadiums.json', 'utf8'));
 
 async function populateTableStadiums() {
     try {
@@ -134,7 +134,7 @@ async function populateTableStadiums() {
     }
 }
 
-const jsonDataStadiumsDetails = JSON.parse(fs.readFileSync('../scraping/stadiums_dict.json', 'utf8'));
+const jsonDataStadiumsDetails = JSON.parse(fs.readFileSync('../scraping/transfermarket/data/stadiums.json', 'utf8'));
 
 async function populateTableStadiumsDetails() {
     try {
@@ -169,7 +169,7 @@ async function populateTableStadiumsDetails() {
     }
 }
 
-const jsonDataCoach = JSON.parse(fs.readFileSync('../scraping/managers.json', 'utf8'));
+const jsonDataCoach = JSON.parse(fs.readFileSync('../scraping/transfermarket/data/managers.json', 'utf8'));
 
 async function populateTableCoach() {
     try {
@@ -199,7 +199,7 @@ async function populateTableCoach() {
     }
 }
 
-const jsonDataCoachReferee = JSON.parse(fs.readFileSync('../scraping/referees.json', 'utf8'));
+const jsonDataCoachReferee = JSON.parse(fs.readFileSync('../scraping/transfermarket/data/managers.json', 'utf8'));
 
 async function populateTableReferee() {
     try {
@@ -226,7 +226,7 @@ async function populateTableReferee() {
     }
 }
 
-const jsonDataPlayer = JSON.parse(fs.readFileSync('../scraping/referees.json', 'utf8'));
+const jsonDataPlayer = JSON.parse(fs.readFileSync('../scraping/transfermarket/data/players.json', 'utf8'));
 
 async function populateTablePlayer() {
     try {
@@ -254,7 +254,7 @@ async function populateTablePlayer() {
     }
 }
 
-const jsonDataTeam = JSON.parse(fs.readFileSync('../scraping/referees.json', 'utf8'));
+const jsonDataTeam = JSON.parse(fs.readFileSync('../scraping/transfermarket/data/teams.json', 'utf8'));
 
 async function populateTableTeam() {
     try {
@@ -285,7 +285,7 @@ async function populateTableTeam() {
     }
 }
 
-const jsonDataMatch = JSON.parse(fs.readFileSync('../scraping/referees.json', 'utf8'));
+const jsonDataMatch = JSON.parse(fs.readFileSync('../scraping/transfermarket/data/matches.json', 'utf8'));
 
 async function populateTableMatch() {
     try {

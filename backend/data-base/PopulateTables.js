@@ -209,12 +209,40 @@ async function populateTableReferee() {
                 VALUES ($1, $2, $3, $4, $5, $6, $7))`,
                 [
                     year,
-                    playerInfo["Name"], 
-                    playerInfo["date_of_birth"], 
-                    playerInfo["citizenship"],
-                    playerInfo["first_league_debut"],
-                    playerInfo["Image"],
-                    playerInfo["Matches"]
+                    cleanData(playerInfo["Name"]), 
+                    cleanData(playerInfo["date_of_birth"]), 
+                    cleanData(playerInfo["citizenship"]),
+                    cleanData(playerInfo["first_league_debut"]),
+                    cleanData(playerInfo["Image"]),
+                    cleanData(playerInfo["Matches"])
+                ]
+            );
+        }
+        console.log('Dados inseridos com sucesso!');
+    } catch (err) {
+        console.error('Erro ao inserir dados:', err);
+    } finally {
+        await pool.end(); 
+    }
+}
+
+const jsonDataPlayer = JSON.parse(fs.readFileSync('../scraping/referees.json', 'utf8'));
+
+async function populateTablePlayer() {
+    try {
+        for (const [year, playerInfo] of Object.entries(jsonDataStadiumsDetails)) {
+            await pool.query(`
+                INSERT INTO top_goalscorers (id, age, city, country, height, position, image, name)
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
+                [
+                    year,
+                    cleanData(playerInfo["Age"]), 
+                    cleanData(playerInfo["City"]), 
+                    cleanData(playerInfo["Country"]),
+                    cleanData(playerInfo["Height"]),
+                    cleanData(playerInfo["Position"]),
+                    cleanData(playerInfo["Image"]),
+                    cleanData(playerInfo["Name"])
                 ]
             );
         }

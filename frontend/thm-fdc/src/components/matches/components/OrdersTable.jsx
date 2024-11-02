@@ -10,21 +10,17 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import Avatar from '@mui/material/Avatar';
 
 // project import
-import Dot from '../../general/components/Dot';
+import Dot from '../../home/views/components/Dot';
 
-function createData(data, time1, score, stadium, status, team2) {
-  return { data, time1, score, stadium, status, team2};
+function createData(time1, score, team2) {
+  return { time1, score, team2 };
 }
 
 const rows = [
-  createData("20/10/2024 - 18:00-19:30", 'Palmeiras', "3x2", "Morumbi", 0, "Flamengo"),
-  createData("20/10/2024 - 18:00-19:30", 'Palmeiras', "3x2", "Morumbi", 0, "Flamengo"),
-  createData("20/10/2024 - 18:00-19:30", 'Palmeiras', "3x2", "Morumbi", 1, "Flamengo"),
-  createData("20/10/2024 - 18:00-19:30", 'Palmeiras', "3x2", "Morumbi", 1, "Flamengo"),
-  createData("20/10/2024 - 18:00-19:30", 'Palmeiras', "3x2", "Morumbi", 1, "Flamengo"),
-  createData("20/10/2024 - 18:00-19:30", 'Palmeiras', "3x2", "Morumbi", 2, "Flamengo"),
+  createData('Palmeiras', "3x2", "Flamengo"),
 ];
 
 function descendingComparator(a, b, orderBy) {
@@ -58,50 +54,31 @@ const headCells = [
     id: 'data',
     align: 'center',
     disablePadding: false,
-    label: 'Data - Horário'
+    label: "Morumbi"
+  },
+  {
+    id: 'hora',
+    align: 'center',
+    disablePadding: false,
+    label: ""
   },
   {
     id: 'time1',
     align: 'center',
     disablePadding: false,
-    label: 'Time casa'
+    label: '20/10 - 18:00'
   },
-  {
-    id: 'score',
-    align: 'center',
-    disablePadding: false,
-    label: 'Score'
-  },
-  {
-    id: 'team2',
-    align: 'center',
-    disablePadding: false,
-
-    label: 'Time visitante'
-  },
-  {
-    id: 'status',
-    align: 'center',
-    disablePadding: false,
-    label: 'Status'
-  },
-  {
-    id: 'stadium',
-    align: 'center',
-    disablePadding: false,
-    label: 'Estádio'
-  }
 ];
 
 // ==============================|| ORDER TABLE - HEADER ||============================== //
 
 function OrderTableHead({ order, orderBy }) {
   return (
-    <TableHead bgcolor="#eee">
-      <TableRow>
+    <TableHead bgcolor="#fff" border='none'>
+      <TableRow border='none'>
         {headCells.map((headCell) => (
           <TableCell
-            sx= {{ fontWeight:"bold" }}
+            sx={{ fontWeight: "bold" }}
             key={headCell.id}
             align={headCell.align}
             padding={headCell.disablePadding ? 'none' : 'normal'}
@@ -173,20 +150,23 @@ export default function OrderTable() {
                 <TableRow
                   hover
                   role="checkbox"
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                  sx={{ '& td, & th': { border: 0, padding: '0.5rem' }, border: 'none' }} // Ajuste o padding aqui
                   tabIndex={-1}
                   key={row.data}
                 >
-                  <TableCell align="center" id={labelId} scope="row">
-                    {row.data}
+                  <TableCell align="center" width="14%">
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                      <Avatar sx={{ color: 'success.main', bgcolor: '#fff', fontSize: '1em' }}></Avatar>
+                    </div>
+                    {row.time1}
                   </TableCell>
-                  <TableCell align="center">{row.time1}</TableCell>
-                  <TableCell align="center">{row.score}</TableCell>
-                  <TableCell align="center"> {row.team2} </TableCell>
-                  <TableCell align="center">
-                    <OrderStatus status={row.status} />
+                  <TableCell align="center" width="6%">{row.score}</TableCell>
+                  <TableCell align="center" width="14%">
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                      <Avatar sx={{ color: 'success.main', bgcolor: '#fff', fontSize: '1em' }}></Avatar>
+                    </div>
+                    {row.team2}
                   </TableCell>
-                  <TableCell align="center">{row.stadium} </TableCell>
                 </TableRow>
               );
             })}

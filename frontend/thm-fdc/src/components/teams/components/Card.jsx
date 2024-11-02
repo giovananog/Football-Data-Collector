@@ -7,11 +7,11 @@ import CardActionArea from '@mui/material/CardActionArea';
 
 export default function MultiActionAreaCard() {
   return (
-    <Card sx={{ maxWidth: 400 }}>
+    <Card sx={{ maxWidth: 200 }}>
       <CardActionArea>
         <CardMedia
           component="img"
-          height="240"
+          height="140"
           image="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Palmeiras_logo.svg/800px-Palmeiras_logo.svg.png"
           alt="green iguana"
         />

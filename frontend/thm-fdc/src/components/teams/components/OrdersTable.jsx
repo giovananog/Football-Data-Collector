@@ -10,19 +10,18 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import Avatar from '@mui/material/Avatar';
 
-// third-party
-import { NumericFormat } from 'react-number-format';
 
 // project import
-import Dot from './Dot';
+import Dot from '../../home/views/components/Dot';
 
-function createData(position, team, status) {
-  return { position, team, status};
+function createData(time1, score, team2) {
+  return { time1, score, team2};
 }
 
 const rows = [
-  createData('1°', "Flamengo", 2),
+  createData('Palmeiras', "3x2", "Flamengo"),
 ];
 
 function descendingComparator(a, b, orderBy) {
@@ -53,22 +52,22 @@ function stableSort(array, comparator) {
 
 const headCells = [
   {
-    id: 'position',
+    id: 'data',
     align: 'center',
     disablePadding: false,
-    label: 'Posição'
+    label: "Morumbi"
   },
   {
-    id: 'team',
+    id: 'hora',
     align: 'center',
     disablePadding: false,
-    label: 'Time'
+    label: ""
   },
   {
-    id: 'status',
+    id: 'time1',
     align: 'center',
     disablePadding: false,
-    label: 'Últimas Partidas'
+    label: '20/10 - 18:00'
   },
 ];
 
@@ -76,10 +75,11 @@ const headCells = [
 
 function OrderTableHead({ order, orderBy }) {
   return (
-    <TableHead>
-      <TableRow>
+    <TableHead bgcolor="#fff" border='none'>
+      <TableRow  border='none'>
         {headCells.map((headCell) => (
           <TableCell
+            sx= {{ fontWeight:"bold" }}
             key={headCell.id}
             align={headCell.align}
             padding={headCell.disablePadding ? 'none' : 'normal'}
@@ -118,10 +118,7 @@ function OrderStatus({ status }) {
   return (
     <Stack direction="row" spacing={1} alignItems="center" justifyContent="center">
       <Dot color={color} />
-      <Dot color={color} />
-      <Dot color={color} />
-      <Dot color={color} />
-      <Dot color={color} />
+      <Typography>{title}</Typography>
     </Stack>
   );
 }
@@ -130,7 +127,7 @@ function OrderStatus({ status }) {
 
 export default function OrderTable() {
   const order = 'asc';
-  const orderBy = 'team';
+  const orderBy = 'data';
 
   return (
     <Box>
@@ -154,19 +151,34 @@ export default function OrderTable() {
                 <TableRow
                   hover
                   role="checkbox"
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                  sx={{ '& td, & th': { border: 0 }, border: 'none' }}
                   tabIndex={-1}
-                  key={row.team}
+                  key={row.data}
                 >
-                  <TableCell align='center' component="th" id={labelId} scope="row">
-                     {row.position}
+                  {/* <TableCell align="center" width="10%" id={labelId} scope="row">
+                    {row.data}
                   </TableCell>
-                  <TableCell align='center' component="th" id={labelId} scope="row">
-                    <Link color="secondary"> {row.team}</Link>
-                  </TableCell>
-                  <TableCell>
+                  <TableCell align="center" width="10%">
+                    {row.hora}
+                  </TableCell> */}
+                  <TableCell align="center" width="14%">
+                  <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                    {/* <Link color="secondary"> {row.time1}</Link> */}
+                    <Avatar sx={{ color: 'success.main', bgcolor: '#fff', fontSize: '1em' }}></Avatar>
+                  </div>{row.time1}</TableCell>
+                  {/* </div></TableCell> */}
+                  <TableCell align="center"  width="6%">{row.score}</TableCell>
+                  <TableCell align="center"  width="14%"> 
+                  <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                    <Avatar sx={{ color: 'success.main', bgcolor: '#fff', fontSize: '1em' }}></Avatar>
+                    {/* <Link color="secondary"> {row.team2}</Link> */}
+                  </div>{row.team2}
+                  {/* </div> */}
+                   </TableCell>
+                  {/* <TableCell  width="14%" align="center">
                     <OrderStatus status={row.status} />
                   </TableCell>
+                  <TableCell align="center" width="4%">{row.stadium} </TableCell> */}
                 </TableRow>
               );
             })}

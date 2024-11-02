@@ -7,6 +7,7 @@ import ProductCTA from './ProductCTA';
 import Cards from './Cards';
 import MaxWidthDialog from "./components/Dialog"
 import DialogCard from "./components/DialogCard"
+import Tables from "./Tables";
 
 function Team() {
 
@@ -15,6 +16,7 @@ function Team() {
 
       <Header />
       <ProductCTA />
+      <Tables />
       <Dashboard />
       <Cards />
       <AppFooter />

@@ -6,6 +6,9 @@ import Dashboard from './Dashboard'
 import ProductCTA from './ProductCTA';
 import Cards from './Cards';
 import Matches from './Matches';
+import Table from './Table'
+import OrdersTable from './components/OrdersTable'
+import Player from './Player'
 
 function Teams() {
 
@@ -14,9 +17,12 @@ function Teams() {
 
       <Header />
       <ProductCTA />
-      <Cards />
-      <Matches />
-      <Dashboard />
+      <Table />
+      <Player />
+      {/* <OrdersTable /> */}
+      {/* <Cards /> */}
+      {/* <Matches /> */}
+      {/* <Dashboard /> */}
       <AppFooter />
       
     </div>

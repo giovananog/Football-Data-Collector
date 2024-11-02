@@ -1,20 +1,20 @@
 import { React } from "react";
 import Header from "../header/Header";
-import { Link } from "@mui/material";
 import AppFooter from '../footer/AppFooter';
-import Dashboard from './Dashboard'
+import ProductCTA from './ProductCTA';
+import Tables from "./Tables";
 
-function Competitions() {
+function Team() {
 
   return (
     <div>
 
       <Header />
-      <Dashboard />
+      <ProductCTA />
+      <Tables />
       <AppFooter />
-      
     </div>
   );
 }
 
-export default Competitions;
+export default Team;

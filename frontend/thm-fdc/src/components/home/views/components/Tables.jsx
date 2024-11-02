@@ -2,7 +2,7 @@
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import OrdersTable from './OrdersTable';
-import MainCard from '../../../general/components/MainCard';
+import MainCard from '../../../match/components/MainCard';
 
 
 // ==============================|| DASHBOARD - DEFAULT ||============================== //
@@ -21,7 +21,7 @@ export default function Dashboard() {
             </Grid>
             <Grid item />
           </Grid>
-          <MainCard sx={{ mt: 2 }} content={false}>
+          <MainCard sx={{ mt: 2, border:'none' }} content={false}>
             <OrdersTable />
           </MainCard>
         </Grid>
@@ -32,7 +32,7 @@ export default function Dashboard() {
             </Grid>
             <Grid item />
           </Grid>
-          <MainCard sx={{ mt: 2 }} content={false}>
+          <MainCard sx={{ mt: 2, border:'none' }} content={false}>
             <OrdersTable />
           </MainCard>
         </Grid>
@@ -43,7 +43,7 @@ export default function Dashboard() {
             </Grid>
             <Grid item />
           </Grid>
-          <MainCard sx={{ mt: 2 }} content={false}>
+          <MainCard sx={{ mt: 2, border:'none' }} content={false}>
             <OrdersTable />
           </MainCard>
         </Grid>

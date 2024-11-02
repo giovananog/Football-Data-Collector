@@ -1,112 +1,66 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import Container from '@mui/material/Container';
-import Typography from '../home/views/components/Typography';
-import TextField from '../home/views/components/TextField';
-import Snackbar from './components/Snackbar';
-import Button from '../home/views/components/Button';
+// TeamInfo.js
+import React from 'react';
+import { Box, Card, CardContent, Typography, Grid } from '@mui/material';
+import StarIcon from '@mui/icons-material/Star';
+import StadiumIcon from '@mui/icons-material/Stadium';
 
-function ProductCTA() {
-  const [open, setOpen] = React.useState(false);
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
+const TeamInfo = () => {
   return (
-    <Container component="section" sx={{ mt: 10, display: 'flex' }}>
-      <Grid container>
-        <Grid item xs={12} md={6} sx={{ zIndex: 1 }}>
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              bgcolor: '#177D49',
-              py: 8,
-              px: 3,
-            }}
-          >
-            <Box component="form" onSubmit={handleSubmit} sx={{ maxWidth: 400 }}>
-              <Typography variant="h2" component="h2" gutterBottom>
-                Campeonato 2023
-              </Typography>
-              <Typography variant="h5">
-                Taste the holidays of the everyday close to home.
-              </Typography>
-              <br/>
-              <Button
-                type="submit"
-                color="primary"
-                variant="contained"
-                sx={{ width: '32%', backgroundColor: 'black', marginRight: "5px" }}
-              >
-                Times
-              </Button>
-              <Button
-                type="submit"
-                color="primary"
-                variant="contained"
-                sx={{ width: '32%', backgroundColor: 'black', marginRight: "5px" }}
-              >
-                Partidas
-              </Button>
-              <Button
-                type="submit"
-                color="primary"
-                variant="contained"
-                sx={{ width: '32%', backgroundColor: 'black' }}
-              >
-                Estatísticas
-              </Button>
-            </Box>
-          </Box>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          md={6}
-          sx={{ display: { md: 'block', xs: 'none' }, position: 'relative' }}
-        >
-          <Box
-            sx={{
-              position: 'absolute',
-              top: -67,
-              left: -67,
-              right: 0,
-              bottom: 0,
-              width: '100%',
-              background: 'url(/static/themes/onepirate/productCTAImageDots.png)',
-            }}
-          />
+    <Card sx={{ width: "70%", margin: 'auto', padding: 3, boxShadow: 3, marginTop: 3 }}>
+      <CardContent>
+        <Box display="flex" alignItems="flex-start">
+          {/* Imagem do time à esquerda */}
           <Box
             component="img"
-            src="https://s2-cbn.glbimg.com/vosaOyGQg2Pw2n3rDMwNSWgwALY=/0x0:1024x683/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_d975fad146a14bbfad9e763717b09688/internal_photos/bs/2023/u/b/eNJ415TTqgxoAy7yAZtQ/000-34779f8.jpg"
-            alt="call to action"
-            sx={{
-              position: 'absolute',
-              top: -28,
-              left: -28,
-              right: 0,
-              bottom: 0,
-              width: '100%',
-              maxWidth: 600,
-            }}
+            src="https://tmssl.akamaized.net//images/logo/header/bra1.png?lm=1713364599"
+            alt="Guarani Futebol Clube"
+            sx={{ width: 200, height: 140, marginRight: 4, objectFit: 'contain' }}
           />
-        </Grid>
-      </Grid>
-      <Snackbar
-        open={open}
-        closeFunc={handleClose}
-        message="We will send you our best offers, once a week."
-      />
-    </Container>
-  );
-}
 
-export default ProductCTA;
+          {/* Informações do time à direita */}
+          <Box>
+            {/* Nome do Time */}
+            <Typography variant="h4" component="div" fontWeight="bold" marginBottom={10}>
+              Campeonato Brasileiro Série A - 2023
+            </Typography>
+
+            {/* Informações do Time */}
+            <Grid container spacing={1}>
+              <Grid item xs={4}>
+                <Typography variant="subtitle1" fontWeight="bold">Squad size:</Typography>
+                <Typography variant="body2" color="text.secondary">34</Typography>
+              </Grid>
+              <Grid item xs={4}>
+                <Typography variant="subtitle1" fontWeight="bold">Average age:</Typography>
+                <Typography variant="body2" color="text.secondary">27.5</Typography>
+              </Grid>
+              <Grid item xs={4}>
+                <Typography variant="subtitle1" fontWeight="bold">Foreigners:</Typography>
+                <Typography variant="body2" color="text.secondary">0%</Typography>
+              </Grid>
+              <Grid item xs={4}>
+                <Typography variant="subtitle1" fontWeight="bold">National players:</Typography>
+                <Typography variant="body2" color="text.secondary">0</Typography>
+              </Grid>
+              <Grid item xs={4}>
+                <Typography variant="subtitle1" fontWeight="bold">Stadium:</Typography>
+                <Box display="flex" alignItems="center">
+                  <StadiumIcon color="primary" fontSize="small" sx={{ marginRight: 1 }} />
+                  <Typography variant="body2" color="text.secondary">
+                    Estádio Brinco de Ouro da Princesa (32,453 seats)
+                  </Typography>
+                </Box>
+              </Grid>
+              <Grid item xs={4}>
+                <Typography variant="subtitle1" fontWeight="bold">Current Trainer:</Typography>
+                <Typography variant="body2" color="text.secondary">Técnico</Typography>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+      </CardContent>
+    </Card>
+  );
+};
+
+export default TeamInfo;

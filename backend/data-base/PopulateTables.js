@@ -1,0 +1,314 @@
+const { Pool } = require('pg');
+const fs = require('fs');
+require('dotenv').config();
+
+const pool = new Pool({
+    user: 'postgres',      
+    host: 'localhost',        
+    database: 'FootballData',    
+    password: process.env.DB_PASS,    
+    port: 5432,               
+});
+
+function cleanData(value) {
+    if (value === null || value === undefined) return null; 
+    return value.replace(/\\u00[a-f0-9]{2}/g, (match) => String.fromCharCode(parseInt(match.replace(/\\u00/, ''), 16)))
+                .trim()
+                .replace(/\s+/g, ' '); 
+}
+
+const jsonData = JSON.parse(fs.readFileSync('../scraping/transfermarket/data/player_of_the_year.json', 'utf8'));
+
+async function populateTablePlayerOfTheYear() {
+    try {
+        for (const [year, playerInfo] of Object.entries(jsonData)) {
+            await pool.query(`
+                INSERT INTO players_of_the_year (player_id, season, name, position, player_image_1, player_image_2, team_image, national_image)
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
+                [
+                    cleanData(playerInfo["Player ID"]), 
+                    year,
+                    cleanData(playerInfo["Name"]),
+                    cleanData(playerInfo["Position"]),
+                    cleanData(playerInfo["Image 1"]),
+                    cleanData(playerInfo["Image 2"]),
+                    cleanData(playerInfo["Team Image"]),
+                    cleanData(playerInfo["Nat"])
+                ]
+            );
+        }
+        console.log('Dados inseridos com sucesso!');
+    } catch (err) {
+        console.error('Erro ao inserir dados:', err);
+    } finally {
+        await pool.end(); 
+    }
+}
+
+const jsonDataTopGoalscorers = JSON.parse(fs.readFileSync('../scraping/transfermarket/data/top_goalscorers.json', 'utf8'));
+
+async function populateTableTopGoalscorers() {
+    try {
+        for (const [year, playerInfo] of Object.entries(jsonDataTopGoalscorers)) {
+            await pool.query(`
+                INSERT INTO top_goalscorers (player_id, season, table_position, name, position, age, appearances, assists, penalty_kicks, minutes_played, minutes_per_goal, goals_per_match, goals, image)
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)`,
+                [
+                    cleanData(playerInfo["ID"]), 
+                    year,
+                    cleanData(playerInfo["Table Position"]),
+                    cleanData(playerInfo["Name"]),
+                    cleanData(playerInfo["Position"]),
+                    cleanData(playerInfo["Age"]),
+                    cleanData(playerInfo["Appearances"]),
+                    cleanData(playerInfo["Assists"]),
+                    cleanData(playerInfo["Penalty Kicks"]),
+                    cleanData(playerInfo["Minutes Played"]),
+                    cleanData(playerInfo["Minutes per Goal"]),
+                    cleanData(playerInfo["Minutes per Match"]),
+                    cleanData(playerInfo["Goals"]),
+                    cleanData(playerInfo["Image"])
+                ]
+            );
+        }
+        console.log('Dados inseridos com sucesso!');
+    } catch (err) {
+        console.error('Erro ao inserir dados:', err);
+    } finally {
+        await pool.end(); 
+    }
+}
+
+const jsonDataTables = JSON.parse(fs.readFileSync('../scraping/transfermarket/data/tables.json', 'utf8'));
+
+async function populateTableTables() {
+    try {
+        for (const [year, playerInfo] of Object.entries(jsonDataTables)) {
+            await pool.query(`
+                INSERT INTO top_goalscorers (position, team_id, season, name, matches, wins, draws, losses, goals, goal_difference, points)
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
+                [
+                    cleanData(playerInfo["Position"]), 
+                    cleanData(playerInfo["Team ID"]),
+                    year,
+                    cleanData(playerInfo["Name"]),
+                    cleanData(playerInfo["Matches"]),
+                    cleanData(playerInfo["Wins"]),
+                    cleanData(playerInfo["Draws"]),
+                    cleanData(playerInfo["Losses"]),
+                    cleanData(playerInfo["Goals"]),
+                    cleanData(playerInfo["Goal Difference"]),
+                    cleanData(playerInfo["Points"])
+                ]
+            );
+        }
+        console.log('Dados inseridos com sucesso!');
+    } catch (err) {
+        console.error('Erro ao inserir dados:', err);
+    } finally {
+        await pool.end(); 
+    }
+}
+
+
+const jsonDataStadiums = JSON.parse(fs.readFileSync('../scraping/transfermarket/data/stadiums.json', 'utf8'));
+
+async function populateTableStadiums() {
+    try {
+        for (const [stadium_id, playerInfo] of Object.entries(jsonDataStadiums)) {
+            await pool.query(`
+                INSERT INTO top_goalscorers (id, name, team_id)
+                VALUES ($1, $2, $3)`,
+                [
+                    stadium_id,
+                    cleanData(playerInfo["name"]), 
+                    cleanData(playerInfo["Team ID"])
+                ]
+            );
+        }
+        console.log('Dados inseridos com sucesso!');
+    } catch (err) {
+        console.error('Erro ao inserir dados:', err);
+    } finally {
+        await pool.end(); 
+    }
+}
+
+const jsonDataStadiumsDetails = JSON.parse(fs.readFileSync('../scraping/transfermarket/data/stadiums.json', 'utf8'));
+
+async function populateTableStadiumsDetails() {
+    try {
+        for (const [year, playerInfo] of Object.entries(jsonDataStadiumsDetails)) {
+            await pool.query(`
+                INSERT INTO top_goalscorers (stadium_id, name, capacity, boxes, box_seats, built, formely, undersoil_heating, running_track, surface, pitch_size, address, Image, Team Image, tel )
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)`,
+                [
+                    year,
+                    cleanData(playerInfo["name"]), 
+                    cleanData(playerInfo["capacity"]), 
+                    cleanData(playerInfo["boxes"]),
+                    cleanData(playerInfo["box_seats"]),
+                    cleanData(playerInfo["built"]),
+                    cleanData(playerInfo["formely"]),
+                    cleanData(playerInfo["undersoil_heating"]),
+                    cleanData(playerInfo["running_track"]),
+                    cleanData(playerInfo["surface"]),
+                    cleanData(playerInfo["pitch_size"]),
+                    cleanData(playerInfo["address"]),
+                    cleanData(playerInfo["Image"]),
+                    cleanData(playerInfo["Team Image"]),
+                    cleanData(playerInfo["tel"]),
+                ]
+            );
+        }
+        console.log('Dados inseridos com sucesso!');
+    } catch (err) {
+        console.error('Erro ao inserir dados:', err);
+    } finally {
+        await pool.end(); 
+    }
+}
+
+const jsonDataCoach = JSON.parse(fs.readFileSync('../scraping/transfermarket/data/managers.json', 'utf8'));
+
+async function populateTableCoach() {
+    try {
+        for (const [year, playerInfo] of Object.entries(jsonDataStadiumsDetails)) {
+            await pool.query(`
+                INSERT INTO top_goalscorers (id, age, name, birth, country, formation, coaching_license, avg_term, actual_team, img)
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
+                [
+                    year,
+                    cleanData(playerInfo["age"]), 
+                    cleanData(playerInfo["name"]), 
+                    cleanData(playerInfo["birth"]),
+                    cleanData(playerInfo["country"]),
+                    cleanData(playerInfo["formation"]),
+                    cleanData(playerInfo["coaching_license"]),
+                    cleanData(playerInfo["avg_term"]),
+                    cleanData(playerInfo["actual_team"]),
+                    cleanData(playerInfo["img"])
+                ]
+            );
+        }
+        console.log('Dados inseridos com sucesso!');
+    } catch (err) {
+        console.error('Erro ao inserir dados:', err);
+    } finally {
+        await pool.end(); 
+    }
+}
+
+const jsonDataCoachReferee = JSON.parse(fs.readFileSync('../scraping/transfermarket/data/managers.json', 'utf8'));
+
+async function populateTableReferee() {
+    try {
+        for (const [year, playerInfo] of Object.entries(jsonDataStadiumsDetails)) {
+            await pool.query(`
+                INSERT INTO top_goalscorers (id, name, date_of_birth, citizenship, first_league_debut, image, matches)
+                VALUES ($1, $2, $3, $4, $5, $6, $7))`,
+                [
+                    year,
+                    cleanData(playerInfo["Name"]), 
+                    cleanData(playerInfo["date_of_birth"]), 
+                    cleanData(playerInfo["citizenship"]),
+                    cleanData(playerInfo["first_league_debut"]),
+                    cleanData(playerInfo["Image"]),
+                    cleanData(playerInfo["Matches"])
+                ]
+            );
+        }
+        console.log('Dados inseridos com sucesso!');
+    } catch (err) {
+        console.error('Erro ao inserir dados:', err);
+    } finally {
+        await pool.end(); 
+    }
+}
+
+const jsonDataPlayer = JSON.parse(fs.readFileSync('../scraping/transfermarket/data/players.json', 'utf8'));
+
+async function populateTablePlayer() {
+    try {
+        for (const [year, playerInfo] of Object.entries(jsonDataStadiumsDetails)) {
+            await pool.query(`
+                INSERT INTO top_goalscorers (id, age, city, country, height, position, image, name)
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
+                [
+                    year,
+                    cleanData(playerInfo["Age"]), 
+                    cleanData(playerInfo["City"]), 
+                    cleanData(playerInfo["Country"]),
+                    cleanData(playerInfo["Height"]),
+                    cleanData(playerInfo["Position"]),
+                    cleanData(playerInfo["Image"]),
+                    cleanData(playerInfo["Name"])
+                ]
+            );
+        }
+        console.log('Dados inseridos com sucesso!');
+    } catch (err) {
+        console.error('Erro ao inserir dados:', err);
+    } finally {
+        await pool.end(); 
+    }
+}
+
+const jsonDataTeam = JSON.parse(fs.readFileSync('../scraping/transfermarket/data/teams.json', 'utf8'));
+
+async function populateTableTeam() {
+    try {
+        for (const [year, playerInfo] of Object.entries(jsonDataStadiumsDetails)) {
+            await pool.query(`
+                INSERT INTO top_goalscorers (squad_size, average_age, foreigners, national_team_players, stadium, address, tel, website, founded, members)
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
+                [
+                    year,
+                    cleanData(playerInfo["Squad Size"]), 
+                    cleanData(playerInfo["Average age"]), 
+                    cleanData(playerInfo["Foreigners"]),
+                    cleanData(playerInfo["National team players"]),
+                    cleanData(playerInfo["Position"]),
+                    cleanData(playerInfo["Stadium"]),
+                    cleanData(playerInfo["Address"]),
+                    cleanData(playerInfo["Tel"]),
+                    cleanData(playerInfo["Website"]),
+                    cleanData(playerInfo["Members"])
+                ]
+            );
+        }
+        console.log('Dados inseridos com sucesso!');
+    } catch (err) {
+        console.error('Erro ao inserir dados:', err);
+    } finally {
+        await pool.end(); 
+    }
+}
+
+const jsonDataMatch = JSON.parse(fs.readFileSync('../scraping/transfermarket/data/matches.json', 'utf8'));
+
+async function populateTableMatch() {
+    try {
+        for (const [year, playerInfo] of Object.entries(jsonDataStadiumsDetails)) {
+            await pool.query(`
+                INSERT INTO top_goalscorers (id, score, matchday, fst_manager_id, scnd_manager_id, stadium_id, stadium_attendence, referee_id)
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
+                [
+                    year,
+                    cleanData(playerInfo["score"]), 
+                    cleanData(playerInfo["matchday"]),
+                    cleanData(playerInfo["fst_manager_id"]),
+                    cleanData(playerInfo["scnd_manager_id"]),
+                    cleanData(playerInfo["stadium_id"]),
+                    cleanData(playerInfo["stadium_attendence"]),
+                    cleanData(playerInfo["referee_id"]),
+                ]
+            );
+        }
+        console.log('Dados inseridos com sucesso!');
+    } catch (err) {
+        console.error('Erro ao inserir dados:', err);
+    } finally {
+        await pool.end(); 
+    }
+}

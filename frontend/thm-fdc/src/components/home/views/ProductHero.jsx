@@ -4,10 +4,9 @@ import Typography from './components/Typography';
 import ProductHeroLayout from './ProductHeroLayout';
 
 const images = [
-  'https://i.pinimg.com/736x/7b/17/e9/7b17e95d1b3e7a8c412a1a4d2f96230a.jpg',
-  'https://placar.com.br/wp-content/uploads/2024/04/53381344075_5bc7c6508e_k-1.jpg',
+  'https://placar.com.br/wp-content/uploads/2023/06/52951183874_a0bc40c313_o.jpg',
   'https://static.gazetaesportiva.com/uploads/2024/10/54082062524_8d1d3129d4_o-1024x576.webp',
-  'https://skycms.s3.amazonaws.com/images/0/final-do-brasileirao-01.jpg'
+  'https://lncimg.lance.com.br/uploads/2023/11/gazeta-press-foto-1899591-scaled-aspect-ratio-512-320-1.jpg'
 ];
 
 export default function ProductHero() {
@@ -39,7 +38,7 @@ export default function ProductHero() {
         />
       ))}
 
-      <Typography color="inherit" align="center" variant="h2" marked="center" sx={{fontWeight: '500' }}>
+      <Typography color="inherit" align="center" variant="h2" sx={{fontWeight: '500' }}>
         Viva a Paixão do Futebol
       </Typography>
       <Typography
@@ -56,17 +55,7 @@ export default function ProductHero() {
           variant="contained"
           size="large"
           component="a"
-          href="/geral"
-          sx={{ minWidth: 200, backgroundColor: "#20195f", marginRight: 1 }}
-        >
-          Explore Agora
-        </Button>
-        <Button
-          color="secondary"
-          variant="contained"
-          size="large"
-          component="a"
-          href="/campeonatos/a/partidas"
+          href="/campeonatos/2023/partidas"
           sx={{ minWidth: 200, backgroundColor: "#20195f" }}
         >
           Brasileirão 2024

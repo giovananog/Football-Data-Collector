@@ -1,54 +1,56 @@
 // TeamInfo.js
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Card, CardContent, Typography, Grid } from '@mui/material';
+import api from "../../api";
 
-const TeamInfo = () => {
+const TeamInfo = (props) => {
+  const [refereeData, setRefereeData] = useState(null);
+  
+  React.useEffect(() => {
+    api.get(`referee/${props.id}`).then(res => {
+      setRefereeData(res.data);
+    });
+  }, []);
+
+  if (!refereeData) {
+    return <Typography variant="h6" align="center">No data available</Typography>;
+  }
+
   return (
     <Card sx={{ width: "60%", margin: 'auto', padding: 3, boxShadow: 3, marginTop: 3 }}>
       <CardContent>
         <Box display="flex" justifyContent="space-between" alignItems="flex-start">
-          
-          {/* Coluna Principal - Informações do Jogador */}
+          {/* Coluna Principal - Informações do Árbitro */}
           <Box display="flex" alignItems="flex-start" width="70%">
-            {/* Imagem do Jogador */}
+            {/* Imagem do Árbitro */}
             <Box
               component="img"
-              src="https://img.a.transfermarkt.technology/portrait/header/s_53234_1023_2012_2.jpg?lm=1"
-              alt="Player Image"
+              src={refereeData.image}
+              alt="Referee Image"
               sx={{ width: 200, height: 140, marginRight: 4, objectFit: 'contain' }}
             />
 
-            {/* Informações do Jogador */}
+            {/* Informações do Árbitro */}
             <Box>
               <Typography variant="h4" component="div" fontWeight="bold" marginBottom={2}>
-                Bruno Cardoso
+                {refereeData.name}
               </Typography>
 
               <Grid container spacing={2}>
                 <Grid item xs={6} sm={4}>
                   <Typography variant="subtitle1" fontWeight="bold">Birth:</Typography>
-                  <Typography variant="body2" color="text.secondary">34</Typography>
-                </Grid>
-                <Grid item xs={6} sm={4}>
-                  <Typography variant="subtitle1" fontWeight="bold">Date of birth:</Typography>
-                  <Typography variant="body2" color="text.secondary">27.5</Typography>
+                  <Typography variant="body2" color="text.secondary">{refereeData.date_of_birth}</Typography>
                 </Grid>
                 <Grid item xs={6} sm={4}>
                   <Typography variant="subtitle1" fontWeight="bold">Citizenship:</Typography>
-                  <Typography variant="body2" color="text.secondary">0%</Typography>
+                  <Typography variant="body2" color="text.secondary">{refereeData.citizenship}</Typography>
                 </Grid>
-                <Grid item xs={6} sm={4}>
-                  <Typography variant="subtitle1" fontWeight="bold">Height:</Typography>
-                  <Typography variant="body2" color="text.secondary">0</Typography>
-                </Grid>
-                <Grid item xs={6} sm={4}>
-                  <Typography variant="subtitle1" fontWeight="bold">Position:</Typography>
-                  <Typography variant="body2" color="text.secondary">Goalkeeper</Typography>
-                </Grid>
-                <Grid item xs={6} sm={4}>
-                  <Typography variant="subtitle1" fontWeight="bold">Current Team (2023):</Typography>
-                  <Typography variant="body2" color="text.secondary">Técnico</Typography>
-                </Grid>
+                {refereeData.first_competition_debut && (
+                  <Grid item xs={6} sm={4}>
+                    <Typography variant="subtitle1" fontWeight="bold">Debut:</Typography>
+                    <Typography variant="body2" color="text.secondary">{refereeData.first_competition_debut}</Typography>
+                  </Grid>
+                )}
               </Grid>
             </Box>
           </Box>
@@ -57,5 +59,8 @@ const TeamInfo = () => {
     </Card>
   );
 };
+
+// Exemplo de uso
+// <TeamInfo refereeId={1098} />
 
 export default TeamInfo;

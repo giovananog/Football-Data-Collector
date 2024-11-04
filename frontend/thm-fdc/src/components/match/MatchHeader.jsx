@@ -2,45 +2,82 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
+import { useEffect, useState } from 'react';
+import api from "../../api"
+import { Link } from 'react-router-dom';
 
-const matchData = {
-  league: "2024 Brasileiro Serie A",
-  teams: [
-    {
-      name: "Corinthians",
-      logo: "https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/874.png&scale=crop&cquality=40&location=origin&w=96&h=96",
-      score: 5,
-      record: "7-11-12, 32 PTS",
-      backgroundColor: "#000000",
-    },
-    {
-      name: "Athletico-PR",
-      logo: "https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/3458.png&scale=crop&cquality=40&location=origin&w=96&h=96",
-      score: 2,
-      record: "8-7-13, 31 PTS",
-      backgroundColor: "#800000",
-    },
-  ],
-  goals: [
-    { player: "Jogador 1", team: "Corinthians" },
-    { player: "Jogador 2", team: "Corinthians" },
-    { player: "Jogador 3", team: "Corinthians" },
-    { player: "Jogador 4", team: "Corinthians" },
-    { player: "Jogador 5", team: "Corinthians" },
-    { player: "Jogador 1", team: "Athletico-PR" },
-    { player: "Jogador 2", team: "Athletico-PR" },
-  ],
-  matchInfo: {
-    stadium: "Maracanã",
-    referee: "Anderson Daronco",
-    coaches: [
-      { name: "Treinador Corinthians", img: "https://via.placeholder.com/30" }, // Imagem placeholder
-      { name: "Treinador Athletico-PR", img: "https://via.placeholder.com/30" }, // Imagem placeholder
-    ],
-  },
-};
 
-export default function MatchStrip() {
+export default function MatchStrip(props) {
+
+  const [matchData, setMatchData] = useState({});
+  const [firstTeamData, setFirstTeamData] = useState({});
+  const [secondTeamData, setSecondTeamData] = useState({});
+  const [stadiumData, setStadiumData] = useState({});
+  const [refereeData, setRefereeData] = useState({});
+  const [firstmanagerData, setFirstManagerData] = useState({});
+  const [secondmanagerData, setSecondManagerData] = useState({});
+
+  useEffect(() => {
+    api.get(`/matches/${props.matchId}`).then(res => {
+      setMatchData(res.data);
+    }).catch(error => {
+      console.error('Erro ao buscar dados do gerente:', error);
+    });
+  }, []);
+
+  useEffect(() => {
+    api.get(`/teams/${matchData.first_team_id}`).then(res => {
+      setFirstTeamData(res.data);
+    }).catch(error => {
+      console.error('Erro ao buscar dados do gerente:', error);
+    });
+  }, [matchData]);
+
+  useEffect(() => {
+    api.get(`/manager/${matchData.fst_coach_id}`).then(res => {
+      setFirstManagerData(res.data);
+    }).catch(error => {
+      console.error('Erro ao buscar dados do gerente:', error);
+    });
+  }, [matchData.fst_coach_id]);
+
+  useEffect(() => {
+    api.get(`/manager/${matchData.scnd_coach_id}`).then(res => {
+      setSecondManagerData(res.data);
+    }).catch(error => {
+      console.error('Erro ao buscar dados do gerente:', error);
+    });
+  }, [matchData.scnd_coach_id]);
+
+  useEffect(() => {
+    api.get(`/teams/${matchData.second_team_id}`).then(res => {
+      setSecondTeamData(res.data);
+    }).catch(error => {
+      console.error('Erro ao buscar dados do gerente:', error);
+    });
+  }, [matchData]);
+
+  useEffect(() => {
+
+    if(matchData.stadium_id){
+      api.get(`/stadium/${matchData.stadium_id}`).then(res => {
+        setStadiumData(res.data);
+      }).catch(error => {
+        console.error('Erro ao buscar dados do estadio:', error);
+      });
+    }
+  }, [matchData]);
+
+  useEffect(() => {
+    if(matchData.referee_id) {
+      api.get(`/referee/${matchData.referee_id}`).then(res => {
+        setRefereeData(res.data);
+      }).catch(error => {
+        console.error('Erro ao buscar dados do estadio:', error);
+      });
+    }
+  }, [matchData]);
+
   return (
     <Box sx={{
       width: '80%',
@@ -59,7 +96,7 @@ export default function MatchStrip() {
         padding: '10px',
         textAlign: 'center',
       }}>
-        <Typography variant="h6" sx={{ fontWeight: 'bold' }}>{matchData.league}</Typography>
+        {/* <Typography variant="h6" sx={{ fontWeight: 'bold' }}>{matchData.season}</Typography> */}
       </Box>
 
       {/* Container de Times e Placar */}
@@ -69,7 +106,7 @@ export default function MatchStrip() {
       }}>
         {/* Time 1 */}
         <Box sx={{
-          backgroundColor: matchData.teams[0].backgroundColor,
+          backgroundColor: "#fff",
           width: '10%',
           clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 80%)',
           display: 'flex',
@@ -93,10 +130,10 @@ export default function MatchStrip() {
           alignItems: 'center',
         }}>
           <Box>
-            <Typography variant="h6" sx={{ fontWeight: 'bold' }}>{matchData.teams[0].name}</Typography>
-            <Typography variant="body2">{matchData.teams[0].record}</Typography>
+            <Typography variant="h6" sx={{ fontWeight: 'bold' }}>{firstTeamData.address}</Typography>
+            {/* <Typography variant="body2">{matchData.teams[0].record}</Typography> */}
           </Box>
-          <Avatar src={matchData.teams[0].logo} alt={matchData.teams[0].name} sx={{ width: 60, height: 60, marginBottom: 2 }} />
+          <Avatar src={`https://tmssl.akamaized.net//images/wappen/normquad/${matchData.first_team_id}.png`} alt={matchData.score} sx={{ width: 60, height: 60, marginBottom: 2 }} />
         </Box>
 
         {/* Placar */}
@@ -112,7 +149,7 @@ export default function MatchStrip() {
         }}>
           <Box>
             <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
-              {matchData.teams[0].score} - {matchData.teams[1].score}
+              {matchData.score} 
             </Typography>
             <Typography variant="body2">Finalizado</Typography>
           </Box>
@@ -128,16 +165,16 @@ export default function MatchStrip() {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-          <Avatar src={matchData.teams[1].logo} alt={matchData.teams[1].name} sx={{ width: 60, height: 60, marginBottom: 2 }} />
+          <Avatar src={`https://tmssl.akamaized.net//images/wappen/normquad/${matchData.second_team_id}.png`} alt={matchData.score} sx={{ width: 60, height: 60, marginBottom: 2 }} />
           <Box>
-            <Typography variant="h6" sx={{ fontWeight: 'bold' }}>{matchData.teams[1].name}</Typography>
-            <Typography variant="body2">{matchData.teams[1].record}</Typography>
+            <Typography variant="h6" sx={{ fontWeight: 'bold' }}>{secondTeamData.address}</Typography>
+            {/* <Typography variant="body2">{matchData.teams[1].record}</Typography> */}
           </Box>
         </Box>
 
         {/* Fundo colorido do Time 2 */}
         <Box sx={{
-          backgroundColor: matchData.teams[1].backgroundColor,
+          backgroundColor: "#fff",
           width: '10%',
           clipPath: 'polygon(0 0, 100% 0, 100% 80%, 0 100%)',
           display: 'flex',
@@ -152,7 +189,7 @@ export default function MatchStrip() {
       </Box>
 
       {/* Finalizado e Gols */}
-      <Box sx={{
+      {/* <Box sx={{
         padding: '20px',
         textAlign: 'center',
         backgroundColor: '#fff',
@@ -163,7 +200,7 @@ export default function MatchStrip() {
             {goal.player} - {goal.team}
           </Typography>
         ))}
-      </Box>
+      </Box> */}
 
       {/* Informações adicionais do jogo */}
       <Box sx={{
@@ -172,16 +209,32 @@ export default function MatchStrip() {
         justifyContent: 'space-between',
         backgroundColor: '#fff',
       }}>
-        <Typography variant="body2"><strong>Estádio:</strong> {matchData.matchInfo.stadium}</Typography>
-        <Typography variant="body2"><strong>Juiz:</strong> {matchData.matchInfo.referee}</Typography>
+        <Typography variant="body2"><strong>Estádio:</strong> 
+        <Link to={`../../../estadios/${matchData.stadium_id}`}>
+          {stadiumData.name}
+        </Link>
+        </Typography>
+        <Typography variant="body2"><strong>Juiz:</strong>
+        <Link to={`../../../juizes/${matchData.referee_id}`}>
+          {refereeData.name}
+        </Link>
+         </Typography>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Typography variant="body2"><strong>Técnicos:</strong> </Typography>
-          {matchData.matchInfo.coaches.map((coach, index) => (
-            <Box key={index} sx={{ display: 'flex', alignItems: 'center', marginLeft: '10px' }}>
-              <Avatar src={coach.img} alt={coach.name} sx={{ width: 30, height: 30, marginRight: '5px' }} />
-              <Typography variant="body2">{coach.name}</Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center', marginLeft: '10px' }}>
+            <Avatar src={`https://tmssl.akamaized.net//images/wappen/normquad/${matchData.first_team_id}.png`} alt={matchData.score} sx={{ width: 30, height: 30, marginBottom: 2 }} />
+            <Link to={`../../../tecnicos/${matchData.fst_coach_id}`}>
+              <Typography variant="body2">{firstmanagerData.name}</Typography>
+            </Link>
+
             </Box>
-          ))}
+            <Box sx={{ display: 'flex', alignItems: 'center', marginLeft: '10px' }}>
+              <Avatar src={`https://tmssl.akamaized.net//images/wappen/normquad/${matchData.second_team_id}.png`} alt={matchData.score} sx={{ width: 30, height: 30, marginBottom: 2 }} />
+              <Link to={`../../../tecnicos/${matchData.scnd_coach_id}`}>
+                <Typography variant="body2">{secondmanagerData.name}</Typography>
+              </Link>
+              
+            </Box>
         </Box>
       </Box>
 

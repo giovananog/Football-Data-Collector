@@ -9,20 +9,20 @@ import Matches from './Matches';
 import Table from './Table'
 import OrdersTable from './components/OrdersTable'
 import Player from './Player'
+import { useParams } from 'react-router-dom';
+
 
 function Teams() {
+
+  const { id } = useParams();
 
   return (
     <div>
 
-      <Header />
-      <ProductCTA />
-      <Table />
-      <Player />
-      {/* <OrdersTable /> */}
-      {/* <Cards /> */}
-      {/* <Matches /> */}
-      {/* <Dashboard /> */}
+      <Header/>
+      <ProductCTA id={id}/>
+      <Table id={id}/>
+      <Player id={id}/>
       <AppFooter />
       
     </div>

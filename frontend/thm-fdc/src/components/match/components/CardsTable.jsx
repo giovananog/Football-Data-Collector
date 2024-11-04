@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 // material-ui
 import Stack from '@mui/material/Stack';
 import Table from '@mui/material/Table';
@@ -8,38 +9,21 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Box from '@mui/material/Box';
-import { Avatar } from '@mui/material';
+import api from "../../../api"
+import { Avatar, Typography } from '@mui/material';
 
-// Função para criar dados
-function createData(player, team, time, card) {
-  return { player, team, time, card }; // Adicionando campo de cartão
-}
-
-// Exemplo de dados dos jogadores
-const rows = [
-  createData('Carlos', 'flamengo', '10:00', 'yellow'), // Cartão amarelo
-  createData('João', 'vasco', '25:00', 'red'), // Cartão vermelho
-  createData('Lucas', 'fluminense', '45:00', ''), // Sem cartão
-];
-
-// Ícones dos times (substitua pelos ícones reais)
-const teamIcons = {
-  flamengo: '/path/to/flamengo_icon.png',
-  vasco: '/path/to/vasco_icon.png',
-  fluminense: '/path/to/fluminense_icon.png',
-};
-
-// ==============================|| GOL TABLE - HEADER ||============================== //
+// ==============================|| CARTÕES TABLE - HEADER ||============================== //
 
 const headCells = [
   { id: 'team', align: 'center', disablePadding: false, label: 'Time' },
   { id: 'player', align: 'center', disablePadding: false, label: 'Jogador' },
   { id: 'time', align: 'center', disablePadding: false, label: 'Minuto' },
-  { id: 'card', align: 'center', disablePadding: false, label: 'Cartão' }, // Novo campo de Cartão
+  { id: 'card', align: 'center', disablePadding: false, label: 'Cartão' }, // Nova coluna de Cartão
+  { id: 'reason', align: 'center', disablePadding: false, label: 'Motivo' }, // Nova coluna de Motivo
 ];
 
 // Componente para o cabeçalho da tabela
-function GoalTableHead() {
+function CardTableHead() {
   return (
     <TableHead>
       <TableRow>
@@ -57,8 +41,44 @@ function GoalTableHead() {
   );
 }
 
-// Componente para a tabela de gols
-export default function GoalsTable() {
+// Componente para a tabela de cartões
+export default function CardsTable(props) {
+  const [cards, setCards] = useState([]);
+  const [players, setPlayers] = useState({}); // Armazena informações dos jogadores em um dicionário
+
+  useEffect(() => {
+    // Fetch cartões
+    api.get(`/matches/${props.matchId}/cards`)
+      .then(response => {
+        const cardsData = response.data;
+        setCards(cardsData);
+
+        // Obtenha IDs únicos dos jogadores
+        const playerIds = [...new Set(cardsData.map(card => card.player_id))];
+
+        // Faça chamadas à API para buscar informações de todos os jogadores
+        Promise.all(playerIds.map(id => api.get(`/players/${id}`)))
+          .then(playerResponses => {
+            // Mapeie as respostas para criar um dicionário { id: dadosDoJogador }
+            const playersData = playerResponses.reduce((acc, res) => {
+              acc[res.data.id] = res.data;
+              return acc;
+            }, {});
+            setPlayers(playersData);
+          })
+          .catch(error => {
+            console.error('Erro ao buscar dados dos jogadores:', error);
+          });
+      })
+      .catch(error => {
+        console.error('Erro ao buscar dados dos cartões:', error);
+      });
+  }, [props]);
+
+  if (!cards.length) {
+    return <Typography variant="h6" align="center">Nenhum cartão registrado</Typography>;
+  }
+
   return (
     <Box>
       <TableContainer
@@ -72,41 +92,41 @@ export default function GoalsTable() {
         }}
       >
         <Table aria-labelledby="tableTitle">
-          <GoalTableHead />
+          <CardTableHead />
           <TableBody>
-            {rows.map((row, index) => (
-              <TableRow
-                hover
-                role="checkbox"
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                tabIndex={-1}
-                key={`${row.player}-${index}`}
-              >
-                <TableCell align='center'>
-                  <img src={`https://tmssl.akamaized.net//images/wappen/normquad/585.png?lm=1409133922`} alt={row.team} style={{ width: '30px', height: '30px' }} />
-                </TableCell>
-                <TableCell align='center'>
-                  <Stack direction="row" alignItems="center">
-                    <Avatar
-                      alt={row.player}
-                      src={`https://img.a.transfermarkt.technology/portrait/header/412594-1661910650.jpg?lm=1`} // Caminho da imagem do jogador
-                      sx={{ width: '40px', height: '40px' }} // Tornando o avatar quadrado
-                    />
-                    {row.player}
-                  </Stack>
-                </TableCell>
-                <TableCell align='center'>{row.time}</TableCell>
-                <TableCell align='center'>
-                  {row.card === 'yellow' ? (
-                    <span style={{ color: 'orange' }}>🟡 Amarelo</span> // Cartão amarelo
-                  ) : row.card === 'red' ? (
-                    <span style={{ color: 'red' }}>🔴 Vermelho</span> // Cartão vermelho
-                  ) : (
-                    'N/A' // Sem cartão
-                  )}
-                </TableCell>
-              </TableRow>
-            ))}
+            {cards.map((card, index) => {
+              const player = players[card.player_id];
+              return (
+                <TableRow
+                  hover
+                  role="checkbox"
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                  tabIndex={-1}
+                  key={`${card.id}-${index}`}
+                >
+                  <TableCell align='center'>
+                    <img src={`https://tmssl.akamaized.net//images/wappen/normquad/${card.team_id}.png`} alt={card.team_id} style={{ width: '30px', height: '30px' }} />
+                  </TableCell>
+                  <TableCell align='center'>
+                    <Stack direction="row" alignItems="center">
+                      <img style={{ width: '40px', height: '40px' }} alt={player ? player.name : 'Carregando...'} src={player ? (player.image ? player.image : "a") : "a"} />
+                      {player ? player.name : 'Carregando...'}
+                    </Stack>
+                  </TableCell>
+                  <TableCell align='center'>{card.minute}</TableCell>
+                  <TableCell align='center'>
+                    {card.card_type === 'Yellow card' ? (
+                      <span style={{ color: 'orange' }}>🟡 Amarelo</span> // Cartão amarelo
+                    ) : card.card_type === 'Red card' ? (
+                      <span style={{ color: 'red' }}>🔴 Vermelho</span> // Cartão vermelho
+                    ) : (
+                      'N/A' // Sem cartão
+                    )}
+                  </TableCell>
+                  <TableCell align='center'>{card.reason ? card.reason : 'N/A'}</TableCell> {/* Exibe o motivo se existir */}
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </TableContainer>
@@ -114,7 +134,6 @@ export default function GoalsTable() {
   );
 }
 
-GoalTableHead.propTypes = {
-  order: PropTypes.any,
-  orderBy: PropTypes.string,
+CardsTable.propTypes = {
+  matchId: PropTypes.number.isRequired,
 };

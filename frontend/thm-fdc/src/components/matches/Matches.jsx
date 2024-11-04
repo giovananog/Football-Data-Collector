@@ -3,19 +3,17 @@ import Header from "../header/Header";
 import { Link } from "@mui/material";
 import AppFooter from '../footer/AppFooter';
 import Dashboard from './Dashboard'
-import Statistic from "./Statistics";
+import { useParams } from 'react-router-dom';
 
 function Matches() {
+
+  const { season } = useParams();
 
   return (
     <div>
 
       <Header />
-      <Dashboard />
-      <Dashboard />
-      <Dashboard />
-      <Dashboard />
-      <Statistic />
+      <Dashboard season={season} />
       <AppFooter />
       
     </div>

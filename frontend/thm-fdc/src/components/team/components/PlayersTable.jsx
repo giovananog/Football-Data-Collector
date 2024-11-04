@@ -1,111 +1,112 @@
 // PlayerTable.js
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Box, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Avatar } from '@mui/material';
+import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Avatar, Typography, Button } from '@mui/material';
+import api from "../../../api";
 
-// Função para criar dados
-function createData(number, id, image, name, position, birth, height, foot, joined) {
-  return { number, id, image, name, position, birth, height, foot, joined };
-}
+// Componente para exibir as tabelas de jogadores divididas por temporada
+const PlayerTable = (props) => {
+  const [groupedPlayers, setGroupedPlayers] = useState({});
+  const [visiblePlayers, setVisiblePlayers] = useState({});
 
-// Exemplo de dados dos jogadores
-const rows = [
-  createData(1, '12345', 'https://path/to/player_image1.jpg', 'Carlos Silva', 'Atacante', '1995-07-12', '1.80m', 'Direito', '2022-01-10'),
-  createData(2, '12346', 'https://path/to/player_image2.jpg', 'João Souza', 'Meio-Campo', '1998-09-22', '1.75m', 'Esquerdo', '2021-03-15'),
-  createData(3, '12347', 'https://path/to/player_image3.jpg', 'Lucas Pereira', 'Defensor', '2000-04-05', '1.88m', 'Direito', '2023-07-01'),
-  createData(3, '12347', 'https://path/to/player_image3.jpg', 'Lucas Pereira', 'Defensor', '2000-04-05', '1.88m', 'Direito', '2023-07-01'),
-  createData(3, '12347', 'https://path/to/player_image3.jpg', 'Lucas Pereira', 'Defensor', '2000-04-05', '1.88m', 'Direito', '2023-07-01'),
-  createData(3, '12347', 'https://path/to/player_image3.jpg', 'Lucas Pereira', 'Defensor', '2000-04-05', '1.88m', 'Direito', '2023-07-01'),
-  createData(3, '12347', 'https://path/to/player_image3.jpg', 'Lucas Pereira', 'Defensor', '2000-04-05', '1.88m', 'Direito', '2023-07-01'),
-  createData(3, '12347', 'https://path/to/player_image3.jpg', 'Lucas Pereira', 'Defensor', '2000-04-05', '1.88m', 'Direito', '2023-07-01'),
-  createData(3, '12347', 'https://path/to/player_image3.jpg', 'Lucas Pereira', 'Defensor', '2000-04-05', '1.88m', 'Direito', '2023-07-01'),
-  createData(3, '12347', 'https://path/to/player_image3.jpg', 'Lucas Pereira', 'Defensor', '2000-04-05', '1.88m', 'Direito', '2023-07-01'),
-  createData(3, '12347', 'https://path/to/player_image3.jpg', 'Lucas Pereira', 'Defensor', '2000-04-05', '1.88m', 'Direito', '2023-07-01'),
-  createData(3, '12347', 'https://path/to/player_image3.jpg', 'Lucas Pereira', 'Defensor', '2000-04-05', '1.88m', 'Direito', '2023-07-01'),
-  createData(3, '12347', 'https://path/to/player_image3.jpg', 'Lucas Pereira', 'Defensor', '2000-04-05', '1.88m', 'Direito', '2023-07-01'),
-  createData(3, '12347', 'https://path/to/player_image3.jpg', 'Lucas Pereira', 'Defensor', '2000-04-05', '1.88m', 'Direito', '2023-07-01'),
-  createData(3, '12347', 'https://path/to/player_image3.jpg', 'Lucas Pereira', 'Defensor', '2000-04-05', '1.88m', 'Direito', '2023-07-01'),
-  createData(3, '12347', 'https://path/to/player_image3.jpg', 'Lucas Pereira', 'Defensor', '2000-04-05', '1.88m', 'Direito', '2023-07-01'),
-];
+  useEffect(() => {
+    const fetchPlayers = async () => {
+      try {
+        const response = await api.get(`/teams/${props.teamId}/players`);
+        const data = response.data;
 
-// Configuração das colunas da tabela
-const headCells = [
-  { id: 'number', label: 'Número', align: 'center' },
-  { id: 'id', label: 'ID', align: 'center' },
-  { id: 'image', label: 'Imagem', align: 'center' },
-  { id: 'name', label: 'Nome', align: 'center' },
-  { id: 'position', label: 'Posição', align: 'center' },
-  { id: 'birth', label: 'Data de Nascimento', align: 'center' },
-  { id: 'height', label: 'Altura', align: 'center' },
-  { id: 'foot', label: 'Pé', align: 'center' },
-  { id: 'joined', label: 'Data de Entrada', align: 'center' },
-];
+        // Verifique se o campo 'season' está presente nos dados dos jogadores
+        if (Array.isArray(data) && data.length > 0) {
+          const grouped = data.reduce((acc, player) => {
+            if (player.season) {
+              if (!acc[player.season]) {
+                acc[player.season] = [];
+              }
+              acc[player.season].push(player);
+            } else {
+              console.warn('Jogador sem temporada definida:', player);
+            }
+            return acc;
+          }, {});
 
-// Cabeçalho da tabela
-function PlayerTableHead() {
-  return (
-    <TableHead>
-      <TableRow>
-        {headCells.map((headCell) => (
-          <TableCell
-            key={headCell.id}
-            align={headCell.align}
-            sx={{ padding: '4px' }}
-          >
-            {headCell.label}
-          </TableCell>
-        ))}
-      </TableRow>
-    </TableHead>
-  );
-}
+          setGroupedPlayers(grouped);
+          // Inicializa o estado de jogadores visíveis para cada temporada
+          const initialVisible = Object.keys(grouped).reduce((acc, season) => {
+            acc[season] = 3; // Inicialmente mostra 3 jogadores
+            return acc;
+          }, {});
+          setVisiblePlayers(initialVisible);
+        } else {
+          console.warn('Nenhum jogador encontrado ou estrutura de dados incorreta.');
+        }
+      } catch (err) {
+        console.error('Erro ao buscar jogadores:', err);
+      }
+    };
 
-// Componente da tabela de jogadores
-export default function PlayerTable() {
+    fetchPlayers();
+  }, [props]);
+
+  // Função para mostrar mais jogadores
+  const handleShowMore = (season) => {
+    setVisiblePlayers((prev) => ({
+      ...prev,
+      [season]: prev[season] + 3 // Incrementa 3 jogadores a cada clique
+    }));
+  };
+
   return (
     <Box>
-      <TableContainer
-        sx={{
-          width: '100%',
-          overflowX: 'auto',
-          display: 'block',
-          '& td, & th': { whiteSpace: 'nowrap' },
-        }}
-      >
-        <Table aria-labelledby="tableTitle">
-          <PlayerTableHead />
-          <TableBody>
-            {rows.map((row, index) => (
-              <TableRow
-                hover
-                key={`${row.id}-${index}`}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              >
-                <TableCell align="center" sx={{ padding: '4px' }}>{row.number}</TableCell>
-                <TableCell align="center" sx={{ padding: '4px' }}>{row.id}</TableCell>
-                <TableCell align="center" sx={{ padding: '4px' }}>
-                  <Avatar
-                    src={row.image}
-                    alt={row.name}
-                    sx={{ width: 40, height: 40 }}
-                  />
-                </TableCell>
-                <TableCell align="center" sx={{ padding: '4px' }}>{row.name}</TableCell>
-                <TableCell align="center" sx={{ padding: '4px' }}>{row.position}</TableCell>
-                <TableCell align="center" sx={{ padding: '4px' }}>{row.birth}</TableCell>
-                <TableCell align="center" sx={{ padding: '4px' }}>{row.height}</TableCell>
-                <TableCell align="center" sx={{ padding: '4px' }}>{row.foot}</TableCell>
-                <TableCell align="center" sx={{ padding: '4px' }}>{row.joined}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      {Object.keys(groupedPlayers).map((season) => (
+        <Box key={season} mb={4}>
+          <Typography variant="h5" gutterBottom>
+            Temporada: {season}
+          </Typography>
+          <TableContainer component={Box}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Número</TableCell>
+                  <TableCell>Imagem</TableCell>
+                  <TableCell>Nome</TableCell>
+                  <TableCell>Posição</TableCell>
+                  <TableCell>Data de Nascimento</TableCell>
+                  <TableCell>Altura</TableCell>
+                  <TableCell>Pé Preferido</TableCell>
+                  <TableCell>Data de Entrada</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {groupedPlayers[season].slice(0, visiblePlayers[season]).map((player, index) => (
+                  <TableRow key={index}>
+                    <TableCell>{player.number}</TableCell>
+                    <TableCell>
+                      <Avatar src={player.image} alt={player.name} />
+                    </TableCell>
+                    <TableCell>{player.name}</TableCell>
+                    <TableCell>{player.position}</TableCell>
+                    <TableCell>{player.birth}</TableCell>
+                    <TableCell>{player.height}</TableCell>
+                    <TableCell>{player.foot}</TableCell>
+                    <TableCell>{player.joined}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          {visiblePlayers[season] < groupedPlayers[season].length && (
+            <Button variant="contained" onClick={() => handleShowMore(season)}>
+              Ver Mais
+            </Button>
+          )}
+        </Box>
+      ))}
     </Box>
   );
-}
-
-PlayerTableHead.propTypes = {
-  order: PropTypes.any,
-  orderBy: PropTypes.string,
 };
+
+PlayerTable.propTypes = {
+  teamId: PropTypes.number.isRequired,
+};
+
+export default PlayerTable;

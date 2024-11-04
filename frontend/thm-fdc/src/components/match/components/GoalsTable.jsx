@@ -1,33 +1,16 @@
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-// material-ui
 import Stack from '@mui/material/Stack';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
+import Typography from '@mui/material/Typography';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Box from '@mui/material/Box';
 import { Avatar } from '@mui/material';
-
-// Função para criar dados
-function createData(player, team, time) {
-  return { player, team, time };
-}
-
-// Exemplo de dados dos gols
-const rows = [
-  createData('Carlos', 'flamengo', '10:00'),
-  createData('João', 'vasco', '25:00'),
-  createData('Lucas', 'fluminense', '45:00'),
-];
-
-// Ícones dos times (substitua pelos ícones reais)
-const teamIcons = {
-  flamengo: '/path/to/flamengo_icon.png',
-  vasco: '/path/to/vasco_icon.png',
-  fluminense: '/path/to/fluminense_icon.png',
-};
+import api from '../../../api'; // Importe a configuração da API
 
 // ==============================|| GOL TABLE - HEADER ||============================== //
 
@@ -35,6 +18,8 @@ const headCells = [
   { id: 'team', align: 'center', disablePadding: false, label: 'Time' },
   { id: 'player', align: 'center', disablePadding: false, label: 'Jogador' },
   { id: 'time', align: 'center', disablePadding: false, label: 'Minuto' },
+  { id: 'assist', align: 'center', disablePadding: false, label: 'Assistência' },
+  { id: 'type', align: 'center', disablePadding: false, label: 'Tipo de Gol' },
 ];
 
 // Componente para o cabeçalho da tabela
@@ -57,7 +42,42 @@ function GoalTableHead() {
 }
 
 // Componente para a tabela de gols
-export default function GoalsTable() {
+export default function GoalsTable(props) {
+  const [goals, setGoals] = useState([]);
+  const [players, setPlayers] = useState([]);
+
+  useEffect(() => {
+    api.get(`/matches/${props.matchId}/goals`)
+      .then(response => {
+        const goalsData = response.data;
+        setGoals(goalsData);
+
+        // Obtenha IDs únicos dos jogadores para evitar requisições duplicadas
+        const playerIds = [...new Set(goalsData.map(goal => goal.scorer_id))];
+
+        // Faça chamadas à API para buscar informações de todos os jogadores
+        Promise.all(playerIds.map(id => api.get(`/players/${id}`)))
+          .then(playerResponses => {
+            // Mapeie as respostas para criar um dicionário { id: dadosDoJogador }
+            const playersData = playerResponses.reduce((acc, res) => {
+              acc[res.data.id] = res.data;
+              return acc;
+            }, {});
+            setPlayers(playersData);
+          })
+          .catch(error => {
+            console.error('Erro ao buscar dados dos jogadores:', error);
+          });
+      })
+      .catch(error => {
+        console.error('Erro ao buscar dados dos gols:', error);
+      });
+  }, [props]);
+
+  if (!goals.length) {
+    return <Typography variant="h6" align="center">Nenhum gol registrado</Typography>;
+  }
+
   return (
     <Box>
       <TableContainer
@@ -73,28 +93,35 @@ export default function GoalsTable() {
         <Table aria-labelledby="tableTitle">
           <GoalTableHead />
           <TableBody>
-            {rows.map((row, index) => (
+            {goals.map((goal, index) => (
               <TableRow
                 hover
                 role="checkbox"
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 tabIndex={-1}
-                key={`${row.player}-${index}`}
+                key={`${goal.scorer_id}-${index}`}
               >
                 <TableCell align='center'>
-                  <img src={`https://tmssl.akamaized.net//images/wappen/normquad/585.png?lm=1409133922`} alt={row.team} style={{ width: '30px', height: '30px' }} />
+                  <Avatar
+                    src={`https://tmssl.akamaized.net//images/wappen/normquad/${goal.team_id}.png`} 
+                    alt={goal.team_id}
+                    sx={{ width: 30, height: 30 }}
+                  />
                 </TableCell>
                 <TableCell align='center'>
-                  <Stack direction="row" alignItems="center">
-                    <Avatar
-                      alt={row.player}
-                      src={`https://img.a.transfermarkt.technology/portrait/header/412594-1661910650.jpg?lm=1`} // Caminho da imagem do jogador
-                      sx={{ width: '40px', height: '40px' }} // Tornando o avatar quadrado
-                    />
-                    {row.player}
+                  <Stack direction="row" alignItems="center" spacing={1}>
+                    <Typography>{players[goal.scorer_id]?.name ?? null} </Typography>
                   </Stack>
                 </TableCell>
-                <TableCell align='center'>{row.time}</TableCell>
+                <TableCell align='center'>
+                  <Typography>{goal.minute}</Typography>
+                </TableCell>
+                <TableCell align='center'>
+                  <Typography>{goal.assist_player_id || 'N/A'}</Typography>
+                </TableCell>
+                <TableCell align='center'>
+                  <Typography>{goal.shot_type || 'Normal'}</Typography>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -104,7 +131,7 @@ export default function GoalsTable() {
   );
 }
 
-GoalTableHead.propTypes = {
-  order: PropTypes.any,
-  orderBy: PropTypes.string,
+// PropTypes para garantir que matchId seja passado
+GoalsTable.propTypes = {
+  matchId: PropTypes.number.isRequired,
 };

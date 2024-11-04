@@ -1,41 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Typography, Avatar, Stack, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
+import api from "../../api"
 
-const players = [
-  {
-    year: 2023,
-    name: 'Luis Suárez',
-    country: 'Uruguay',
-    position: 'Centre-Forward',
-    club: 'Inter Miami',
-    img: 'https://example.com/player-image.jpg', 
-    clubImg: 'https://example.com/club-image.png', 
-    stats: {
-      goals: 25,
-      assists: 10,
-      yellowCards: 3,
-    },
-  },
-];
+export default function PlayerOfTheYear(props) {
+  const [player, setPlayer] = useState(null);
 
-export default function PlayerOfTheYear() {
-  const [currentIndex] = useState(0);
-  
-  const { year, name, country, position, club, img, clubImg, stats } = players[currentIndex];
+  React.useEffect(() => {
+    api.get(`player-of-the-year/${props.id}`).then(res => {
+      setPlayer(res.data); 
+    });
+  }, []);
+
+  // Verifica se os dados do jogador estão disponíveis
+  if (!player) {
+    return <Typography variant="h6" align="center">Carregando...</Typography>;
+  }
 
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', margin: 'auto', width: '80%', backgroundColor: '#fff', p: 2, borderRadius: 2,  justifyContent: 'center', alignItems: 'center' }}>
+    <Box sx={{ display: 'flex', justifyContent: 'center', margin: 'auto', width: '80%', backgroundColor: '#fff', p: 2, borderRadius: 2 }}>
       {/* Player Info Box */}
       <Box sx={{ width: '40%', textAlign: 'center' }}>
         <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 1 }}>
           Footballer of the Year: Brazil
         </Typography>
 
-        <Typography variant="h5" sx={{ fontWeight: 'bold' }}>{name}</Typography>
-        <Typography variant="subtitle2" color="text.secondary" gutterBottom>{country}</Typography>
+        <Typography variant="h5" sx={{ fontWeight: 'bold' }}>{player.name}</Typography>
+        <Typography variant="subtitle2" color="text.secondary" gutterBottom>{player.position}</Typography>
 
         <Box sx={{ position: 'relative', mb: 2 }}>
-          <Box component="img" src={'https://tmssl.akamaized.net//images/foto/galerie/luis-suarez-inter-miami-cf-1712341266-133568.jpg?lm=1712341374'} alt={name} sx={{ width: '100%', borderRadius: 1 }} />
+          <Box component="img" src={player.player_image_1} alt={player.name} sx={{ width: '100%', borderRadius: 1 }} />
         </Box>
 
         <TableContainer>
@@ -48,45 +41,20 @@ export default function PlayerOfTheYear() {
                 <TableCell align="center">Nat.</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell align="center">{year}</TableCell>
+                <TableCell align="center">{props.id}</TableCell>
                 <TableCell align="center">
                   <Stack direction="row" alignItems="center" spacing={1}>
-                    <Avatar src={img} sx={{ width: 30, height: 30 }} />
-                    <Typography>{name}</Typography>
+                    <Avatar src={player.player_image_2} sx={{ width: 30, height: 30 }} />
+                    <Typography>{player.name}</Typography>
                   </Stack>
-                  <Typography variant="body2" color="text.secondary">{position}</Typography>
+                  <Typography variant="body2" color="text.secondary">{player.position}</Typography>
                 </TableCell>
                 <TableCell align="center">
-                  <Avatar src={clubImg} alt={club} sx={{ width: 30, height: 30 }} />
+                  <Avatar src={`https://tmssl.akamaized.net//images/wappen/normquad/${player.team_image}.png`}  alt={player.name} sx={{ width: 30, height: 30 }} />
                 </TableCell>
                 <TableCell align="center">
-                  <Box component="img" src={`https://example.com/flags/${country.toLowerCase()}.png`} alt={country} sx={{ width: 30, height: 20 }} />
+                  <Box component="img" src={player.national_image} alt={player.name} sx={{ width: 30, height: 20 }} />
                 </TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Box>
-
-      {/* Statistics Box */}
-      <Box sx={{ width: '40%', backgroundColor: '#fff', p: 2, borderRadius: 2, textAlign: 'center', justifyContent: 'center', alignItems: 'center' }}>
-      <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 1 }}>
-          Player Statistics
-        </Typography>
-      <TableContainer>
-          <Table>
-            <TableBody>
-              <TableRow>
-                <TableCell><Typography variant="subtitle2">Goals:</Typography></TableCell>
-                <TableCell><Typography>{stats.goals}</Typography></TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell><Typography variant="subtitle2">Assists:</Typography></TableCell>
-                <TableCell><Typography>{stats.assists}</Typography></TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell><Typography variant="subtitle2">Yellow Cards:</Typography></TableCell>
-                <TableCell><Typography>{stats.yellowCards}</Typography></TableCell>
               </TableRow>
             </TableBody>
           </Table>

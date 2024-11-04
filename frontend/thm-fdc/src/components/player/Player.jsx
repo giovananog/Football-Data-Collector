@@ -7,19 +7,20 @@ import ProductCTA from './ProductCTA';
 import Cards from './Cards';
 import MaxWidthDialog from "./components/Dialog"
 import DialogCard from "./components/DialogCard"
+import { useParams } from 'react-router-dom';
 import Tables from "./Tables";
 
 function Team() {
+  const { id } = useParams();
+
 
   return (
     <div>
 
       <Header />
-      <ProductCTA />
-      <Tables />
-      {/* <Dashboard />
-      <Cards /> */}
-      <AppFooter />
+      <ProductCTA id={id} />
+      <Tables id={id}/>
+      <AppFooter/>
     </div>
   );
 }

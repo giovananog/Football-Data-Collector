@@ -1,6 +1,4 @@
 import PropTypes from 'prop-types';
-// material-ui
-import Stack from '@mui/material/Stack';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -8,111 +6,187 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Box from '@mui/material/Box';
-import { Avatar } from '@mui/material';
+import Avatar from '@mui/material/Avatar';
+import Typography from '@mui/material/Typography';
+import { useEffect, useState } from 'react';
+import React from 'react';
+import api from '../../../api'; // Importe a configuração da API
+import { Link } from '@mui/material';
 
-// Função para criar dados
-function createData(player, team, time, position, goals, assists, shots) {
-  return { player, team, time, position, goals, assists, shots };
-}
+// Componente de tabela de estatísticas de jogadores
+export default function PlayerStatsTable(props) {
+  const [playerStats, setPlayerStats] = useState([]);
+  const [players, setPlayers] = useState([]);
+  const [playersData, setPlayersData] = useState([]);
+  const [match, setMatch] = useState([]);
 
-// Exemplo de dados dos jogadores
-const rows = [
-  createData('Carlos', 'Flamengo', '10:00', 'Atacante', 1, 0, 4),
-  createData('João', 'Vasco', '25:00', 'Meio-Campo', 0, 1, 2),
-  createData('Lucas', 'Fluminense', '45:00', 'Defensor', 0, 0, 1),
-  createData('Lucas', 'Fluminense', '45:00', 'Defensor', 0, 0, 1),
-  createData('Lucas', 'Fluminense', '45:00', 'Defensor', 0, 0, 1),
-  createData('Lucas', 'Fluminense', '45:00', 'Defensor', 0, 0, 1),
-  createData('Lucas', 'Fluminense', '45:00', 'Defensor', 0, 0, 1),
-  createData('Lucas', 'Fluminense', '45:00', 'Defensor', 0, 0, 1),
-  createData('Lucas', 'Fluminense', '45:00', 'Defensor', 0, 0, 1),
-  createData('Lucas', 'Fluminense', '45:00', 'Defensor', 0, 0, 1),
-];
+  React.useEffect(() => {
+    api.get(`/matches/${props.matchId}`).then(res => {
+      setMatch(res.data);
+    });
+  }, []);
 
-// Ícones dos times (substitua pelos ícones reais)
-const teamIcons = {
-  Flamengo: '/path/to/flamengo_icon.png',
-  Vasco: '/path/to/vasco_icon.png',
-  Fluminense: '/path/to/fluminense_icon.png',
-};
+  React.useEffect(() => {
+    api.get(`/matches/${props.matchId}/players`).then(res => {
+      setPlayers(res.data);
+    });
+  }, [match]);
 
-// ==============================|| GOAL TABLE - HEADER ||============================== //
+  React.useEffect(() => {
+    if (players.length > 0 && match) {
+      Promise.all(
+        players
+          .filter(player => player.player_id) // Filtra apenas os jogadores que têm player_id
+          .map(player => 
+            api.get(`/player/${player.player_id}/${match.matchday}/${match.score}`)
+          )
+      )
+      .then(responses => {
+        const allStats = responses.map(res => res.data);
+        setPlayerStats(allStats);
+      })
+      .catch(error => {
+        console.error('Erro ao buscar dados dos jogadores:', error);
+      });
+    }
+  }, [players, match]);
+  
 
-const headCells = [
-  { id: 'team', align: 'center', disablePadding: false, label: 'Time' },
-  { id: 'player', align: 'center', disablePadding: false, label: 'Jogador' },
-  { id: 'time', align: 'center', disablePadding: false, label: 'Minuto' },
-  { id: 'position', align: 'center', disablePadding: false, label: 'Posição' },
-  { id: 'goals', align: 'center', disablePadding: false, label: 'Gols' },
-  { id: 'assists', align: 'center', disablePadding: false, label: 'Assistências' },
-  { id: 'shots', align: 'center', disablePadding: false, label: 'Finalizações' },
-];
+  React.useEffect(() => {
+    if (players.length > 0 && match) {
+      const data = {}; // Inicialize um objeto vazio para armazenar os dados dos jogadores
+  
+      Promise.all(
+        players
+          .filter(player => player.player_id) // Filtra apenas jogadores que têm player_id
+          .map(player => 
+            api.get(`/players/${player.player_id}`).then(res => {
+              data[player.player_id] = res.data; // Armazena os dados no objeto com o ID do jogador como chave
+              return res.data; // Retorna os dados para o Promise.all (não essencial aqui, mas bom para garantir a consistência)
+            })
+          )
+      )
+      .then(() => {
+        setPlayersData(data); // Atualiza o estado com o objeto de dados dos jogadores
+        console.log(data); // Verifica o conteúdo do objeto 'data' com as informações dos jogadores
+      })
+      .catch(error => {
+        console.error('Erro ao buscar dados dos jogadores:', error);
+      });
+    }
+  }, [players, match]);
+  
 
-// Componente para o cabeçalho da tabela
-function GoalTableHead() {
+  const half = Math.ceil(playerStats.length / 2);
+  const firstTeamStats = playerStats.slice(0, half);
+  const secondTeamStats = playerStats.slice(half);
+
   return (
-    <TableHead>
-      <TableRow>
-        {headCells.map((headCell) => (
-          <TableCell
-            key={headCell.id}
-            align={headCell.align}
-            padding={headCell.disablePadding ? 'none' : 'normal'}
-            sx={{ padding: '4px' }} // Reduz a altura da linha no cabeçalho
-          >
-            {headCell.label}
-          </TableCell>
-        ))}
-      </TableRow>
-    </TableHead>
-  );
-}
-
-// Componente para a tabela de estatísticas de jogadores
-export default function GoalsTable() {
-  return (
-    <Box>
-      <TableContainer
-        sx={{
-          width: '100%',
-          overflowX: 'auto',
-          position: 'relative',
-          display: 'block',
-          maxWidth: '100%',
-          '& td, & th': { whiteSpace: 'nowrap' },
-        }}
-      >
-        <Table aria-labelledby="tableTitle">
-          <GoalTableHead />
+    <Box display="flex" justifyContent="space-between">
+      <TableContainer style={{ flex: 1, marginRight: '8px' }}>
+        <Typography variant="h6">{props.firstTeam}</Typography>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell style={{ padding: '4px' }}>Jogador</TableCell>
+              <TableCell style={{ padding: '4px' }}>Posição</TableCell>
+              <TableCell style={{ padding: '4px' }}>Gols</TableCell>
+              <TableCell style={{ padding: '4px' }}>Assistências</TableCell>
+              <TableCell style={{ padding: '4px' }}>Minutos</TableCell>
+            </TableRow>
+          </TableHead>
           <TableBody>
-            {rows.map((row, index) => (
-              <TableRow
-                hover
-                role="checkbox"
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                tabIndex={-1}
-                key={`${row.player}-${index}`}
-              >
-                <TableCell align='center' sx={{ padding: '4px' }}>
-                  <img src={teamIcons[row.team]} alt={row.team} style={{ width: '30px', height: '30px' }} />
+            {firstTeamStats.length > 0 ? (
+              firstTeamStats.map((row, index) => (
+                <TableRow key={index}>
+                  <TableCell style={{ padding: '4px' }}>
+                    <Link 
+                      href={`../../../jogadores/${row[0].player_id}`} 
+                      style={{ 
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        textDecoration: 'none',
+                        color: '#1976d2', 
+                        padding: '4px' 
+                      }}
+                    >
+                      <img 
+                        src={playersData[row[0].player_id]?.image} 
+                        style={{ height: '40px', width: '40px', marginRight: '8px' }} 
+                        alt={playersData[row[0].player_id]?.name} 
+                      />
+                      <Typography variant="body2">
+                        {playersData[row[0].player_id]?.name}
+                      </Typography>
+                    </Link>
+                  </TableCell>
+                  <TableCell style={{ padding: '4px' }}>{row[0].position_on_matchday}</TableCell>
+                  <TableCell style={{ padding: '4px' }}>{row[0].goals || '-'}</TableCell>
+                  <TableCell style={{ padding: '4px' }}>{row[0].assists || '-'}</TableCell>
+                  <TableCell style={{ padding: '4px' }}>{row[0].minutes_played || '-'}</TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={5} align="center">
+                  <Typography>Nenhuma estatística encontrada</Typography>
                 </TableCell>
-                <TableCell align='center' sx={{ padding: '4px' }}>
-                  <Stack direction="row" alignItems="center">
-                    <Avatar
-                      alt={row.player}
-                      src={`https://img.a.transfermarkt.technology/portrait/header/412594-1661910650.jpg?lm=1`} // Caminho da imagem do jogador
-                      sx={{ width: '40px', height: '40px' }}
-                    />
-                    {row.player}
-                  </Stack>
-                </TableCell>
-                <TableCell align='center' sx={{ padding: '4px' }}>{row.time}</TableCell>
-                <TableCell align='center' sx={{ padding: '4px' }}>{row.position}</TableCell>
-                <TableCell align='center' sx={{ padding: '4px' }}>{row.goals}</TableCell>
-                <TableCell align='center' sx={{ padding: '4px' }}>{row.assists}</TableCell>
-                <TableCell align='center' sx={{ padding: '4px' }}>{row.shots}</TableCell>
               </TableRow>
-            ))}
+            )}
+          </TableBody>
+        </Table>
+      </TableContainer>
+
+      <TableContainer style={{ flex: 1, marginLeft: '8px' }}>
+        <Typography variant="h6">{props.secondTeam}</Typography>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell style={{ padding: '4px' }}>Jogador</TableCell>
+              <TableCell style={{ padding: '4px' }}>Posição</TableCell>
+              <TableCell style={{ padding: '4px' }}>Gols</TableCell>
+              <TableCell style={{ padding: '4px' }}>Assistências</TableCell>
+              <TableCell style={{ padding: '4px' }}>Minutos</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {secondTeamStats.length > 0 ? (
+              secondTeamStats.map((row, index) => (
+                <TableRow key={index}>
+                  <TableCell style={{ padding: '4px' }}>
+                    <Link 
+                      href={`../../../jogadores/${row[0].player_id}`} 
+                      style={{ 
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        textDecoration: 'none',
+                        color: '#1976d2', 
+                        padding: '4px' 
+                      }}
+                    >
+                      <img 
+                        src={playersData[row[0].player_id]?.image} 
+                        style={{ height: '40px', width: '40px', marginRight: '8px' }} 
+                        alt={playersData[row[0].player_id]?.name} 
+                      />
+                      <Typography variant="body2">
+                        {playersData[row[0].player_id]?.name}
+                      </Typography>
+                    </Link>
+                  </TableCell>
+                  <TableCell style={{ padding: '4px' }}>{row[0].position_on_matchday}</TableCell>
+                  <TableCell style={{ padding: '4px' }}>{row[0].goals || '-'}</TableCell>
+                  <TableCell style={{ padding: '4px' }}>{row[0].assists || '-'}</TableCell>
+                  <TableCell style={{ padding: '4px' }}>{row[0].minutes_played || '-'}</TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={5} align="center">
+                  <Typography>Nenhuma estatística encontrada</Typography>
+                </TableCell>
+              </TableRow>
+            )}
           </TableBody>
         </Table>
       </TableContainer>
@@ -120,7 +194,9 @@ export default function GoalsTable() {
   );
 }
 
-GoalTableHead.propTypes = {
-  order: PropTypes.any,
-  orderBy: PropTypes.string,
+PlayerStatsTable.propTypes = {
+  matchId: PropTypes.number.isRequired,
+  firstTeam: PropTypes.string.isRequired,
+  secondTeam: PropTypes.string.isRequired,
+  result: PropTypes.string.isRequired,
 };

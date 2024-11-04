@@ -12,61 +12,26 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 
-// project import
-import Dot from '../../home/views/components/Dot';
-
-function createData(time1, score, team2) {
-  return { time1, score, team2 };
-}
-
-const rows = [
-  createData('Palmeiras', "3x2", "Flamengo"),
-];
-
-function descendingComparator(a, b, orderBy) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
-  }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
-  return 0;
-}
-
-function getComparator(order, orderBy) {
-  return order === 'desc' ? (a, b) => descendingComparator(a, b, orderBy) : (a, b) => -descendingComparator(a, b, orderBy);
-}
-
-function stableSort(array, comparator) {
-  const stabilizedThis = array.map((el, index) => [el, index]);
-  stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
-    if (order !== 0) {
-      return order;
-    }
-    return a[1] - b[1];
-  });
-  return stabilizedThis.map((el) => el[0]);
-}
+// ==============================|| ORDER TABLE - HEADER ||============================== //
 
 const headCells = [
-  {
-    id: 'data',
-    align: 'center',
-    disablePadding: false,
-    label: "Morumbi"
-  },
-  {
-    id: 'hora',
-    align: 'center',
-    disablePadding: false,
-    label: ""
-  },
   {
     id: 'time1',
     align: 'center',
     disablePadding: false,
-    label: '20/10 - 18:00'
+    label: 'Time 1'
+  },
+  {
+    id: 'score',
+    align: 'center',
+    disablePadding: false,
+    label: 'Placar'
+  },
+  {
+    id: 'time2',
+    align: 'center',
+    disablePadding: false,
+    label: 'Time 2'
   },
 ];
 
@@ -92,41 +57,11 @@ function OrderTableHead({ order, orderBy }) {
   );
 }
 
-function OrderStatus({ status }) {
-  let color;
-  let title;
-
-  switch (status) {
-    case 0:
-      color = 'warning';
-      title = 'Pending';
-      break;
-    case 1:
-      color = 'success';
-      title = 'Approved';
-      break;
-    case 2:
-      color = 'error';
-      title = 'Rejected';
-      break;
-    default:
-      color = 'primary';
-      title = 'None';
-  }
-
-  return (
-    <Stack direction="row" spacing={1} alignItems="center" justifyContent="center">
-      <Dot color={color} />
-      <Typography>{title}</Typography>
-    </Stack>
-  );
-}
-
 // ==============================|| ORDER TABLE ||============================== //
 
-export default function OrderTable() {
+export default function OrdersTable({ matchData }) {
   const order = 'asc';
-  const orderBy = 'data';
+  const orderBy = 'time1';
 
   return (
     <Box>
@@ -143,7 +78,7 @@ export default function OrderTable() {
         <Table aria-labelledby="tableTitle">
           <OrderTableHead order={order} orderBy={orderBy} />
           <TableBody>
-            {stableSort(rows, getComparator(order, orderBy)).map((row, index) => {
+            {matchData.map((match, index) => {
               const labelId = `enhanced-table-checkbox-${index}`;
 
               return (
@@ -152,20 +87,22 @@ export default function OrderTable() {
                   role="checkbox"
                   sx={{ '& td, & th': { border: 0, padding: '0.5rem' }, border: 'none' }} // Ajuste o padding aqui
                   tabIndex={-1}
-                  key={row.data}
+                  key={match.id}
                 >
                   <TableCell align="center" width="14%">
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                      <Avatar sx={{ color: 'success.main', bgcolor: '#fff', fontSize: '1em' }}></Avatar>
+                      <Avatar src={`https://tmssl.akamaized.net//images/wappen/normquad/${match.first_team_id}.png`} sx={{ color: 'success.main', bgcolor: '#fff', fontSize: '1em' }}></Avatar>
                     </div>
-                    {row.time1}
                   </TableCell>
-                  <TableCell align="center" width="6%">{row.score}</TableCell>
+                  <TableCell align="center" width="6%">
+                    <Link href={`/campeonatos/${match.season}/partidas/${match.id}`} underline="hover" color="inherit">
+                      {match.score}
+                    </Link>
+                  </TableCell>
                   <TableCell align="center" width="14%">
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                      <Avatar sx={{ color: 'success.main', bgcolor: '#fff', fontSize: '1em' }}></Avatar>
+                      <Avatar src={`https://tmssl.akamaized.net//images/wappen/normquad/${match.second_team_id}.png`} sx={{ color: 'success.main', bgcolor: '#fff', fontSize: '1em' }}></Avatar>
                     </div>
-                    {row.team2}
                   </TableCell>
                 </TableRow>
               );
@@ -178,5 +115,3 @@ export default function OrderTable() {
 }
 
 OrderTableHead.propTypes = { order: PropTypes.any, orderBy: PropTypes.string };
-
-OrderStatus.propTypes = { status: PropTypes.number };

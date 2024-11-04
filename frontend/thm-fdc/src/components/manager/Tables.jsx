@@ -8,7 +8,7 @@ import StatsTable from './components/StatsTable';
 
 // ==============================|| DASHBOARD - DEFAULT ||============================== //
 
-export default function Dashboard() {
+export default function Dashboard(props) {
   return (
     <Grid container rowSpacing={4.5} columnSpacing={2.75} sx={{ marginTop: 4, bgcolor: "#fafafa", justifyContent: "center" }}>
       <Grid container spacing={2} sx={{ marginBottom: 10,  justifyContent: "center" }}>
@@ -20,17 +20,7 @@ export default function Dashboard() {
               </Grid>
               <Grid item xs={12}>
                 <MainCard content={false}>
-                  <StatsTable />
-                </MainCard>
-              </Grid>
-              <Grid item xs={12}>
-                <MainCard content={false}>
-                  <StatsTable />
-                </MainCard>
-              </Grid>
-              <Grid item xs={12}>
-                <MainCard content={false}>
-                  <StatsTable />
+                  <StatsTable id={props.id}/>
                 </MainCard>
               </Grid>
             </Grid>

@@ -9,7 +9,7 @@ function createSeasonData(season, club, matches, wins, draws, losses, goals, poi
 
 // Exemplo de dados da temporada
 const rows = [
-  createSeasonData("2023", "Clube Atlético Mineiro", "28", "14", "6", "8", "38 : 24", "48", "1.71", "3", "27"),
+  createSeasonData(""),
   // Adicione mais dados conforme necessário
 ];
 
@@ -53,7 +53,7 @@ function MatchTableHead() {
 }
 
 // Componente da tabela de partidas
-export default function MatchTable() {
+export default function MatchTable(props) {
   return (
     <Box>
       <TableContainer

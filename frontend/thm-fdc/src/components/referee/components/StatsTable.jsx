@@ -1,18 +1,7 @@
 // MatchTable.js
-import React from 'react';
-import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
-
-// Função para criar dados
-function createMatchData(matchday, date, firstTeam, secondTeam, result, position, goals, assists, ownGoals, yellowCards, redYellowCards, minutesPlayed) {
-  return { matchday, date, firstTeam, secondTeam, result, position, goals, assists, ownGoals, yellowCards, redYellowCards, minutesPlayed };
-}
-
-// Exemplo de dados das partidas
-const rows = [
-  createMatchData("1", "May 19, 2012", "Palmeiras", "Portuguesa", "1:1", "18", "", "", "", "", "", "90'"),
-  createMatchData("4", "Jun 10, 2012", "Cruzeiro", "Sport Recife", "1:0", "8", "1", "", "", "1", "", "90'"),
-  // Adicione mais dados conforme necessário
-];
+import React, { useEffect, useState } from 'react';
+import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
+import api from '../../../api'; // Certifique-se de ter a configuração correta da API
 
 // Configuração das colunas da tabela
 const headCells = [
@@ -21,10 +10,6 @@ const headCells = [
   { id: 'firstTeam', label: 'Home Team', align: 'center' },
   { id: 'secondTeam', label: 'Away Team', align: 'center' },
   { id: 'result', label: 'Result', align: 'center' },
-  { id: 'position', label: 'Position on Matchday', align: 'center' },
-  { id: 'goals', label: 'Goals', align: 'center' },
-  { id: 'assists', label: 'Assists', align: 'center' },
-  { id: 'ownGoals', label: 'Own Goals', align: 'center' },
   { id: 'yellowCards', label: 'Yellow Cards', align: 'center' },
   { id: 'redYellowCards', label: 'Red Yellow Cards', align: 'center' },
   { id: 'minutesPlayed', label: 'Minutes Played', align: 'center' },
@@ -44,7 +29,7 @@ function MatchTableHead() {
           <TableCell
             key={headCell.id}
             align={headCell.align}
-            sx={{ padding: '4px' }}
+            sx={{ padding: '4px', fontWeight: 'bold', backgroundColor: '#f5f5f5' }}
           >
             {headCell.label}
           </TableCell>
@@ -56,6 +41,17 @@ function MatchTableHead() {
 
 // Componente da tabela de partidas
 export default function MatchTable() {
+  const [matches, setMatches] = useState([]);
+
+  useEffect(() => {
+    // Chamada à API para obter dados das partidas
+    api.get(`/referee/${1099}/matches`).then(response => {
+      setMatches(response.data);
+    }).catch(error => {
+      console.error('Erro ao buscar os dados das partidas:', error);
+    });
+  }, []);
+
   return (
     <Box>
       <TableContainer
@@ -69,26 +65,26 @@ export default function MatchTable() {
         <Table aria-labelledby="tableTitle">
           <MatchTableHead />
           <TableBody>
-            {rows.map((row, index) => (
-              <TableRow
-                hover
-                key={`match-${index}`}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              >
-                <TableCell align="center" sx={{ padding: '4px' }}>{row.matchday}</TableCell>
-                <TableCell align="center" sx={{ padding: '4px' }}>{row.date}</TableCell>
-                <TableCell align="center" sx={{ padding: '4px' }}>{row.firstTeam}</TableCell>
-                <TableCell align="center" sx={{ padding: '4px' }}>{row.secondTeam}</TableCell>
-                <TableCell align="center" sx={{ padding: '4px' }}>{row.result}</TableCell>
-                <TableCell align="center" sx={{ padding: '4px' }}>{row.position}</TableCell>
-                <TableCell align="center" sx={{ padding: '4px' }}>{row.goals}</TableCell>
-                <TableCell align="center" sx={{ padding: '4px' }}>{row.assists}</TableCell>
-                <TableCell align="center" sx={{ padding: '4px' }}>{row.ownGoals}</TableCell>
-                <TableCell align="center" sx={{ padding: '4px' }}>{row.yellowCards}</TableCell>
-                <TableCell align="center" sx={{ padding: '4px' }}>{row.redYellowCards}</TableCell>
-                <TableCell align="center" sx={{ padding: '4px' }}>{row.minutesPlayed}</TableCell>
+            {matches.length > 0 ? (
+              matches.map((match, index) => (
+                <TableRow key={index}>
+                  <TableCell align="center">{match.matchday}</TableCell>
+                  <TableCell align="center">{match.date}</TableCell>
+                  <TableCell align="center">{match.home_team}</TableCell>
+                  <TableCell align="center">{match.away_team}</TableCell>
+                  <TableCell align="center">{match.result}</TableCell>
+                  <TableCell align="center">{match.yellow_cards}</TableCell>
+                  <TableCell align="center">{match.red_cards}</TableCell>
+                  <TableCell align="center">{match.penalty_kicks}</TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={headCells.length} align="center">
+                  <Typography variant="body2" color="text.secondary">No matches available</Typography>
+                </TableCell>
               </TableRow>
-            ))}
+            )}
           </TableBody>
         </Table>
       </TableContainer>

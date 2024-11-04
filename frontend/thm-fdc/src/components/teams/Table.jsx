@@ -8,12 +8,13 @@ import CompetitionTable from './components/CompetitionTable';
 import PlayerStats from './components/PlayerStats';
 import OrdersTable from './components/OrdersTable'
 import ForwardOutlinedIcon from '@mui/icons-material/ForwardOutlined';
+import { Link } from 'react-router-dom';
 
 
 
 // ==============================|| DASHBOARD - DEFAULT ||============================== //
 
-export default function Dashboard() {
+export default function Dashboard(props) {
   return (
     <Grid container rowSpacing={4.5} columnSpacing={2.75} sx={{ marginTop: 4, bgcolor: "#fafafa", justifyContent: "center" }}>
       <Grid container spacing={2} sx={{ marginBottom: 10, marginTop: 10, justifyContent: "center" }}>
@@ -26,7 +27,7 @@ export default function Dashboard() {
             </Grid>
             <Grid item xs={12}>
               <MainCard sx={{ mt: 2 }} content={false}>
-                <CompetitionTable />
+                <CompetitionTable id={props.id} />
               </MainCard>
             </Grid>
           </Grid>
@@ -39,7 +40,7 @@ export default function Dashboard() {
             </Grid>
             <Grid item xs={12}>
               <MainCard sx={{ mt: 2 }} content={false}>
-                <PlayerStats />
+                <PlayerStats id={props.id}/>
               </MainCard>
             </Grid>
           </Grid>
@@ -54,40 +55,13 @@ export default function Dashboard() {
             </Grid>
             <Grid item />
           </Grid>
-          <br/>
-          <br/>
-          <br/>
-          {/* <MainCard sx={{ mt: 2, border: 'none' }} content={false}>
-            <OrdersTable />
-          </MainCard> */}
-          <MainCard sx={{ mt: 2, border: 'none', width: '28%', marginRight: '2%', marginLeft: '2%' }} content={false}>
-            <OrdersTable />
-            <br/>
-            <OrdersTable />
-            <br/>
-            <OrdersTable />
-            <br/>
-          </MainCard>
-          <MainCard sx={{ mt: 2, border: 'none', width: '28%', marginRight: '2%', marginLeft: '2%' }} content={false}>
-            <OrdersTable />
-            <br/>
-            <OrdersTable />
-            <br/>
-            <OrdersTable />
-            <br/>
-          </MainCard>
-          <MainCard sx={{ mt: 2, border: 'none', width: '28%', marginRight: '2%', marginLeft: '2%' }} content={false}>
-            <OrdersTable />
-            <br/>
-            <OrdersTable />
-            <br/>
-            <OrdersTable />
-            <br/>
+          <MainCard sx={{ mt: 2, border: 'none', width: '100%', marginRight: '2%', marginLeft: '2%' }} content={false}>
+            <OrdersTable id={props.id}/>
           </MainCard>
           <Grid item sx={{ justifyContent:"flex-end", alignItems:"center", width: "100%", display: "flex" }}>
-            {/* <PaginationLink /> */}
-            <Typography variant="p">Todas</Typography>
-            <ForwardOutlinedIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, fontSize: 50 }} />
+            <Link to={`../campeonatos/${props.id}/partidas`}>
+              <ForwardOutlinedIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, fontSize: 50 }} />
+            </Link>
 
         </Grid>
         </Grid>

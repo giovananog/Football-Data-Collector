@@ -1,57 +1,51 @@
-// MatchTable.js
-import React from 'react';
+// PlayerStatsTable.js
+import React, { useEffect, useState } from 'react';
 import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import api from "../../../api"
 
-// Função para criar dados
-function createMatchData(matchday, date, firstTeam, secondTeam, result, position, goals, assists, ownGoals, yellowCards, redYellowCards, minutesPlayed) {
-  return { matchday, date, firstTeam, secondTeam, result, position, goals, assists, ownGoals, yellowCards, redYellowCards, minutesPlayed };
-}
+// Componente para a tabela de estatísticas do jogador
+export default function PlayerStatsTable(props) {
+  const [playerStats, setPlayerStats] = useState([]);
 
-// Exemplo de dados das partidas
-const rows = [
-  createMatchData("1", "Aug 10, 2002", "São Paulo", "Paysandu", "4:2", "GK", "", "", "", "", "", "90'"),
-  createMatchData("2", "Aug 17, 2002", "São Paulo", "Corinthians", "1:1", "GK", "", "", "", "", "", "90'"),
-  createMatchData("3", "Aug 24, 2002", "São Paulo", "Santos", "3:0", "GK", "1", "", "", "1", "", "90'"),
-  // Adicione mais dados conforme necessário
-];
+  React.useEffect(() => {
+    api.get(`/player/${props.id}/stats`).then(res => {
+      setPlayerStats(res.data);
+    });
+  }, []);
 
-// Configuração das colunas da tabela
-const headCells = [
-  { id: 'matchday', label: 'Matchday', align: 'center' },
-  { id: 'date', label: 'Date', align: 'center' },
-  { id: 'firstTeam', label: 'First Team', align: 'center' },
-  { id: 'secondTeam', label: 'Second Team', align: 'center' },
-  { id: 'result', label: 'Result', align: 'center' },
-  { id: 'position', label: 'Position on Matchday', align: 'center' },
-  { id: 'goals', label: 'Goals', align: 'center' },
-  { id: 'assists', label: 'Assists', align: 'center' },
-  { id: 'ownGoals', label: 'Own Goals', align: 'center' },
-  { id: 'yellowCards', label: 'Yellow Cards', align: 'center' },
-  { id: 'redYellowCards', label: 'Red Yellow Cards', align: 'center' },
-  { id: 'minutesPlayed', label: 'Minutes Played', align: 'center' },
-];
+  // Configuração das colunas da tabela
+  const headCells = [
+    { id: 'matchday', label: 'Matchday', align: 'center' },
+    { id: 'date', label: 'Date', align: 'center' },
+    { id: 'firstTeam', label: 'First Team', align: 'center' },
+    { id: 'secondTeam', label: 'Second Team', align: 'center' },
+    { id: 'result', label: 'Result', align: 'center' },
+    { id: 'position', label: 'Position on Matchday', align: 'center' },
+    { id: 'goals', label: 'Goals', align: 'center' },
+    { id: 'assists', label: 'Assists', align: 'center' },
+    { id: 'ownGoals', label: 'Own Goals', align: 'center' },
+    { id: 'yellowCards', label: 'Yellow Cards', align: 'center' },
+    { id: 'secondYellowCards', label: 'Second Yellow Cards', align: 'center' },
+    { id: 'redYellowCards', label: 'Red Yellow Cards', align: 'center' },
+    { id: 'substitutionsOn', label: 'Substitutions On', align: 'center' },
+    { id: 'substitutionsOff', label: 'Substitutions Off', align: 'center' },
+    { id: 'minutesPlayed', label: 'Minutes Played', align: 'center' },
+  ];
 
-// Cabeçalho da tabela
-function MatchTableHead() {
-  return (
+  // Cabeçalho da tabela
+  const PlayerStatsTableHead = () => (
     <TableHead>
       <TableRow>
         {headCells.map((headCell) => (
-          <TableCell
-            key={headCell.id}
-            align={headCell.align}
-            sx={{ padding: '4px' }}
-          >
+          <TableCell key={headCell.id} align={headCell.align} sx={{ padding: '4px' }}>
             {headCell.label}
           </TableCell>
         ))}
       </TableRow>
     </TableHead>
   );
-}
 
-// Componente da tabela de partidas
-export default function MatchTable() {
+
   return (
     <Box>
       <TableContainer
@@ -63,26 +57,29 @@ export default function MatchTable() {
         }}
       >
         <Table aria-labelledby="tableTitle">
-          <MatchTableHead />
+          <PlayerStatsTableHead />
           <TableBody>
-            {rows.map((row, index) => (
+            {playerStats.map((row) => (
               <TableRow
                 hover
-                key={`match-${index}`}
+                key={`player-stat-${row.id}`}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
                 <TableCell align="center" sx={{ padding: '4px' }}>{row.matchday}</TableCell>
                 <TableCell align="center" sx={{ padding: '4px' }}>{row.date}</TableCell>
-                <TableCell align="center" sx={{ padding: '4px' }}>{row.firstTeam}</TableCell>
-                <TableCell align="center" sx={{ padding: '4px' }}>{row.secondTeam}</TableCell>
+                <TableCell align="center" sx={{ padding: '4px' }}>{row.first_team}</TableCell>
+                <TableCell align="center" sx={{ padding: '4px' }}>{row.second_team}</TableCell>
                 <TableCell align="center" sx={{ padding: '4px' }}>{row.result}</TableCell>
-                <TableCell align="center" sx={{ padding: '4px' }}>{row.position}</TableCell>
-                <TableCell align="center" sx={{ padding: '4px' }}>{row.goals}</TableCell>
-                <TableCell align="center" sx={{ padding: '4px' }}>{row.assists}</TableCell>
-                <TableCell align="center" sx={{ padding: '4px' }}>{row.ownGoals}</TableCell>
-                <TableCell align="center" sx={{ padding: '4px' }}>{row.yellowCards}</TableCell>
-                <TableCell align="center" sx={{ padding: '4px' }}>{row.redYellowCards}</TableCell>
-                <TableCell align="center" sx={{ padding: '4px' }}>{row.minutesPlayed}</TableCell>
+                <TableCell align="center" sx={{ padding: '4px' }}>{row.position_on_matchday}</TableCell>
+                <TableCell align="center" sx={{ padding: '4px' }}>{row.goals ?? '-'}</TableCell>
+                <TableCell align="center" sx={{ padding: '4px' }}>{row.assists ?? '-'}</TableCell>
+                <TableCell align="center" sx={{ padding: '4px' }}>{row.own_goals ?? '-'}</TableCell>
+                <TableCell align="center" sx={{ padding: '4px' }}>{row.yellow_cards ?? '-'}</TableCell>
+                <TableCell align="center" sx={{ padding: '4px' }}>{row.second_yellow_cards ?? '-'}</TableCell>
+                <TableCell align="center" sx={{ padding: '4px' }}>{row.red_yellow_cards ?? '-'}</TableCell>
+                <TableCell align="center" sx={{ padding: '4px' }}>{row.substitutions_on ?? '-'}</TableCell>
+                <TableCell align="center" sx={{ padding: '4px' }}>{row.substitutions_off ?? '-'}</TableCell>
+                <TableCell align="center" sx={{ padding: '4px' }}>{row.minutes_played ?? '-'}</TableCell>
               </TableRow>
             ))}
           </TableBody>

@@ -71,7 +71,7 @@ const images = [
   },
   {
     url: 'https://medias.itatiaia.com.br/dims4/default/75689d2/2147483647/strip/true/crop/1000x563+0+0/resize/1000x563!/quality/90/?url=https%3A%2F%2Fk2-prod-radio-itatiaia.s3.us-east-1.amazonaws.com%2Fbrightspot%2Fe0%2Fb7%2F8cd6223c47048e6448fca6f6583f%2Fromeroarana.jpg',
-    title: 'Clássicos',
+    title: 'Partidas',
     width: '40%',
   },
   {

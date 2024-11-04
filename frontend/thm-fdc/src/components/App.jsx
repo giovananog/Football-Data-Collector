@@ -7,14 +7,14 @@ import {
 
 import 'typeface-poppins';
 import Home from "./home/Home";
+import Stadium from "./stadium/Stadium";
 import Teams from "./teams/Teams";
 import Team from "./team/Team";
-import Player from "./player/Player";
 import Matches from "./matches/Matches";
-import Match from "./match/Match";
 import Referee from "./referee/Referee";
+import Match from "./match/Match";
+import Player from "./player/Player";
 import Manager from "./manager/Manager";
-import Stadium from "./stadium/Stadium";
 
 function App() {
   return (
@@ -23,14 +23,14 @@ function App() {
         <Routes>
 
           <Route path="/" element={<Home/>}></Route>
-          <Route path="/campeonatos/:times" element={<Teams/>}></Route>
-          <Route path="/campeonatos/:times/:time" element={<Team/>}></Route>
-          <Route path="/campeonatos/:id/partidas" element={<Matches/>}></Route>
-          <Route path="/campeonatos/:id/partidas/:id" element={<Match/>}></Route>
-          <Route path="/campeonatos/:id/jogadores/:a" element={<Player/>}></Route>
-          <Route path="/juizes/:a" element={<Referee/>}></Route>
-          <Route path="/tecnicos/:a" element={<Manager/>}></Route>
-          <Route path="/estadios/:a" element={<Stadium/>}></Route>
+          <Route path="/juizes/:id" element={<Referee/>}></Route>
+          <Route path="/tecnicos/:id" element={<Manager/>}></Route>
+          <Route path="/campeonatos/:id" element={<Teams/>}></Route>
+          <Route path="/time/:teamId" element={<Team/>}></Route>
+          <Route path="/campeonatos/:season/partidas" element={<Matches/>}></Route>
+          <Route path="/campeonatos/:season/partidas/:matchId" element={<Match/>}></Route>
+          <Route path="/jogadores/:id" element={<Player/>}></Route>
+          <Route path="/estadios/:id" element={<Stadium/>}></Route>
           
         </Routes>
 

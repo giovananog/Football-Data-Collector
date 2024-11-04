@@ -13,11 +13,10 @@ import Stats from './components/Stats';
 
 // ==============================|| DASHBOARD - DEFAULT ||============================== //
 
-export default function Dashboard() {
+export default function Dashboard(props) {
   return (
     <Grid container rowSpacing={4.5} columnSpacing={2.75} sx={{ marginTop: 4, bgcolor: "#fafafa", justifyContent: "center" }}>
       <Grid container spacing={2} sx={{ marginBottom: 10, marginTop: 10, justifyContent: "center" }}>
-        {/* Grid para a tabela de Gols */}
         <Grid item xs={12} md={6} lg={4}>
           <Grid container>
             <Grid item xs={12} sx={{ mb: -2.25 }} textAlign={"center"}>
@@ -25,7 +24,7 @@ export default function Dashboard() {
             </Grid>
           </Grid>
           <MainCard sx={{ mt: 2 }} content={false}>
-            <GoalsTable />
+            <GoalsTable matchId={props.matchId} />
           </MainCard>
         </Grid>
 
@@ -37,38 +36,30 @@ export default function Dashboard() {
             </Grid>
           </Grid>
           <MainCard sx={{ mt: 2 }} content={false}>
-            <SubstitutionsTable />
+            <SubstitutionsTable matchId={props.matchId} />
           </MainCard>
         </Grid>
 
-        <Grid item xs={12} md={6} lg={10}>
+        <Grid item xs={12} md={6} lg={8}>
           <Grid container>
             <Grid item xs={12} sx={{ mb: -2.25 }} textAlign={"center"}>
               <Typography variant="h5">Faltas</Typography>
             </Grid>
           </Grid>
           <MainCard sx={{ mt: 2 }} content={false}>
-            <CardsTable />
+            <CardsTable matchId={props.matchId} />
           </MainCard>
         </Grid>
 
         <Grid container spacing={2} sx={{ marginTop: 10, justifyContent: 'center' }}>
-          {/* Coluna das Tabelas de Jogadores */}
           <Grid item xs={12} md={6}>
             <Grid container spacing={2}>
               <Grid item xs={12} textAlign={"center"}>
                 <Typography variant="h5">Jogadores</Typography>
               </Grid>
-              {/* Primeira Tabela de Jogadores */}
-              <Grid item xs={12}>
+              <Grid item xs={12} lg={12}>
                 <MainCard sx={{ mt: 2 }} content={false}>
-                  <PlayerTable />
-                </MainCard>
-              </Grid>
-              {/* Segunda Tabela de Jogadores */}
-              <Grid item xs={12}>
-                <MainCard sx={{ mt: 2 }} content={false}>
-                  <PlayerTable />
+                  <PlayerTable matchId={props.matchId} />
                 </MainCard>
               </Grid>
             </Grid>
@@ -82,7 +73,7 @@ export default function Dashboard() {
               </Grid>
               <Grid item xs={12}>
                 <MainCard sx={{ mt: 2 }} content={false}>
-                  <CompetitionTable />
+                  <CompetitionTable season={props.season} matchId={props.matchId}/>
                 </MainCard>
               </Grid>
             </Grid>
@@ -97,7 +88,7 @@ export default function Dashboard() {
             </Grid>
           </Grid>
           <MainCard sx={{ mt: 2 }} content={false}>
-            <Stats />
+            <Stats matchId={props.matchId}/>
           </MainCard>
         </Grid>
       </Grid>

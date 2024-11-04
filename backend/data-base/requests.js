@@ -1,4 +1,4 @@
-import pool from "./connect.js";
+const pool = require('./connect');
 
 
 async function getAllPlayers() {
@@ -236,7 +236,7 @@ async function getStadiumDetailsById(stadiumId) {
 
 
 
-export {
+module.exports = {
     getAllPlayers,
     getAllTeams,
     getAllMatches,

@@ -24,24 +24,24 @@ def matches_data(ano, range_value):
             soup = BeautifulSoup(data, 'html.parser')
         
             first_team = soup.select(f'#tm-main > div > div.row > div > div > div > table > tbody > tr > td.text-right.no-border-rechts.hauptlink > a')     
-            score = soup.select(f'#tm-main > div > div.row > div > div > div > table > tbody > tr > td.zentriert.hauptlink > a')            
             scnd_team = soup.select(f'#tm-main > div > div.row > div > div > div > table > tbody > tr > td.no-border-links.hauptlink > a')            
-            
-            for i in range(len(first_team)):
+            match = soup.select(f'.ergebnis-link')  
+
+            for i in range(len(match)):
                 dict = {
                 'first_team': first_team[i].get_text(),
-                'score': score[i].get_text(),
+                'score': match[i].get_text(),
                 'scnd_team': scnd_team[i].get_text(),
-                'url': score[i].get_attribute_list("href")[0],
-                'id': score[i].get_attribute_list("href")[0].split('/')[-1],
+                'url': match[i].get_attribute_list("href")[0],
+                'id': match[i].get_attribute_list("href")[0].split('/')[-1],
                 'ano': ano,
                 }
                 year_list.append(dict)
             
             info_list.append(year_list)
-        
+                
     except Exception as e:
-        print(f"Error (matches_data): {e}")
+        print(f"Error (matches_data) aq: {e}")
     finally:
         return info_list
  
@@ -123,6 +123,22 @@ def match_data(matches_list):
                 soup = BeautifulSoup(data, 'html.parser')
                 
                 try:
+                    first_team_id = soup.select('#tm-main > div:nth-child(1) > div > div > div.box-content > div.sb-team.sb-heim > a.sb-vereinslink')[0].get_attribute_list('href')[0].split('/')[-3]
+                    second_team_id = soup.select('#tm-main > div:nth-child(1) > div > div > div.box-content > div.sb-team.sb-gast > a.sb-vereinslink')[0].get_attribute_list('href')[0].split('/')[-3]
+                    
+                    match_dict[ano][match_id]["first_team_id"] = first_team_id
+                    match_dict[ano][match_id]["second_team_id"] = second_team_id
+                except:
+                    pass
+                
+                try:
+                    date = soup.select('#tm-main > div:nth-child(1) > div > div > div.box-content > div.sb-spieldaten > p.sb-datum.hide-for-small > a:nth-child(2)')
+                    
+                    match_dict[ano][match_id]["date"] = date[0].get_text().split(',')[1]
+                except:
+                    pass
+                
+                try:
                     matchday = soup.select('#tm-main > div:nth-child(1) > div > div > div.box-content > div.sb-spieldaten > p.sb-datum.hide-for-small > a:nth-child(1)')
                     match_dict[ano][match_id]["matchday"] = matchday[0].get_text().split('.')[0]
                 except:
@@ -191,7 +207,7 @@ def match_data(matches_list):
                     goal_team = soup.select('#sb-tore > ul > li > div > div.sb-aktion-wappen > a')
                     goal_info = soup.select('.sb-aktion-aktion')
                     goal_info_a = soup.select('.sb-aktion-aktion a')
-                    goal_minute = soup.select('#sb-tore > ul > li > div > div.sb-aktion-uhr > span')
+                    goal_minute = soup.select('.sb-sprite-uhr-klein')
                     
 
                     for i in range(len(goalscorer)):
@@ -341,7 +357,7 @@ def match_data(matches_list):
                     offsides_team2 = data[13].get_text()
                     
                     match_stats_dict = {
-                        'team1': {
+                        first_team_id: {
                             'total_shots': total_shots_team1,
                             'shots_off': shots_team1,
                             'shots_saved': shots_saved_team1,
@@ -350,7 +366,7 @@ def match_data(matches_list):
                             'fouls': fouls_team1,
                             'offsides': offsides_team1
                         },
-                        'team2': {
+                        second_team_id: {
                             'total_shots': total_shots_team2,
                             'shots_off': shots_team2,
                             'shots_saved': shots_saved_team2,

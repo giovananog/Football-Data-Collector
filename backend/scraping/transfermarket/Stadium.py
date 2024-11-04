@@ -89,4 +89,4 @@ def stadium_data(url, list):
         except Exception as e:
             print(f"Error (stadium): {e}")
    
-        return stadium_id
+    return stadium_id

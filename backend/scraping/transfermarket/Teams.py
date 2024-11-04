@@ -40,6 +40,17 @@ def teams_data(url):
             manager_id = manager.get_attribute_list('href')[0].split('/')[-1]
             
             try:
+                names = soup.select('.no-border-links .hauptlink a')[0].get_attribute_list('href')[0].split('/')[-3]
+                
+                for name in names:
+                    if(name == team_id):
+                        if("General" not in data_dict[team_id]):
+                            data_dict[team_id]["General"] = {}
+                            data_dict[team_id]["General"]["Name"] = name
+            except:
+                pass
+            
+            try:
                 if ("General" not in data_dict[team_id]):
                     data_dict[team_id]["General"] = {
                         "Squad Size": header_contents[0].get_text().strip(),

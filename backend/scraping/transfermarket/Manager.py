@@ -113,7 +113,8 @@ def manager_data(url, list):
             # else:
                 # list[manager_id]["competition_data"] = dict
             
-            return manager_id
             
         except Exception as e:
             print(f"Error (manager): {e}")
+
+    return manager_id

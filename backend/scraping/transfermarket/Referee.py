@@ -105,7 +105,7 @@ def referee_data(url, list):
             
             list[referee_id] = referee_info
 
-            return referee_id
-
         except Exception as e:
             print(f"Error (referee): {e}")
+        
+    return referee_id

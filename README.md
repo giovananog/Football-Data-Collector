@@ -1,6 +1,6 @@
 # **Football Data Collector**
 
-THM Football Data Collector is a robust system designed to collect, analyze, and display football data with ease and efficiency. Leveraging modern web technologies, it offers a seamless interface and powerful backend services for football enthusiasts, analysts, and developers.
+Football Data Collector is a robust system designed to collect, analyze, and display football data with ease and efficiency. Leveraging modern web technologies, it offers a seamless interface and powerful backend services for football enthusiasts, analysts, and developers.
 
 <p align="center">
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js Icon" width="40px"/>

@@ -86,7 +86,7 @@ To run the project locally:
 1. Clone the repository.
 2. Navigate to the backend and frontend directories.
 3. Install dependencies using `npm install`.
-4. Start the backend server with `npm run start`.
+4. Start the backend server with `node app.js`.
 5. Start the frontend with `npm start`.
 6. Open the application in your browser at `http://localhost:3000`.
 

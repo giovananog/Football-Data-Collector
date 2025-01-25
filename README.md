@@ -31,7 +31,7 @@ Key features include:
 - **Comprehensive Data Access**: Provides extensive API endpoints to fetch data on matches, players, teams, referees, and managers.
 - **Visualization**: An easy-to-use interface that allows users to view match data, filter results, and track top players and teams.
 
-<p>For a brief overview of the project, you can view <a href='https://github.com/giovananog/Football-Data-Collector/blob/main/frontend/thm-fdc/public/Processo%20Seletivo%20THM%20Estatistica%20DEV%202024.pdf'>this document.<a/><p/>
+<p>For a quick overview of the project, you can view <a href='https://github.com/giovananog/Football-Data-Collector/blob/main/frontend/thm-fdc/public/Processo%20Seletivo%20THM%20Estatistica%20DEV%202024.pdf'>this document.<a/><p/>
 
 <br>
 

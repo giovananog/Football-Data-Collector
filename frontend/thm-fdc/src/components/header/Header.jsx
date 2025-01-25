@@ -48,7 +48,7 @@ function AppAppBar() {
         <Toolbar sx={{ width: '100%' }}>
           <Box sx={{ marginLeft: 10 }} />
           <SportsSoccerIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Link variant="h6" underline="none" color="inherit" href="/premium-themes/onepirate/" sx={{ fontSize: 30 }}>
+          <Link variant="h6" underline="none" color="inherit" href="/" sx={{ fontSize: 30 }}>
             {'THM.challenge'}
           </Link>
           <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end', marginRight: 10 }}>
@@ -72,16 +72,16 @@ function AppAppBar() {
               }}
             >
               <MenuItem onClick={() => handleYearClick(2020)} sx={{ color: '#ffffff', '&:hover': { backgroundColor: '#1A1D29' } }}>
-                2020
-              </MenuItem>
-              <MenuItem onClick={() => handleYearClick(2021)} sx={{ color: '#ffffff', '&:hover': { backgroundColor: '#1A1D29' } }}>
                 2021
               </MenuItem>
-              <MenuItem onClick={() => handleYearClick(2022)} sx={{ color: '#ffffff', '&:hover': { backgroundColor: '#1A1D29' } }}>
+              <MenuItem onClick={() => handleYearClick(2021)} sx={{ color: '#ffffff', '&:hover': { backgroundColor: '#1A1D29' } }}>
                 2022
               </MenuItem>
-              <MenuItem onClick={() => handleYearClick(2023)} sx={{ color: '#ffffff', '&:hover': { backgroundColor: '#1A1D29' } }}>
+              <MenuItem onClick={() => handleYearClick(2022)} sx={{ color: '#ffffff', '&:hover': { backgroundColor: '#1A1D29' } }}>
                 2023
+              </MenuItem>
+              <MenuItem onClick={() => handleYearClick(2023)} sx={{ color: '#ffffff', '&:hover': { backgroundColor: '#1A1D29' } }}>
+                2024
               </MenuItem>
             </Menu>
 
@@ -102,16 +102,16 @@ function AppAppBar() {
               }}
             >
               <MenuItem onClick={() => handleMatchesYearClick(2020)} sx={{ color: '#ffffff', '&:hover': { backgroundColor: '#1A1D29' } }}>
-                2020
-              </MenuItem>
-              <MenuItem onClick={() => handleMatchesYearClick(2021)} sx={{ color: '#ffffff', '&:hover': { backgroundColor: '#1A1D29' } }}>
                 2021
               </MenuItem>
-              <MenuItem onClick={() => handleMatchesYearClick(2022)} sx={{ color: '#ffffff', '&:hover': { backgroundColor: '#1A1D29' } }}>
+              <MenuItem onClick={() => handleMatchesYearClick(2021)} sx={{ color: '#ffffff', '&:hover': { backgroundColor: '#1A1D29' } }}>
                 2022
               </MenuItem>
-              <MenuItem onClick={() => handleMatchesYearClick(2023)} sx={{ color: '#ffffff', '&:hover': { backgroundColor: '#1A1D29' } }}>
+              <MenuItem onClick={() => handleMatchesYearClick(2022)} sx={{ color: '#ffffff', '&:hover': { backgroundColor: '#1A1D29' } }}>
                 2023
+              </MenuItem>
+              <MenuItem onClick={() => handleMatchesYearClick(2023)} sx={{ color: '#ffffff', '&:hover': { backgroundColor: '#1A1D29' } }}>
+                2024
               </MenuItem>
             </Menu>
           </Box>

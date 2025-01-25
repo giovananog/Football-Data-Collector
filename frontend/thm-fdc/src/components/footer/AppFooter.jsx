@@ -42,10 +42,10 @@ export default function AppFooter() {
         </Grid>
       </Grid>
       <Typography variant="body2" sx={{ mt: 2 }}>
-        © 1998-2024 UEFA. All rights reserved.
+        © 2025 FootballDataCollector. All rights reserved.
       </Typography>
       <Typography variant="caption" sx={{ mt: 1, display: 'block' }}>
-        The UEFA word, the UEFA logo and all marks related to UEFA competitions, are protected by trademarks and/or copyright of UEFA.
+        Football Data Collector Application 
       </Typography>
     </Box>
   );

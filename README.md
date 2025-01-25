@@ -221,7 +221,7 @@ To run the project locally:
   - `team`: Filter matches by team name (optional).
 - **Example Request**:
   ```http
-  GET /matches?date=2025-01-23
+  GET /matches?date=2020-01-23
   ```
 - **Example Response**:
   ```json
